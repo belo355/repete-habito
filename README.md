@@ -41,17 +41,5 @@ e2e/          Playwright
 
 ## CI e dependências
 
-- `.github/workflows/ci.yml`: lint → typecheck → unit (+ 3 fusos) → build → e2e → Lighthouse, e depois o deploy.
+- `.github/workflows/ci.yml`: lint → typecheck → unit (+ 3 fusos) → build → e2e → Lighthouse.
 - `renovate.json`: PRs toda segunda; minor/patch agrupados; patches entram sozinhos com CI verde. Para o auto-merge funcionar, instale o app Renovate no repositório e torne o job `CI` obrigatório na proteção da branch `main`.
-
-## Deploy
-
-Cloudflare Pages, publicado pelo job `deploy` do CI: `main` vai para produção e cada PR ganha um preview com URL própria. HTTPS é automático.
-
-Configuração única:
-
-1. Criar o projeto `repete-habito` no Cloudflare Pages (upload direto, sem integração Git).
-2. Criar um API token com a permissão _Cloudflare Pages: Edit_.
-3. No GitHub, adicionar os secrets `CLOUDFLARE_API_TOKEN` e `CLOUDFLARE_ACCOUNT_ID`.
-
-Sem os secrets, o job de deploy só emite um aviso e não falha.

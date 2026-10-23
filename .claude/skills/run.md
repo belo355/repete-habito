@@ -260,6 +260,7 @@ Além disso, em todo fechamento de entrega:
 | DV01 | 22/10/2026 | CA13.9 | Lacuna | Entrega 3 exige Dashboard < 1 s com 2 anos de histórico, mas a única task de medição é NFR.4, da Entrega 4. | Criar task em F13: "Fixture de 2 anos e medição de performance do Dashboard". | — | ⬜ Aberta |
 | DV02 | 22/10/2026 | CA12.6 | Lacuna | Nenhuma task cobre explicitamente "pular a etapa de lembrete" no onboarding. | Ampliar T12.3: "com opção de pular". | — | ⬜ Aberta |
 | DV03 | 22/10/2026 | CA11.1 | Dependência | CA11.1 exige desafios na exportação, mas desafios só existem em F14 (Entrega 5). | Na Entrega 4, validar CA11.1 sem desafios; revalidar em T14.10. | — | ⬜ Aberta |
+| DV04 | 23/10/2026 | T00.10 · product 4.9.1 (DoD) · 4.9.3 (saída da Entrega 0) | Conflito | O deploy no Cloudflare Pages foi retirado do projeto e não há outro provedor. Sem hospedagem não existe preview por PR, exigido pela Definição de Pronto ("demonstrada no ambiente de preview do PR") e pela saída da Entrega 0. | Escolher outro provedor (Netlify ou Vercel) antes de fechar a Entrega 0, ou o responsável de produto aceitar demo local (`pnpm preview`) no lugar do preview do PR. | — | ⬜ Aberta |
 
 Tipos: **Lacuna** (CA sem task) · **Conflito** (task × produto) · **Ambiguidade** (CA com mais de uma leitura) · **Dependência** (CA depende de feature futura) · **Desvio técnico** (spec não seguida).
 
