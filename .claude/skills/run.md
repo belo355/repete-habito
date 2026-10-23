@@ -280,7 +280,7 @@ Status: ⬜ Não verificado · 🟡 Parcial · ✅ Aprovado · ❌ Falhando
 | CA01.1 | T01.1, T01.6 | T11.8 | E | 🟡 |
 | CA01.2 | T01.10 | T12.6 | E + M (iOS) | ⬜ |
 | CA01.3 | T01.3 | — | E | ⬜ |
-| CA01.4 | T01.2, T01.5 | NFR.1 | E (axe) | ⬜ |
+| CA01.4 | T01.2, T01.5 | NFR.1 | E (axe) | 🟡 |
 | CA01.5 | T01.7 | — | E | ⬜ |
 | CA01.6 | T00.8, T01.6 | NFR.8 | Lighthouse | ⬜ |
 
@@ -509,6 +509,27 @@ Adicionar uma entrada **por task executada**, da mais recente para a mais antiga
 ```
 
 ### Execuções
+
+### 2026-10-23 · T01.2 · Tailwind v4 e tokens com contraste AA
+
+**Plano:** Tailwind v4 via `@tailwindcss/vite`; tokens em `src/ui/theme.css` (`@theme static`, paleta restrita a 9 cores semânticas, raios e `--spacing-touch` de 44 px); tema escuro por `data-theme="dark"` ou, sem escolha salva, pelo sistema; foco visível com `--color-focus`. Casca e páginas migradas para utilitários, sem mudar medidas. Cobre CA01.4 (parcial; falta T01.5).
+
+**Verificação técnica (passo 4):** lint ✅ · typecheck ✅ · unit ✅ (37/37) · 3 fusos ✅ · build ✅ (JS 99,5 KB gzip, CSS 2,4 KB) · e2e ✅ (111/111) · lighthouse ✅ (LCP 1,65 s)
+
+**QA (qa.md):** 🟡 Aprovada com pendência · 0/1 CAs ✅ (CA01.4 🟡, aguarda T01.5) · 2/14 INV verdes, 12 n/a, 0 falhando · 2 falhas S4 (ambiente: Mac dormindo · sonda temporária a apagar) · 0 flaky
+
+**Consistência (passo 5):**
+- A. CAs da task: CA01.4 🟡 (`e2e/f01-contrast.spec.ts` 12/12 nos 3 projetos; `tests/unit/theme-contrast.test.ts` cobre os 11 pares de tokens nos 2 temas; mutação detectada pelos dois)
+- B. Regressão: nenhum CA ✅ quebrou · revalidados: — · invariantes 0 falhando
+- C. Princípios 5.2: nenhum texto novo
+- D. Definição de Pronto (itens tocados): axe ✅ · alvos ≥ 44 px ✅ · 320 px sem rolagem ✅ · teclado ✅ · i18n pendente (T01.4)
+- E. Documentos: sem divergência
+
+**Resultado:** 🟡 Consistente com pendência
+
+**Observações do QA:** duas execuções do QA travaram porque o Mac dormiu com a tampa fechada (registrado no `pmset`); rodar o QA com o Mac acordado. Para NFR.1: a suíte só roda o axe completo no tema claro; no escuro roda só `color-contrast` (a sonda do QA mostrou o escuro limpo).
+
+**Novas tasks ou divergências:** —
 
 ### 2026-10-23 · T01.1 · Roteamento SPA e navegação principal
 

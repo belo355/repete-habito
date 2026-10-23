@@ -22,7 +22,7 @@ export const router = createBrowserRouter([
   {
     path: '/onboarding',
     element: (
-      <main className="app-main">
+      <main className="p-4">
         <OnboardingPage />
       </main>
     ),

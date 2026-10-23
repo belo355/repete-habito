@@ -1,3 +1,3 @@
 export function SettingsPage() {
-  return <h1>Ajustes</h1>;
+  return <h1 className="text-2xl font-bold">Ajustes</h1>;
 }

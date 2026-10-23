@@ -1,0 +1,83 @@
+@import 'tailwindcss';
+
+/*
+ * Tokens do design system (tech-spec §2.1: Tailwind v4 com tokens em variáveis CSS).
+ * O tema claro é o padrão. O escuro vale quando <html data-theme="dark"> ou, sem
+ * escolha salva, quando o sistema está em modo escuro. Todo par texto × fundo atende
+ * WCAG AA (tests/unit/theme-contrast.test.ts). Só cores em #rrggbb, para o teste ler.
+ */
+@theme static {
+  /* Paleta restrita aos tokens: sem as cores padrão do Tailwind. */
+  --color-*: initial;
+
+  --color-bg: #ffffff;
+  --color-surface: #f4f4f5;
+  --color-text: #18181b;
+  --color-text-muted: #52525b;
+  --color-primary: #15803d;
+  --color-on-primary: #ffffff;
+  --color-danger: #b91c1c;
+  --color-border: #71717a;
+  --color-focus: #1d4ed8;
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+
+  /* Alvo de toque mínimo (product 4.7). */
+  --spacing-touch: 2.75rem;
+}
+
+:root[data-theme='dark'] {
+  --color-bg: #0f1115;
+  --color-surface: #1c1f26;
+  --color-text: #f4f4f5;
+  --color-text-muted: #a1a1aa;
+  --color-primary: #4ade80;
+  --color-on-primary: #052e16;
+  --color-danger: #f87171;
+  --color-border: #8b8b94;
+  --color-focus: #93c5fd;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --color-bg: #0f1115;
+    --color-surface: #1c1f26;
+    --color-text: #f4f4f5;
+    --color-text-muted: #a1a1aa;
+    --color-primary: #4ade80;
+    --color-on-primary: #052e16;
+    --color-danger: #f87171;
+    --color-border: #8b8b94;
+    --color-focus: #93c5fd;
+  }
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) {
+      color-scheme: dark;
+    }
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: system-ui, sans-serif;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+}

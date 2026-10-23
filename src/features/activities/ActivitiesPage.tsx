@@ -1,3 +1,3 @@
 export function ActivitiesPage() {
-  return <h1>Atividades</h1>;
+  return <h1 className="text-2xl font-bold">Atividades</h1>;
 }
