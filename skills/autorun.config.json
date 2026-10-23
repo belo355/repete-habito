@@ -1,0 +1,45 @@
+{
+  "$comentario": "Parâmetros do modo autônomo. Lido por /autorun (.claude/skills/autorun) e por scripts/autorun.sh. Regras de processo: run.md · validação: qa.md.",
+
+  "escopo": {
+    "tipo": "entrega",
+    "alvo": "0"
+  },
+
+  "limites": {
+    "maxTasks": 10,
+    "maxTentativasPorTask": 3,
+    "maxTurnosPorTask": 80
+  },
+
+  "pararQuando": [
+    "veredito_bloqueada",
+    "falha_S1",
+    "reprovada_apos_max_tentativas",
+    "divergencia_aberta",
+    "fim_do_escopo",
+    "task_manual"
+  ],
+
+  "qa": {
+    "fecharFeature": true,
+    "fecharEntrega": true,
+    "aceitarPendencia": true
+  },
+
+  "git": {
+    "branchBase": "main",
+    "branchPorTask": true,
+    "commitPorTask": true,
+    "mergeAposAprovacao": true,
+    "push": false
+  },
+
+  "modelos": {
+    "orquestrador": "sonnet",
+    "executor": "sonnet",
+    "qa": "opus"
+  },
+
+  "tasksManuais": "parar"
+}

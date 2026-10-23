@@ -1,0 +1,20 @@
+# Dependências e build
+node_modules/
+dist/
+coverage/
+
+# Testes
+test-results/
+playwright-report/
+reports/qa/raw/
+.lighthouseci/
+
+# Autorun
+reports/autorun/
+.claude/autorun.active
+
+# Claude Code: preferências locais de cada pessoa
+.claude/settings.local.json
+
+# Sistema
+.DS_Store
