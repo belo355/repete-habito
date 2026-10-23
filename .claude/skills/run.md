@@ -120,7 +120,7 @@ Este é o passo central. Ele responde: **"depois desta task, o produto continua 
 
 **5.0 Acionar o agente de QA**
 
-1. Carregar `skills/qa.md` como contexto (sessão ou subagente de QA, separado do executor sempre que possível).
+1. Carregar `.claude/skills/qa.md` como contexto (sessão ou subagente de QA, separado do executor sempre que possível).
 2. Executar `qa task <Txx.y>`, seguindo o procedimento de `qa.md` §8.1 inteiro:
    escopo → cobertura por ID → revisão do "então" → higiene (`.only`/`.skip`/limites) → suíte completa em JSON → consolidação por CA → princípios e Definição de Pronto → manuais → veredito.
 3. Escopo mínimo da execução: CAs ligados à task, CAs da coluna "Revalidar quando" que citam a task, **todos os 14 invariantes** (`qa.md` §5) e os fluxos E2E de `qa.md` §6 que passam pelo que foi alterado.
@@ -443,22 +443,22 @@ Rodar a partir da raiz do projeto.
 
 ```bash
 # Progresso das tasks
-grep -c '^- \[ \]' skills/tasks.md            # pendentes (inclui 🚧)
-grep -c '^- \[x\]' skills/tasks.md            # concluídas
-grep -n '🚧' skills/tasks.md                  # em andamento
+grep -c '^- \[ \]' .claude/skills/tasks.md            # pendentes (inclui 🚧)
+grep -c '^- \[x\]' .claude/skills/tasks.md            # concluídas
+grep -n '🚧' .claude/skills/tasks.md                  # em andamento
 
 # Testes que cobrem um CA específico
 grep -rn "CA05.2" src tests e2e 2>/dev/null
 
 # CAs de product.md sem nenhum teste com o ID no título
-for ca in $(grep -o 'CA[0-9]\{2\}\.[0-9]\+' skills/product.md | sort -u); do
+for ca in $(grep -o 'CA[0-9]\{2\}\.[0-9]\+' .claude/skills/product.md | sort -u); do
   grep -rqs "$ca" src tests e2e || echo "sem teste: $ca"
 done
 
 # Status dos CAs na matriz
-grep -c '| ✅ |' skills/run.md                # aprovados
-grep -n '| ❌ |' skills/run.md                # falhando
-grep -n '| 🟡 |' skills/run.md                # parciais
+grep -c '| ✅ |' .claude/skills/run.md                # aprovados
+grep -n '| ❌ |' .claude/skills/run.md                # falhando
+grep -n '| 🟡 |' .claude/skills/run.md                # parciais
 
 # Rodar só os testes de um CA
 pnpm test -t "CA05.2"
@@ -519,7 +519,7 @@ O ciclo deste arquivo pode rodar sem intervenção, com os mesmos passos e as me
 
 | Peça | Arquivo | Papel |
 |---|---|---|
-| Parâmetros | `skills/autorun.config.json` | Escopo (task, feature, entrega, tudo), limites, condições de parada, git e modelos. |
+| Parâmetros | `.claude/skills/autorun/autorun.config.json` | Escopo (task, feature, entrega, tudo), limites, condições de parada, git e modelos. |
 | Orquestrador | `.claude/skills/autorun/SKILL.md` | Laço: seleciona a task (passo 1), delega, aplica o veredito do QA e as condições de parada. |
 | Executor | `.claude/agents/executor.md` | Passos 2, 3, 4 e 6. |
 | QA | `.claude/agents/qa.md` | Passo 5 e fechamentos, conforme `qa.md`, em contexto separado. |

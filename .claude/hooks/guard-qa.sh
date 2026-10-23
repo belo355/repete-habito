@@ -15,8 +15,8 @@ if [[ "$(jq -r '.stop_hook_active // false' <<<"$input")" == "true" ]]; then
   exit 0
 fi
 
-tasks="$root/skills/tasks.md"
-run="$root/skills/run.md"
+tasks="$root/.claude/skills/tasks.md"
+run="$root/.claude/skills/run.md"
 [[ -f "$tasks" && -f "$run" ]] || exit 0
 
 # IDs de tasks em andamento: "- [ ] 🚧 **T05.2**", "**OBS.1**", "**NFR.4**"...

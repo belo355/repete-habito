@@ -1,0 +1,42 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", ":semanticCommitsDisabled"],
+  "timezone": "America/Sao_Paulo",
+  "schedule": ["before 6am on monday"],
+  "labels": ["dependencias"],
+  "rangeStrategy": "bump",
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 6am on monday"]
+  },
+  "packageRules": [
+    {
+      "description": "Agrupa todas as atualizações não major em um PR semanal (D5).",
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "dependências (minor e patch)"
+    },
+    {
+      "description": "Patches entram sozinhos quando o CI fica verde.",
+      "matchUpdateTypes": ["patch"],
+      "groupName": "dependências (patch)",
+      "automerge": true,
+      "automergeType": "pr",
+      "platformAutomerge": true
+    },
+    {
+      "description": "typescript-eslint ainda exige TypeScript < 6.1.",
+      "matchPackageNames": ["typescript"],
+      "allowedVersions": "<6.1"
+    },
+    {
+      "description": "eslint-plugin-jsx-a11y ainda não declara suporte ao ESLint 10.",
+      "matchPackageNames": ["eslint", "@eslint/js"],
+      "allowedVersions": "<10"
+    },
+    {
+      "description": "Actions do GitHub agrupadas.",
+      "matchManagers": ["github-actions"],
+      "groupName": "github actions"
+    }
+  ]
+}

@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 # Modo autônomo headless: uma sessão nova do Claude Code por task, guiada só pelos arquivos do projeto.
 # Uso: scripts/autorun.sh [escopo]      ex.: scripts/autorun.sh "entrega 1" · scripts/autorun.sh F05
-# Parâmetros: skills/autorun.config.json · processo: skills/run.md · validação: skills/qa.md
+# Parâmetros: .claude/skills/autorun/autorun.config.json · processo: .claude/skills/run.md · validação: .claude/skills/qa.md
 set -euo pipefail
 
 root="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$root"
 
-config="skills/autorun.config.json"
+config=".claude/skills/autorun/autorun.config.json"
 escopo="${1:-}"
 max_tasks="$(jq -r '.limites.maxTasks' "$config")"
 max_turns="$(jq -r '.limites.maxTurnosPorTask' "$config")"

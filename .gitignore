@@ -18,3 +18,7 @@ reports/autorun/
 
 # Sistema
 .DS_Store
+
+# Alvos temporários do teste de fronteiras
+src/**/__boundary_probe__/
+*.tsbuildinfo

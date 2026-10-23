@@ -1,0 +1,9 @@
+dist
+coverage
+pnpm-lock.yaml
+playwright-report
+test-results
+.lighthouseci
+reports
+.claude
+.agents

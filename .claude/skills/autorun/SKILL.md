@@ -1,6 +1,6 @@
 ---
 name: autorun
-description: Executa as tasks de skills/tasks.md em modo autônomo, seguindo skills/run.md e validando cada uma com o agente de QA (skills/qa.md). Parâmetros em skills/autorun.config.json.
+description: Executa as tasks de .claude/skills/tasks.md em modo autônomo, seguindo .claude/skills/run.md e validando cada uma com o agente de QA (.claude/skills/qa.md). Parâmetros em .claude/skills/autorun/autorun.config.json.
 argument-hint: "[T05.2 | F05 | entrega 1 | tudo] [--uma-task]"
 disable-model-invocation: true
 ---
@@ -13,11 +13,11 @@ Argumentos recebidos: `$ARGUMENTS`
 
 ## 0. Preparação
 
-1. Ler `skills/autorun.config.json`.
+1. Ler `.claude/skills/autorun/autorun.config.json`.
    - Se `$ARGUMENTS` trouxer um escopo (`T05.2`, `F05`, `entrega 1`, `tudo`), ele substitui `escopo` da config.
    - Se `$ARGUMENTS` trouxer `--uma-task`, executar **uma única** task e encerrar (modo usado por `scripts/autorun.sh`).
 2. Ativar as travas do modo autônomo: `touch .claude/autorun.active`.
-3. Ler `skills/run.md` §1 a §6 e o painel de progresso + dívidas de `skills/tasks.md`.
+3. Ler `.claude/skills/run.md` §1 a §6 e o painel de progresso + dívidas de `.claude/skills/tasks.md`.
 4. Conferir o git: a árvore precisa estar limpa (`git status --porcelain` vazio). Se não estiver, **parar** com motivo `arvore_suja`.
 5. Se `escopo` ≠ entrega 0 e a feature F00 não estiver ✅, **parar** com motivo `f00_pendente` (sem F00 não existem os comandos que o QA usa).
 
@@ -33,7 +33,7 @@ Repetir até `limites.maxTasks` tasks concluídas, até o fim do escopo ou até 
 **b. Branch** (se `git.branchPorTask`): `git checkout <branchBase> && git checkout -b task/<ID>`.
 
 **c. Executar.** Delegar ao subagente `executor` (modelo `modelos.executor`):
-   > Execute a task <ID> seguindo skills/run.md passos 2, 3 e 4. Não faça o passo 6. Ao terminar, responda com: arquivos alterados, CAs cobertos, testes criados e o resultado do passo 4.
+   > Execute a task <ID> seguindo .claude/skills/run.md passos 2, 3 e 4. Não faça o passo 6. Ao terminar, responda com: arquivos alterados, CAs cobertos, testes criados e o resultado do passo 4.
 
 **d. Validar.** Delegar ao subagente `qa` (modelo `modelos.qa`), **sempre** em contexto separado:
    > qa task <ID>
@@ -81,6 +81,6 @@ Use `continuar` só no modo `--uma-task`, quando a task fechou com ✅/🟡 e ai
 
 ## Regras invariáveis
 
-- `skills/product.md` nunca é alterado (a trava `.claude/hooks/guard-product.sh` bloqueia durante o autorun).
+- `.claude/skills/product.md` nunca é alterado (a trava `.claude/hooks/guard-product.sh` bloqueia durante o autorun).
 - Nenhuma task vira `[x]` sem veredito ✅ ou 🟡 do QA (a trava `.claude/hooks/guard-qa.sh` impede encerrar sem QA).
 - Na dúvida entre seguir e parar, **parar** e explicar. Decisões de produto são do responsável de produto.
