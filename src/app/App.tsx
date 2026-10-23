@@ -1,8 +1,6 @@
-// Casca provisória do app. Rotas, tema, i18n e PWA chegam em F01.
+import { RouterProvider } from 'react-router/dom';
+import { router } from './router.tsx';
+
 export function App() {
-  return (
-    <main>
-      <h1>Repete Hábito</h1>
-    </main>
-  );
+  return <RouterProvider router={router} />;
 }

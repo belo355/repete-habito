@@ -18,7 +18,7 @@ Status possíveis: ⬜ Pendente · 🚧 Em andamento · ✅ Concluída · ⏸️
 | Entrega | Feature | Descrição | Prioridade | Depende de | Tasks | Status |
 |---|---|---|---|---|---|---|
 | 0 | F00 | Setup do repositório, qualidade e CI | Must | — | 10 | 🚧 Em andamento |
-| 1 | F01 | Fundação do app (PWA, rotas, tema, i18n, a11y) | Must | F00 | 10 | ⬜ Pendente |
+| 1 | F01 | Fundação do app (PWA, rotas, tema, i18n, a11y) | Must | F00 | 10 | 🚧 Em andamento |
 | 1 | F02 | Armazenamento local (Dexie, repositórios, migração) | Must | F01 | 11 | ⬜ Pendente |
 | 1 | F03 | Cadastro de atividades | Must | F02 | 9 | ⬜ Pendente |
 | 1 | F05 | Tela Hoje e marcação | Must | F03 | 9 | ⬜ Pendente |
@@ -72,7 +72,7 @@ Status possíveis: ⬜ Pendente · 🚧 Em andamento · ✅ Concluída · ⏸️
 
 ### F01 · Fundação do app · Must · Cobre product 4.7 · Dívidas: D1
 
-- [ ] **T01.1** Roteamento SPA com React Router: rotas `/hoje`, `/atividades`, `/dashboard`, `/progresso`, `/onboarding`, `/ajustes`; navegação principal. — P
+- [x] **T01.1** Roteamento SPA com React Router: rotas `/hoje`, `/atividades`, `/dashboard`, `/progresso`, `/onboarding`, `/ajustes`; navegação principal. — P
 - [ ] **T01.2** Tailwind v4 com tokens em variáveis CSS (cores, espaçamento, raio), contraste AA nos dois temas. — M
 - [ ] **T01.3** Tema claro/escuro: segue `prefers-color-scheme` com override manual persistido (Zustand). — P
 - [ ] **T01.4** i18next + react-i18next com recursos pt-BR; nenhuma string fixa em componentes (regra de lint ou revisão). — P

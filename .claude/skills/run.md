@@ -277,7 +277,7 @@ Status: ⬜ Não verificado · 🟡 Parcial · ✅ Aprovado · ❌ Falhando
 ### F01 · Fundação do app
 | CA | Tasks | Revalidar quando | Teste | Status |
 |---|---|---|---|---|
-| CA01.1 | T01.1, T01.6 | T11.8 | E | ⬜ |
+| CA01.1 | T01.1, T01.6 | T11.8 | E | 🟡 |
 | CA01.2 | T01.10 | T12.6 | E + M (iOS) | ⬜ |
 | CA01.3 | T01.3 | — | E | ⬜ |
 | CA01.4 | T01.2, T01.5 | NFR.1 | E (axe) | ⬜ |
@@ -509,6 +509,27 @@ Adicionar uma entrada **por task executada**, da mais recente para a mais antiga
 ```
 
 ### Execuções
+
+### 2026-10-23 · T01.1 · Roteamento SPA e navegação principal
+
+**Plano:** React Router com as rotas `/hoje`, `/atividades`, `/dashboard`, `/progresso`, `/onboarding` e `/ajustes`; `/` e rotas desconhecidas levam a `/hoje` (product 4.2); `/onboarding` sem a navegação principal. Telas provisórias só com o título. Cobre a parte online do CA01.1 (a parte offline e o teste `CA01.1 ·` chegam em T01.6). Invariantes com teste: INV05, INV12.
+
+**Verificação técnica (passo 4):** lint ✅ · typecheck ✅ · unit ✅ (sem código de domínio) · 3 fusos ✅ · build ✅ (JS 99,4 KB gzip, era 68,6 KB; o aumento é do react-router) · e2e ✅ (75/75 nos 3 projetos) · lighthouse ✅
+
+**QA (qa.md):** 🟡 Aprovada com pendência · 0/1 CAs ✅ (CA01.1 🟡, aguarda T01.6) · 2/14 INV verdes, 12 n/a, 0 falhando · 0 falhas (F-01 e F-02 da 1ª tentativa corrigidas) · 0 flaky · 2 tentativas
+
+**Consistência (passo 5):**
+- A. CAs da task: CA01.1 🟡 (falta T01.6 e o teste `e2e/f01-offline.spec.ts`)
+- B. Regressão: nenhum CA ✅ quebrou · revalidados: — · invariantes 0 falhando
+- C. Princípios 5.2: ok (textos neutros)
+- D. Definição de Pronto (itens tocados): axe ✅ · alvos ≥ 44 px ✅ · 320 px sem rolagem ✅ · teclado ✅ · i18n pendente (T01.4) · offline pendente (T01.6)
+- E. Documentos: redirecionamento de rota desconhecida para `/hoje` não está descrito em product.md, mas é coerente com 4.2; a hospedagem (DV04) vai precisar de fallback de SPA
+
+**Resultado:** 🟡 Consistente com pendência
+
+**Tentativa 1 (❌):** no `webkit-mobile` (320 px) o link "Hoje" tinha 38–39 px de largura e a página rolava 2 px na horizontal. Corrigido com a navegação em grid de 5 colunas iguais (`src/app/app.css`). O QA adicionou `e2e/f01-routes-nfr.spec.ts` e `e2e/support/touch.ts` (`expectTouchTargets`, `expectNoHorizontalScroll`).
+
+**Novas tasks ou divergências:** — (risco a acompanhar: orçamento de 200 KB de JS; se apertar, carregar as telas sob demanda)
 
 ### 2026-10-23 · F00 · Setup, qualidade e CI (T00.1–T00.10)
 
