@@ -510,7 +510,31 @@ Adicionar uma entrada **por task executada**, da mais recente para a mais antiga
 
 ### Execuções
 
-_Nenhuma execução registrada ainda._
+### 2026-10-23 · F00 · Setup, qualidade e CI (T00.1–T00.10)
+
+**Plano:** criar o projeto Vite + React 19 + TypeScript (pnpm, Node 24 fixado), estrutura de pastas da tech-spec §3, ESLint + Prettier, fronteiras com `eslint-plugin-boundaries` (provadas por `tests/unit/boundaries.test.ts`), Vitest com gate ≥ 90% em `src/domain/**` e matriz de fusos, Playwright nos 3 projetos de `qa.md` §3.2 com axe, GitHub Actions com Lighthouse CI e Renovate. F00 não tem CAs próprios. Invariantes com teste nesta fase: INV05 e INV12 (adicionados pelo QA).
+
+**Verificação técnica (passo 4):** lint ✅ · typecheck ✅ · unit ✅ (gate de cobertura do domínio ativo; sem código de domínio ainda) · 3 fusos ✅ · build ✅ (JS 68,6 KB gzip) · e2e ✅ (3 projetos, axe 0 violações) · lighthouse ✅ (LCP 1,2 s) · CI no GitHub ✅ ([run 39895407364](https://github.com/belo355/repete-habito/actions/runs/39895407364), commit `3779ab6`)
+
+**QA (qa.md):** 🟡 Aprovada com pendência · 0/0 CAs (F00 sem CAs) · 2/14 INV verdes, 12 n/a, 0 falhando · 5 falhas (S3: 1 · S4: 4) · 0 flaky · relatório: [reports/qa/2026-10-22-F00.md](../../reports/qa/2026-10-22-F00.md)
+
+**Consistência (passo 5):**
+- A. CAs da task: F00 sem CAs. Sustenta CA01.6 (F01): LCP e JS ✅, "instalável" 🟡 (F-01: o Lighthouse 12 não tem mais `installable-manifest`).
+- B. Regressão: não se aplica (primeira entrega) · invariantes 0 falhando
+- C. Princípios 5.2: ok (INV12 garante zero requisições fora da origem)
+- D. Definição de Pronto (itens tocados): cobertura de domínio ✅ · axe ✅ · CI verde ✅ · preview do PR ⏸️ (DV04)
+- E. Documentos: deploy no Cloudflare retirado por decisão do responsável (tech-spec §8, item 5) → DV04 aberta
+
+**Resultado:** 🟡 Consistente com pendência. T00.1–T00.9 `[x]`; T00.10 ⏸️ por DV04. F00 e a Entrega 0 seguem 🚧.
+
+**Pendências para fechar F00:**
+- F-01 (S3): decidir a verificação de "PWA instalável" antes de T01.6 (proposta do QA: E2E `CA01.6 · app instalável` no chromium-android).
+- F-02: CI no GitHub resolvido; preview por PR depende de DV04.
+- F-03: instalar o app Renovate no repositório (D5 só fica ✅ com o Renovate ativo) e tornar o job `CI` obrigatório na `main`.
+- F-04: fixar a major do Node em `engines`.
+- F-05: texto fixo em `App.tsx`, resolvido em T01.4.
+
+**Novas tasks ou divergências:** DV04 (hospedagem / preview por PR).
 
 ---
 

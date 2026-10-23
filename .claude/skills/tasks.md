@@ -17,7 +17,7 @@ Status possíveis: ⬜ Pendente · 🚧 Em andamento · ✅ Concluída · ⏸️
 
 | Entrega | Feature | Descrição | Prioridade | Depende de | Tasks | Status |
 |---|---|---|---|---|---|---|
-| 0 | F00 | Setup do repositório, qualidade e CI | Must | — | 10 | ⬜ Pendente |
+| 0 | F00 | Setup do repositório, qualidade e CI | Must | — | 10 | 🚧 Em andamento |
 | 1 | F01 | Fundação do app (PWA, rotas, tema, i18n, a11y) | Must | F00 | 10 | ⬜ Pendente |
 | 1 | F02 | Armazenamento local (Dexie, repositórios, migração) | Must | F01 | 11 | ⬜ Pendente |
 | 1 | F03 | Cadastro de atividades | Must | F02 | 9 | ⬜ Pendente |
@@ -44,7 +44,7 @@ Status possíveis: ⬜ Pendente · 🚧 Em andamento · ✅ Concluída · ⏸️
 | D2 | Eviction do IndexedDB | **28** | T02.10, T12.6, T11.7 | ⬜ Pendente |
 | D3 | Migrações de schema sem teste | **28** | T02.6, T02.7, T02.8, T14.9 | ⬜ Pendente |
 | D4 | Lembretes não confiáveis na PWA | **27** | T10.2–T10.6, POS.1–POS.2 | ⬜ Pendente |
-| D5 | Atualização de dependências sem automação | **25** | T00.9 | ⬜ Pendente |
+| D5 | Atualização de dependências sem automação | **25** | T00.9 | 🚧 Em andamento |
 | D6 | Métricas de sucesso sem coleta | **20** | OBS.1–OBS.3 | ⬜ Pendente |
 | D7 | Sem sync nem backup em nuvem | **16** | T11.x (parcial), POS.5–POS.6 | ⬜ Pendente |
 | D8 | Premium sem validação de compra no servidor | **10** | POS.3–POS.4 | ⬜ Pendente |
@@ -55,16 +55,16 @@ Status possíveis: ⬜ Pendente · 🚧 Em andamento · ✅ Concluída · ⏸️
 
 ### F00 · Setup, qualidade e CI · Must · Dívidas: D5
 
-- [ ] **T00.1** Criar projeto Vite + React 19 + TypeScript com pnpm e Node LTS fixado (`.nvmrc`, `packageManager`). — P
-- [ ] **T00.2** Configurar `tsconfig` com `strict` e `noUncheckedIndexedAccess`; script `typecheck` (`tsc --noEmit`). — P
-- [ ] **T00.3** Criar estrutura de pastas da tech-spec §3 (`domain/`, `data/`, `platform/`, `features/`, `ui/`, `i18n/`, `app/`). — P
-- [ ] **T00.4** ESLint flat config (typescript-eslint, jsx-a11y, react-hooks) + Prettier. — P
-- [ ] **T00.5** Regras de fronteira (`eslint-plugin-boundaries` ou `dependency-cruiser`): `domain` não importa nada externo; `data`/`platform` não importam `features`. — M
-- [ ] **T00.6** Vitest com cobertura e gate ≥ 90% em `src/domain/**`; matriz de fuso (`TZ=America/Sao_Paulo`, `Pacific/Auckland`, `UTC`). — M
-- [ ] **T00.7** Playwright (Chromium, WebKit, viewport mobile) + `@axe-core/playwright`, com um teste smoke. — M
-- [ ] **T00.8** GitHub Actions: lint → typecheck → unit → build → e2e → Lighthouse CI (orçamentos: PWA instalável, LCP < 2,5 s, JS inicial < 200 KB gzip). — M
-- [ ] **T00.9** Renovate com agrupamento semanal e auto-merge de patches com CI verde. **(D5)** — P
-- [ ] **T00.10** Hospedagem estática (Netlify / Vercel) com HTTPS e preview por PR. Provedor em aberto (tech-spec §8, item 5; DV04). — P
+- [x] **T00.1** Criar projeto Vite + React 19 + TypeScript com pnpm e Node LTS fixado (`.nvmrc`, `packageManager`). — P
+- [x] **T00.2** Configurar `tsconfig` com `strict` e `noUncheckedIndexedAccess`; script `typecheck` (`tsc --noEmit`). — P
+- [x] **T00.3** Criar estrutura de pastas da tech-spec §3 (`domain/`, `data/`, `platform/`, `features/`, `ui/`, `i18n/`, `app/`). — P
+- [x] **T00.4** ESLint flat config (typescript-eslint, jsx-a11y, react-hooks) + Prettier. — P
+- [x] **T00.5** Regras de fronteira (`eslint-plugin-boundaries` ou `dependency-cruiser`): `domain` não importa nada externo; `data`/`platform` não importam `features`. — M
+- [x] **T00.6** Vitest com cobertura e gate ≥ 90% em `src/domain/**`; matriz de fuso (`TZ=America/Sao_Paulo`, `Pacific/Auckland`, `UTC`). — M
+- [x] **T00.7** Playwright (Chromium, WebKit, viewport mobile) + `@axe-core/playwright`, com um teste smoke. — M
+- [x] **T00.8** GitHub Actions: lint → typecheck → unit → build → e2e → Lighthouse CI (orçamentos: PWA instalável, LCP < 2,5 s, JS inicial < 200 KB gzip). — M
+- [x] **T00.9** Renovate com agrupamento semanal e auto-merge de patches com CI verde. **(D5)** — P
+- [ ] ⏸️ **T00.10** Hospedagem estática (Netlify / Vercel) com HTTPS e preview por PR. Provedor em aberto (tech-spec §8, item 5; DV04). — P
 
 ---
 
