@@ -31,7 +31,7 @@ Princípio: **o que for regra de negócio não conhece React, banco ou plataform
 | Estado de UI | **Zustand** | Estado leve (tema, onboarding, preferências). Dados persistidos ficam no IndexedDB, não no store. |
 | Leitura reativa de dados | `useLiveQuery` (**dexie-react-hooks**) | A tela "Hoje" atualiza sozinha ao marcar uma atividade. |
 | Formulários | **React Hook Form** + **Zod** | O mesmo schema Zod valida formulário, importação e migração. |
-| Datas | **date-fns** + **@date-fns/tz** | Funções puras e tree-shakeable. Reavaliar `Temporal` quando o suporte nativo estiver em todos os navegadores-alvo. |
+| Datas | **Módulo próprio** `src/domain/date` (aritmética inteira de calendário) + **Intl.DateTimeFormat** para o fuso | Sem objetos `Date` no domínio e sem depender do fuso do processo (D1, INV05); zero peso no bundle. Substitui date-fns + @date-fns/tz (DV06). Reavaliar `Temporal` quando o suporte nativo estiver em todos os navegadores-alvo. |
 | i18n | **i18next** + **react-i18next** | pt-BR no MVP, preparado para outros idiomas. |
 | Estilo | **Tailwind CSS v4** com tokens em variáveis CSS | Tema claro/escuro por variáveis, sem CSS-in-JS em runtime. |
 | Componentes acessíveis | **Radix UI Primitives** | Dialog, menus, switches e afins já acessíveis (teclado, ARIA, foco). |
@@ -89,7 +89,7 @@ Regras de dependência (verificadas por lint com `eslint-plugin-boundaries` ou `
 ### 3.1 Modelo de dados
 
 ```ts
-type LocalDate = string; // "AAAA-MM-DD" no fuso do usuário no momento do registro
+type LocalDate = string & { readonly [brand]: true }; // "AAAA-MM-DD" no fuso do usuário no momento do registro (marca só de tipo; em tempo de execução é string — DV06)
 
 interface Activity {
   id: string;                 // UUID v7 (ordenável, seguro para merge futuro)

@@ -83,8 +83,29 @@ describe('relógio e navegador no domínio', () => {
     ['window', 'export const w = window.innerWidth;'],
     ['localStorage', "export const v = localStorage.getItem('x');"],
     ['navigator', 'export const l = navigator.language;'],
+    ["Date['now']()", "export const t = Date['now']();"],
+    [
+      'Temporal.Now',
+      'declare const Temporal: { Now: { instant(): unknown } };\nexport const t = Temporal.Now.instant();',
+    ],
+    ['Intl format() sem instante', 'export const t = new Intl.DateTimeFormat().format();'],
   ])('domain não pode usar %s', async (_name, code) => {
     expect(await domainRuleErrors(code)).toHaveLength(1);
+  });
+
+  it.each([
+    ['globalThis.Date.now()', 'export const t = globalThis.Date.now();'],
+    ['self.Date.now()', 'export const t = self.Date.now();'],
+  ])('domain não pode usar %s (global e acesso a Date barrados)', async (_name, code) => {
+    expect((await domainRuleErrors(code)).length).toBeGreaterThanOrEqual(1);
+  });
+
+  it('domain pode formatar um instante recebido', async () => {
+    expect(
+      await domainRuleErrors(
+        'export const f = (ms: number) => new Intl.DateTimeFormat().formatToParts(ms);',
+      ),
+    ).toEqual([]);
   });
 
   it('domain pode receber o dia como parâmetro', async () => {

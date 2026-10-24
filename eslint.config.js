@@ -100,6 +100,25 @@ export default tseslint.config(
           selector: "MemberExpression[object.name='Date'][property.name='now']",
           message: 'Domínio não lê o relógio: use a porta Clock.',
         },
+        // Formas indiretas: Date['now'](), globalThis.Date / self.Date / window.Date, Temporal.Now.
+        {
+          selector: "MemberExpression[object.name='Date'][computed=true]",
+          message: 'Domínio não lê o relógio: use a porta Clock.',
+        },
+        {
+          selector: "MemberExpression[property.name='Date']",
+          message: 'Domínio não acessa Date pelo objeto global: use LocalDate e a porta Clock.',
+        },
+        {
+          selector: "MemberExpression[object.name='Temporal'][property.name='Now']",
+          message: 'Domínio não lê o relógio: use a porta Clock.',
+        },
+        // Intl.DateTimeFormat#format()/formatToParts() sem instante usa a hora atual.
+        {
+          selector:
+            'CallExpression[callee.property.name=/^(format|formatToParts)$/][arguments.length=0]',
+          message: 'Passe o instante explicitamente: sem argumento, format() usa a hora atual.',
+        },
       ],
       'no-restricted-globals': [
         'error',

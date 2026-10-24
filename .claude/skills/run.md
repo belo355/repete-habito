@@ -262,7 +262,7 @@ Além disso, em todo fechamento de entrega:
 | DV03 | 22/10/2026 | CA11.1 | Dependência | CA11.1 exige desafios na exportação, mas desafios só existem em F14 (Entrega 5). | Na Entrega 4, validar CA11.1 sem desafios; revalidar em T14.10. | — | ⬜ Aberta |
 | DV04 | 23/10/2026 | T00.10 · product 4.9.1 (DoD) · 4.9.3 (saída da Entrega 0) | Conflito | O deploy no Cloudflare Pages foi retirado do projeto e não há outro provedor. Sem hospedagem não existe preview por PR, exigido pela Definição de Pronto ("demonstrada no ambiente de preview do PR") e pela saída da Entrega 0. | Escolher outro provedor (Netlify ou Vercel) antes de fechar a Entrega 0, ou o responsável de produto aceitar demo local (`pnpm preview`) no lugar do preview do PR. | Demo local (`pnpm build && pnpm preview`) substitui o preview do PR na Definição de Pronto (4.9.1) e na saída da Entrega 0 (4.9.3). Decisão do responsável de produto em 24/10/2026. | ✅ Resolvida |
 | DV05 | 24/10/2026 | CA01.6 · T00.8 · T01.6 | Desvio técnico | O Lighthouse 12 (usado pelo `@lhci/cli` 0.15) removeu o audit `installable-manifest`; o orçamento "PWA instalável" do CA01.6 não pode mais ser medido no Lighthouse CI. | Verificar a instalabilidade com o E2E `CA01.6 · app instalável` no `chromium-android` (manifest, service worker controlando a página e checagem de instalabilidade do Chromium); LCP e JS continuam no Lighthouse CI. Ajustar qa.md §4 (linha CA01.6) e tech-spec §4. | Aprovada pelo responsável de produto em 24/10/2026. | ✅ Resolvida |
-| DV06 | 24/10/2026 | T01.8 · tech-spec §2.1 e §3.1 | Desvio técnico | A tech-spec manda usar `date-fns` + `@date-fns/tz` para datas; a T01.8 fez a aritmética de calendário própria (inteiros, algoritmo de Hinnant) e `Intl.DateTimeFormat` para o fuso, sem date-fns. O `LocalDate` também ganhou marca de tipo (continua string em tempo de execução). | Manter a implementação própria: não depende do fuso do processo, não cria `Date` no domínio (INV05), tem cobertura de 100% e não pesa no bundle. Atualizar a tech-spec §2.1 (linha "Datas") e §3.1. | — | ⬜ Aberta |
+| DV06 | 24/10/2026 | T01.8 · tech-spec §2.1 e §3.1 | Desvio técnico | A tech-spec manda usar `date-fns` + `@date-fns/tz` para datas; a T01.8 fez a aritmética de calendário própria (inteiros, algoritmo de Hinnant) e `Intl.DateTimeFormat` para o fuso, sem date-fns. O `LocalDate` também ganhou marca de tipo (continua string em tempo de execução). | Manter a implementação própria: não depende do fuso do processo, não cria `Date` no domínio (INV05), tem cobertura de 100% e não pesa no bundle. Atualizar a tech-spec §2.1 (linha "Datas") e §3.1. | Aprovada pelo responsável de produto em 24/10/2026; tech-spec §2.1 e §3.1 atualizadas. | ✅ Resolvida |
 
 Tipos: **Lacuna** (CA sem task) · **Conflito** (task × produto) · **Ambiguidade** (CA com mais de uma leitura) · **Dependência** (CA depende de feature futura) · **Desvio técnico** (spec não seguida).
 
@@ -322,7 +322,7 @@ Status: ⬜ Não verificado · 🟡 Parcial · ✅ Aprovado · ❌ Falhando
 | CA05.2 | T05.2, T05.8 | — | E | ⬜ |
 | CA05.3 | T05.3 | — | E | ⬜ |
 | CA05.4 | T05.4, T05.8 | — | I + E | ⬜ |
-| CA05.5 | T01.9, T05.5 | — | U + E | ⬜ |
+| CA05.5 | T01.9, T05.5 | — | U + E | 🟡 |
 | CA05.6 | T05.6 | — | U + E | ⬜ |
 | CA05.7 | T05.9 | — | M | ⬜ |
 
@@ -342,7 +342,7 @@ Status: ⬜ Não verificado · 🟡 Parcial · ✅ Aprovado · ❌ Falhando
 | CA07.3 | T07.3 | — | U | ⬜ |
 | CA07.4 | T07.4 | — | U | ⬜ |
 | CA07.5 | T07.6 | — | U | ⬜ |
-| CA07.6 | T01.9, T07.8 | — | U (3 fusos) | ⬜ |
+| CA07.6 | T01.9, T07.8 | — | U (3 fusos) | 🟡 |
 | CA07.7 | T07.9 | — | U (propriedade) | ⬜ |
 | CA07.8 | T07.10 | NFR.7 | E | ⬜ |
 
@@ -511,6 +511,29 @@ Adicionar uma entrada **por task executada**, da mais recente para a mais antiga
 ```
 
 ### Execuções
+
+### 2026-10-24 · T01.9 · Testes de virada de dia, horário de verão e fusos
+
+**Plano:** `src/domain/date/day-rollover.test.ts` (CA05.5 parte U: registro às 23:59 fica no dia anterior depois da meia-noite; troca exata do dia nos 3 fusos; CA07.6 base de data: 23:30/00:30) e `src/domain/date/daylight-saving.test.ts` (Auckland 2026 com dias de 23 h e 25 h; São Paulo 2018/2019 e UTC−3 fixo; semanas que atravessam dois meses a partir de instantes reais). Inclui F-02 do QA da T01.8 (lint contra leitura indireta do relógio). DV06 aprovada e tech-spec atualizada.
+
+**Verificação técnica (passo 4):** lint ✅ · typecheck ✅ · unit + browser ✅ (226/226) · cobertura domain 100% ✅ · 3 fusos ✅ · build ✅ · e2e ✅ (186/186) · lighthouse ✅
+
+**QA (qa.md):** 🟡 Aprovada com pendência · 5/5 CAs da F01 ✅ revalidados; CA05.5 🟡 (falta T05.5) e CA07.6 🟡 (falta T07.8) com a parte U coberta · 5/14 INV verdes, 9 sem código para testar, 0 falhando · 1 falha S4 · 0 flaky · vitest 236/236 nos 3 fusos · e2e 186/186 · domain 100% · mutações 6/6 detectadas · D1: parte da F01 completa
+
+**Consistência (passo 5):**
+- A. CAs da task: CA05.5 🟡 e CA07.6 🟡 (parte U verde nos 3 fusos; o QA completou 23:30 e 00:30 locais em cada fuso)
+- B. Regressão: CAs da F01 verdes · invariantes 0 falhando (o QA ampliou a busca do INV05: `Date` como valor, alias, desestruturação, `self`, `Temporal`, `format()` sem instante)
+- C. Princípios 5.2: sem texto novo
+- D. Definição de Pronto (itens tocados): domínio com cobertura 100% ✅
+- E. Documentos: DV06 resolvida (tech-spec §2.1 e §3.1)
+
+**Resultado:** 🟡 Consistente com pendência
+
+**Pendência do QA (F-01, S4):** a F-02 da T01.8 ficou parcial. O executor relatou `self` e `globalThis` em `no-restricted-globals`, mas a edição não foi aplicada (a lista tinha sido reformatada pelo Prettier e a substituição não encontrou o texto) e o resultado não foi conferido. `globalThis.Date.now()`/`self.Date.now()` só são barrados pelo seletor `MemberExpression[property.name='Date']`; o lint ainda deixa passar `globalThis['Date']['now']()`, `const { now } = Date`, alias de `Date`, `Temporal['Now']`, `format(undefined)` e `self.location`, todos pegos pela busca do INV05. O título do teste em `tests/unit/boundaries.test.ts` promete mais do que prova. Proposta: corrigir a lista, apertar o teste para contagem exata e avaliar um seletor para `Date` como valor.
+
+**D1:** a parte da F01 está completa (T01.8 + T01.9); D1 segue 🚧 até T02.1 e o uso de `today` injetado em T05.x/T07.x.
+
+**Novas tasks ou divergências:** —
 
 ### 2026-10-24 · T01.8 · `domain/date`: LocalDate, helpers e porta Clock
 
