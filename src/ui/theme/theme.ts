@@ -38,10 +38,12 @@ export const useThemeStore = create<ThemeState>()(
 export function applyTheme(): () => void {
   const media = window.matchMedia(DARK_QUERY);
   const update = () => {
-    document.documentElement.dataset.theme = resolveTheme(
-      useThemeStore.getState().preference,
-      media.matches,
-    );
+    const root = document.documentElement;
+    root.dataset.theme = resolveTheme(useThemeStore.getState().preference, media.matches);
+    // A barra do sistema (theme-color) acompanha o fundo do tema efetivo.
+    const bg = getComputedStyle(root).getPropertyValue('--color-bg').trim();
+    const meta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+    if (meta && bg) meta.content = bg;
   };
   update();
   media.addEventListener('change', update);

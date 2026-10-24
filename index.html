@@ -8,6 +8,11 @@
       content="Repete Hábito: acompanhe suas atividades físicas sem culpa."
     />
     <title>Repete Hábito</title>
+    <!-- Cor da barra do sistema: o script abaixo e src/ui/theme/theme.ts a mantêm igual ao fundo do tema. -->
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon-180x180.png" />
     <!-- Aplica o tema salvo antes do primeiro desenho, para não piscar (src/ui/theme/theme.ts). -->
     <script>
       try {
@@ -17,6 +22,7 @@
           pref === 'dark' ||
           (pref === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
         document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+        document.querySelector('meta[name="theme-color"]').content = dark ? '#0f1115' : '#ffffff';
       } catch (e) {}
     </script>
   </head>

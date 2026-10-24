@@ -261,6 +261,7 @@ Além disso, em todo fechamento de entrega:
 | DV02 | 22/10/2026 | CA12.6 | Lacuna | Nenhuma task cobre explicitamente "pular a etapa de lembrete" no onboarding. | Ampliar T12.3: "com opção de pular". | — | ⬜ Aberta |
 | DV03 | 22/10/2026 | CA11.1 | Dependência | CA11.1 exige desafios na exportação, mas desafios só existem em F14 (Entrega 5). | Na Entrega 4, validar CA11.1 sem desafios; revalidar em T14.10. | — | ⬜ Aberta |
 | DV04 | 23/10/2026 | T00.10 · product 4.9.1 (DoD) · 4.9.3 (saída da Entrega 0) | Conflito | O deploy no Cloudflare Pages foi retirado do projeto e não há outro provedor. Sem hospedagem não existe preview por PR, exigido pela Definição de Pronto ("demonstrada no ambiente de preview do PR") e pela saída da Entrega 0. | Escolher outro provedor (Netlify ou Vercel) antes de fechar a Entrega 0, ou o responsável de produto aceitar demo local (`pnpm preview`) no lugar do preview do PR. | Demo local (`pnpm build && pnpm preview`) substitui o preview do PR na Definição de Pronto (4.9.1) e na saída da Entrega 0 (4.9.3). Decisão do responsável de produto em 24/10/2026. | ✅ Resolvida |
+| DV05 | 24/10/2026 | CA01.6 · T00.8 · T01.6 | Desvio técnico | O Lighthouse 12 (usado pelo `@lhci/cli` 0.15) removeu o audit `installable-manifest`; o orçamento "PWA instalável" do CA01.6 não pode mais ser medido no Lighthouse CI. | Verificar a instalabilidade com o E2E `CA01.6 · app instalável` no `chromium-android` (manifest, service worker controlando a página e checagem de instalabilidade do Chromium); LCP e JS continuam no Lighthouse CI. Ajustar qa.md §4 (linha CA01.6) e tech-spec §4. | Aprovada pelo responsável de produto em 24/10/2026. | ✅ Resolvida |
 
 Tipos: **Lacuna** (CA sem task) · **Conflito** (task × produto) · **Ambiguidade** (CA com mais de uma leitura) · **Dependência** (CA depende de feature futura) · **Desvio técnico** (spec não seguida).
 
@@ -277,12 +278,12 @@ Status: ⬜ Não verificado · 🟡 Parcial · ✅ Aprovado · ❌ Falhando
 ### F01 · Fundação do app
 | CA | Tasks | Revalidar quando | Teste | Status |
 |---|---|---|---|---|
-| CA01.1 | T01.1, T01.6 | T11.8 | E | 🟡 |
+| CA01.1 | T01.1, T01.6 | T11.8 | E | ✅ |
 | CA01.2 | T01.10 | T12.6 | E + M (iOS) | ⬜ |
 | CA01.3 | T01.3 | — | E | ✅ |
 | CA01.4 | T01.2, T01.5 | NFR.1 | E (axe) | ✅ |
 | CA01.5 | T01.7 | — | E | ⬜ |
-| CA01.6 | T00.8, T01.6 | NFR.8 | Lighthouse | ⬜ |
+| CA01.6 | T00.8, T01.6 | NFR.8 | Lighthouse + E (instalável, DV05) | ✅ |
 
 ### F02 · Armazenamento local
 | CA | Tasks | Revalidar quando | Teste | Status |
@@ -509,6 +510,29 @@ Adicionar uma entrada **por task executada**, da mais recente para a mais antiga
 ```
 
 ### Execuções
+
+### 2026-10-24 · T01.6 · PWA: service worker, precache e manifest pt-BR
+
+**Plano:** `vite-plugin-pwa` (generateSW, `registerType: 'prompt'`, `clientsClaim` sem `skipWaiting` automático, `navigateFallback` para o app shell); manifest pt-BR com textos do i18n, `display: standalone` e ícones 192/512/maskable gerados de `public/logo.svg`; `theme-color` acompanhando o fundo do tema efetivo (inline no `index.html` e em `applyTheme`). Fecha CA01.1 (offline) e CA01.6 (Lighthouse + E2E de instalabilidade, DV05).
+
+**Verificação técnica (passo 4):** lint ✅ · typecheck ✅ · unit + browser ✅ (111/111) · 3 fusos ✅ · build ✅ (JS 118,4 KB + workbox-window 2,2 KB gzip; precache 20 entradas) · e2e ✅ (166/166) · lighthouse ✅ (LCP 1,95 s, era 1,65; script 121,6 KB)
+
+**QA (qa.md):** ✅ Aprovada · 4/4 CAs ✅ (CA01.1 e CA01.6 viram ✅; CA01.3 e CA01.4 sem regressão) · 4/14 INV verdes, 10 n/a, 0 falhando · 3 falhas (1 S3 resolvida pelo QA no teste; 2 S4 em aberto) · 0 flaky · vitest 111/111 · e2e 169/169 · specs de PWA 125/125 com `--repeat-each=5`
+
+**Consistência (passo 5):**
+- A. CAs da task: CA01.1 ✅ (`e2e/f01-offline.spec.ts`, 3 projetos, inclusive WebKit a 320 px) · CA01.6 ✅ (`lighthouserc.json` + `e2e/f01-installable.spec.ts` nos projetos Chromium)
+- B. Regressão: CA01.3 21/21 · CA01.4 42/42 · invariantes 0 falhando (INV12 agora observa também o tráfego do service worker)
+- C. Princípios 5.2: textos novos do manifest passam no INV10
+- D. Definição de Pronto (itens tocados): offline em Chromium e WebKit, 320 px e desktop ✅ · axe e alvos sem regressão ✅ · i18n ✅
+- E. Documentos: DV05 aplicada (run.md §6.2, tech-spec §4, qa.md §4); o QA incluiu em qa.md o nível C (componente em navegador) pendente da T01.5
+
+**Resultado:** ✅ Consistente
+
+**Ajustes do QA nos testes:** a checagem de instalabilidade devolvia sempre `[]` no headless shell padrão do Playwright (F-01, S3); o teste passou a usar `channel: 'chromium'` e agora acusa manifest ausente ou ícone inadequado. A fixture do INV12 passou a escutar o contexto inteiro (inclui o service worker) e ganhou um teste explícito com o SW ativo.
+
+**Pendências (S4, não bloqueiam):** F-02 `orientation: 'portrait'` no manifest não está na spec (tirar ou registrar divergência) · F-03 `includeAssets` duplica 8 entradas no precache (pode sair).
+
+**Novas tasks ou divergências:** —
 
 ### 2026-10-24 · T01.5 · Componentes acessíveis (Button, Dialog, Switch, Menu)
 

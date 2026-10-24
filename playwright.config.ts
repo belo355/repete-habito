@@ -20,6 +20,8 @@ export default defineConfig({
     },
     {
       name: 'webkit-mobile',
+      // A checagem de instalabilidade usa o Chrome DevTools Protocol (só Chromium).
+      testIgnore: /f01-installable\.spec\.ts/,
       use: {
         ...devices['iPhone SE'],
         viewport: { width: 320, height: 640 },

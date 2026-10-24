@@ -1,6 +1,8 @@
 {
   "app": {
-    "name": "Repete Hábito"
+    "name": "Repete Hábito",
+    "shortName": "Repete",
+    "description": "Acompanhe suas atividades físicas no seu ritmo, sem cobrança."
   },
   "common": {
     "close": "Fechar"

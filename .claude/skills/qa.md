@@ -1,6 +1,6 @@
 # Repete Hábito — Agente de QA (testes automatizados e E2E)
 
-> Versão 0.1 · 22/10/2026
+> Versão 0.2 · 24/10/2026 (nível de componente em navegador; CA01.6 pela DV05)
 > Referências: [product.md](product.md) (critérios de aceite, seção 4.9) · [tech-spec.md](tech-spec.md) (stack de testes, §4) · [run.md](run.md) (ciclo de execução, matriz de rastreabilidade §7) · [tasks.md](tasks.md)
 
 Este arquivo define o **agente de QA**: quais testes automatizados (unitários, integração e end-to-end) precisam existir para cada critério de aceite de `product.md`, como ele **garante a integridade das regras de negócio** e como ele **gera o relatório de sucesso/falha** de uma feature. Vale para pessoas e para agentes de IA.
@@ -45,8 +45,9 @@ Este arquivo define o **agente de QA**: quais testes automatizados (unitários, 
 | **U** · Unitário | Vitest | `src/domain/**/*.test.ts` | Regras de negócio puras (sequência, taxas, dashboard, fases, desafio, validação). Cobertura ≥ 90% em `domain/`. |
 | **P** · Propriedade | Vitest + fast-check | `src/domain/**/*.property.test.ts` | Invariantes que valem para **qualquer** histórico (seção 5). |
 | **I** · Integração | Vitest + Testing Library + fake-indexeddb | `tests/integration/**` | Repositórios, soft delete, migrações, snapshot, exportação/importação, agendador de lembretes. |
+| **C** · Componente em navegador | Vitest modo navegador (projeto `browser`, `@vitest/browser-playwright`, Chromium e WebKit a 320 px) + axe-core | `src/ui/**/*.browser.test.tsx` | Componentes de `ui/` isolados em navegador real: contraste nos 2 temas, alvos ≥ 44 px, teclado, foco visível, papéis e nomes acessíveis. Roda junto com `pnpm vitest run` (projetos `unit` e `browser`). Cobertura pelo provedor istanbul (o v8 não funciona no WebKit). Não substitui o E2E da tela. |
 | **E** · End-to-end | Playwright + @axe-core/playwright | `e2e/**/*.spec.ts` | Fluxos reais no navegador: toques, offline, tema, relógio, fuso, notificações, acessibilidade. |
-| **L** · Lighthouse | Lighthouse CI | `lighthouserc.json` | PWA instalável, LCP < 2,5 s (4G simulado), JS inicial < 200 KB gzip. |
+| **L** · Lighthouse | Lighthouse CI | `lighthouserc.json` | LCP < 2,5 s (4G simulado), JS inicial < 200 KB gzip. "PWA instalável" saiu do Lighthouse 12 e é provado por E2E (DV05, ver CA01.6). |
 | **M** · Manual | Registro em `run.md` §9 | `reports/qa/evidencias/` | Só os CAs marcados *(manual)*. O agente cobra a evidência, não a inventa. |
 
 Regra: **toda regra de negócio é provada no nível U/P**; o E2E prova que a tela usa essa regra e que o "então" visível ao usuário acontece. Um CA de regra (ex.: CA07.2) nunca é coberto só por E2E.
@@ -56,7 +57,7 @@ Regra: **toda regra de negócio é provada no nível U/P**; o E2E prova que a te
 | Projeto | Navegador | Viewport | Uso |
 |---|---|---|---|
 | `chromium-desktop` | Chromium | 1280×800 | Todos os specs. |
-| `webkit-mobile` | WebKit | 320×640, `isMobile`, `hasTouch` | Todos os specs (Definição de Pronto: WebKit + 320px). |
+| `webkit-mobile` | WebKit | 320×640, `isMobile`, `hasTouch` | Todos os specs (Definição de Pronto: WebKit + 320px), exceto os que dependem de API exclusiva do Chromium (CDP), excluídos por `testIgnore` no `playwright.config.ts`: hoje só `e2e/f01-installable.spec.ts`. |
 | `chromium-android` | Chromium | Pixel 7 | Instalação PWA, notificações, toques. |
 
 Os specs de fuso usam `test.use({ timezoneId })` com `America/Sao_Paulo`, `Pacific/Auckland` e `UTC`.
@@ -88,6 +89,9 @@ Ficam em `tests/fixtures/` e são compartilhados entre U, I e E.
 | `stubNotifications(page)` | Substitui `ServiceWorkerRegistration.prototype.showNotification` e registra as chamadas em `window.__notifications`. | CA10.x |
 | `expectNoA11yViolations(page)` | `new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze()` com zero violações. | Todas as telas |
 | `expectTouchTargets(page)` | Todo elemento interativo visível tem caixa ≥ 44×44 px. | Todas as telas |
+| `waitForServiceWorker(page)` (`e2e/support/pwa.ts`) | Espera `navigator.serviceWorker.ready` e o SW controlar a página. | CA01.1, CA01.5, CA01.6, INV12 |
+| `externalRequests` (`e2e/support/test.ts`) | Fixture automática do INV12; escuta `context.on('request')`, que no Chromium inclui as requisições do service worker. | Todo spec E2E |
+| `src/ui/test/a11y.ts` | Versões para o nível **C**: `setTheme(theme)`, `expectNoA11yViolations(root)` (axe-core, WCAG 2.1 AA), `expectTouchTargets(root, 44)`, `expectVisibleFocus(el)`, `pressTab()`. Setup em `src/ui/test/browser-setup.ts`. | `src/ui/**/*.browser.test.tsx` |
 
 O seed **não** pode depender de código exposto só em teste dentro do bundle de produção. Se for preciso um gancho (`window.__TEST__`), ele existe apenas com `import.meta.env.MODE === 'test'` e há um teste que confere que ele não está no build de produção.
 
@@ -106,7 +110,7 @@ Cada linha é um teste (ou grupo) **obrigatório**. "Asserções" é o que o tes
 | CA01.3 | E | `e2e/f01-theme.spec.ts` | `emulateMedia({ colorScheme: 'dark' })` sem preferência salva; depois escolher "Claro" em Ajustes e recarregar. | `data-theme="dark"` (ou classe equivalente) na 1ª carga; após escolha e reload, tema claro mantido mesmo com SO escuro. |
 | CA01.4 | E `@axe` | `e2e/f01-contrast.spec.ts` | Percorrer todas as rotas nos temas claro e escuro. | Zero violações `color-contrast` do axe em cada rota × tema. |
 | CA01.5 | E | `e2e/f01-update.spec.ts` | Servir build A, abrir app; trocar para build B (versão diferente) e chamar `registration.update()`. | Aviso "Nova versão disponível" visível; a página **não** recarrega sozinha (marcador em `window` persiste); ao aceitar, recarrega e mostra a versão B. |
-| CA01.6 | L | `lighthouserc.json` | `pnpm lhci` sobre o build de produção. | `installable-manifest` ok; LCP < 2.500 ms; `resource-summary:script:size` < 200 KB gzip. |
+| CA01.6 | L + E | `lighthouserc.json` · `e2e/f01-installable.spec.ts` | `pnpm lhci` sobre o build de produção. Instalável (DV05): E2E `CA01.6 · app instalável` nos projetos Chromium (`chromium-desktop` e `chromium-android`), com `channel: 'chromium'` (o headless shell padrão do Playwright devolve sempre lista vazia). | Lighthouse: LCP < 2.500 ms; `resource-summary:script:size` < 200 KB gzip. E2E: manifest com `name`, `short_name`, `lang: pt-BR`, `start_url`, `display: standalone`, `theme_color`/`background_color` e ícones 192, 512 e maskable 512 servidos como PNG; SW controlando a página; `Page.getInstallabilityErrors` vazio (ignorando só `in-incognito`, artefato do contexto não persistente). |
 
 ### F02 · Armazenamento local
 
@@ -306,7 +310,7 @@ Cada fluxo é um spec próprio, roda nos 3 projetos do Playwright e termina com 
 | Teclado | `e2e/nfr-keyboard.spec.ts`: percorrer cada tela só com `Tab`/`Enter`/`Espaço`/`Esc` e concluir a ação principal | Ação concluída, foco sempre visível, sem armadilha de foco |
 | Responsividade | Specs no viewport 320 px | Sem rolagem horizontal (`scrollWidth ≤ clientWidth`) |
 | Performance | CA05.1, CA08.4, CA13.9 com `history-2y.json` | < 1 s |
-| PWA / bundle | CA01.6 | Lighthouse CI verde |
+| PWA / bundle | CA01.6 | Lighthouse CI verde (LCP, JS) e E2E de instalabilidade verde (DV05) |
 | Cobertura | `pnpm test --coverage` | `domain/` ≥ 90% linhas e ramos; `domain/streak` ≥ 90% |
 | Privacidade | INV12 + teste de "Excluir meus dados" (IndexedDB, caches e SW removidos) | Nada sai do dispositivo; nada sobra após excluir |
 

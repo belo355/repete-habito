@@ -171,7 +171,7 @@ Decisão: a interface `NotificationScheduler` fica em `platform/` com duas imple
 | Componente de UI | **Vitest** em modo navegador (`@vitest/browser-playwright`, Chromium e WebKit a 320 px) + **axe-core** | Componentes de `ui/` isolados: contraste nos 2 temas, alvos ≥ 44 px, teclado e foco visível (`src/ui/**/*.browser.test.tsx`, utilitários em `src/ui/test/a11y.ts`). Por causa do WebKit, a cobertura usa o provedor istanbul. |
 | E2E | **Playwright** (Chromium, WebKit, viewport mobile) | Fluxos críticos da seção 7.2 do produto, incluindo modo offline (`context.setOffline`). |
 | Acessibilidade | **@axe-core/playwright** + revisão manual (VoiceOver / TalkBack) | WCAG 2.1 AA. |
-| PWA / performance | **Lighthouse CI** | Orçamentos: PWA instalável, LCP < 2,5 s em 4G simulado, JS inicial < 200 KB gzip. |
+| PWA / performance | **Lighthouse CI** + **Playwright** | Orçamentos no Lighthouse CI: LCP < 2,5 s em 4G simulado, JS inicial < 200 KB gzip. "PWA instalável" é verificado por E2E no Chromium Android (manifest, service worker e checagem de instalabilidade), porque o Lighthouse 12 removeu esse audit (DV05). |
 | Lint / formatação | **ESLint** (flat config, typescript-eslint, jsx-a11y, regras de fronteira) + **Prettier** | Bloqueante no CI. |
 | Tipos | `tsc --noEmit` | Bloqueante no CI. |
 

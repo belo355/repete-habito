@@ -10,10 +10,12 @@ type Fixtures = { externalRequests: string[] };
 
 export const test = base.extend<Fixtures>({
   externalRequests: [
-    async ({ page, baseURL }, use) => {
+    async ({ context, baseURL }, use) => {
       const appOrigin = new URL(baseURL ?? 'http://localhost').origin;
       const external: string[] = [];
-      page.on('request', (request) => {
+      // No contexto (não só na página): no Chromium, inclui as requisições feitas pelo
+      // service worker (precache e fetch interceptado), que `page.on('request')` não vê.
+      context.on('request', (request) => {
         const url = new URL(request.url());
         if (url.protocol === 'data:' || url.protocol === 'blob:') return;
         if (url.origin === appOrigin) return;

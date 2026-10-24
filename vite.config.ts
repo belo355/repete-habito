@@ -3,9 +3,56 @@ import tailwindcss from '@tailwindcss/vite';
 import { playwright } from '@vitest/browser-playwright';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
+import { VitePWA } from 'vite-plugin-pwa';
+import ptBR from './src/i18n/pt-BR.json' with { type: 'json' };
 
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [
+    react(),
+    tailwindcss(),
+    // PWA (tech-spec §2.2): generateSW com precache do app shell. `prompt`: a nova versão só
+    // assume com o aceite do usuário (aviso em T01.7). Textos do manifest vêm do i18n.
+    VitePWA({
+      strategies: 'generateSW',
+      registerType: 'prompt',
+      injectRegister: false,
+      includeAssets: ['favicon.ico', 'apple-touch-icon-180x180.png', 'logo.svg'],
+      manifest: {
+        id: '/',
+        name: ptBR.app.name,
+        short_name: ptBR.app.shortName,
+        description: ptBR.app.description,
+        lang: 'pt-BR',
+        dir: 'ltr',
+        start_url: '/',
+        scope: '/',
+        display: 'standalone',
+        orientation: 'portrait',
+        theme_color: '#ffffff',
+        background_color: '#ffffff',
+        icons: [
+          { src: 'pwa-64x64.png', sizes: '64x64', type: 'image/png' },
+          { src: 'pwa-192x192.png', sizes: '192x192', type: 'image/png' },
+          { src: 'pwa-512x512.png', sizes: '512x512', type: 'image/png' },
+          {
+            src: 'maskable-icon-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable',
+          },
+        ],
+      },
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,svg,png,ico,webmanifest}'],
+        // Qualquer rota da SPA abre offline com o app shell.
+        navigateFallback: '/index.html',
+        cleanupOutdatedCaches: true,
+        // Na 1ª instalação o SW já controla a página (offline sem precisar recarregar).
+        // Sem skipWaiting: uma versão nova continua esperando o aceite do usuário.
+        clientsClaim: true,
+      },
+    }),
+  ],
   preview: {
     port: 4173,
     strictPort: true,

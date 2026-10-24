@@ -8,3 +8,20 @@ describe('script de tema no index.html', () => {
     expect(readFileSync('index.html', 'utf8')).toContain(`'${THEME_STORAGE_KEY}'`);
   });
 });
+
+// T01.6 · O theme-color inicial do index.html usa o mesmo fundo dos tokens de cada tema.
+describe('theme-color no index.html', () => {
+  it('T01.6 · usa as cores de fundo dos tokens claro e escuro', () => {
+    const html = readFileSync('index.html', 'utf8');
+    const css = readFileSync('src/ui/theme.css', 'utf8');
+    const light = /@theme static \{[\s\S]*?--color-bg:\s*(#[0-9a-f]{6})/i.exec(css)?.[1];
+    const dark = /:root\[data-theme='dark'\] \{[\s\S]*?--color-bg:\s*(#[0-9a-f]{6})/i.exec(
+      css,
+    )?.[1];
+    expect(light).toBeDefined();
+    expect(dark).toBeDefined();
+    expect(html).toContain(`'${dark!}'`);
+    expect(html).toContain(`'${light!}'`);
+    expect(html).toContain(`<meta name="theme-color" content="${light!}" />`);
+  });
+});
