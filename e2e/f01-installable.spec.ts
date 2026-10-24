@@ -64,3 +64,18 @@ test('CA01.6 · app instalável: service worker controla a página e o Chromium 
       .filter((id) => !ignoredInstallabilityErrors.includes(id)),
   ).toEqual([]);
 });
+
+test('T01.6 · manifest não trava a orientação e o precache não tem entradas repetidas @e2e', async ({
+  page,
+  request,
+}) => {
+  await page.goto('/hoje');
+  const href = await page.locator('link[rel="manifest"]').getAttribute('href');
+  const manifest = (await (await request.get(href!)).json()) as Manifest & { orientation?: string };
+  expect(manifest.orientation).toBeUndefined();
+
+  const sw = await (await request.get('/sw.js')).text();
+  const urls = [...sw.matchAll(/url:"([^"]+)"/g)].map((m) => m[1]);
+  expect(urls.length).toBeGreaterThan(0);
+  expect(urls.filter((url, i) => urls.indexOf(url) !== i)).toEqual([]);
+});

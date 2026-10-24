@@ -74,6 +74,11 @@ export default tseslint.config(
     files: ['*.{js,ts}', 'e2e/**/*.ts', 'scripts/**/*.{js,ts}'],
     languageOptions: { globals: globals.node },
   },
+  // Playwright identifica os fixtures pela desestruturação; `{}` é obrigatório quando nenhum é usado.
+  {
+    files: ['e2e/**/*.ts'],
+    rules: { 'no-empty-pattern': 'off' },
+  },
 
   // Fronteiras de arquitetura (tech-spec §3).
   {

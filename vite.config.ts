@@ -4,9 +4,14 @@ import { playwright } from '@vitest/browser-playwright';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
+import pkg from './package.json' with { type: 'json' };
 import ptBR from './src/i18n/pt-BR.json' with { type: 'json' };
 
 export default defineConfig({
+  // Versão exibida em Ajustes. APP_VERSION permite gerar builds distintos (teste de atualização, CA01.5).
+  define: {
+    __APP_VERSION__: JSON.stringify(process.env.APP_VERSION ?? pkg.version),
+  },
   plugins: [
     react(),
     tailwindcss(),
@@ -16,7 +21,6 @@ export default defineConfig({
       strategies: 'generateSW',
       registerType: 'prompt',
       injectRegister: false,
-      includeAssets: ['favicon.ico', 'apple-touch-icon-180x180.png', 'logo.svg'],
       manifest: {
         id: '/',
         name: ptBR.app.name,
@@ -27,7 +31,6 @@ export default defineConfig({
         start_url: '/',
         scope: '/',
         display: 'standalone',
-        orientation: 'portrait',
         theme_color: '#ffffff',
         background_color: '#ffffff',
         icons: [
@@ -42,8 +45,10 @@ export default defineConfig({
           },
         ],
       },
+      // Os ícones do manifest e o próprio manifest já entram pelo globPatterns (sem duplicar o precache).
+      includeManifestIcons: false,
       workbox: {
-        globPatterns: ['**/*.{js,css,html,svg,png,ico,webmanifest}'],
+        globPatterns: ['**/*.{js,css,html,svg,png,ico}'],
         // Qualquer rota da SPA abre offline com o app shell.
         navigateFallback: '/index.html',
         cleanupOutdatedCaches: true,

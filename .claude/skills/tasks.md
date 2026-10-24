@@ -78,7 +78,7 @@ Status possíveis: ⬜ Pendente · 🚧 Em andamento · ✅ Concluída · ⏸️
 - [x] **T01.4** i18next + react-i18next com recursos pt-BR; nenhuma string fixa em componentes (regra de lint ou revisão). — P
 - [x] **T01.5** Base de componentes acessíveis (Radix): Button, Dialog, Switch, Menu, alvos de toque ≥ 44px, foco visível. — M
 - [x] **T01.6** vite-plugin-pwa (`generateSW`, precache do app shell), manifest pt-BR com ícones maskable e `theme_color` dos dois temas. — M
-- [ ] **T01.7** Atualização com `registerType: 'prompt'`: aviso "Nova versão disponível" e recarga só com aceite. — P
+- [x] **T01.7** Atualização com `registerType: 'prompt'`: aviso "Nova versão disponível" e recarga só com aceite. — P
 - [ ] **T01.8** `domain/date`: tipo `LocalDate`, helpers (início/fim de semana seg–dom, mês, soma de dias) e porta `Clock` injetável; proibir `new Date()` em `domain/` via lint. **(D1)** — M
 - [ ] **T01.9** Testes do `domain/date`: virada de dia, horário de verão, registros perto da meia-noite, semanas que atravessam dois meses, nos três fusos. **(D1)** — M
 - [ ] **T01.10** Prompt de instalação (Android/desktop) e instrução visual "Adicionar à Tela de Início" (iOS). — M

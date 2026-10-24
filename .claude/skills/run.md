@@ -282,7 +282,7 @@ Status: ⬜ Não verificado · 🟡 Parcial · ✅ Aprovado · ❌ Falhando
 | CA01.2 | T01.10 | T12.6 | E + M (iOS) | ⬜ |
 | CA01.3 | T01.3 | — | E | ✅ |
 | CA01.4 | T01.2, T01.5 | NFR.1 | E (axe) | ✅ |
-| CA01.5 | T01.7 | — | E | ⬜ |
+| CA01.5 | T01.7 | — | E | ✅ |
 | CA01.6 | T00.8, T01.6 | NFR.8 | Lighthouse + E (instalável, DV05) | ✅ |
 
 ### F02 · Armazenamento local
@@ -510,6 +510,31 @@ Adicionar uma entrada **por task executada**, da mais recente para a mais antiga
 ```
 
 ### Execuções
+
+### 2026-10-24 · T01.7 · Aviso "Nova versão disponível" com recarga só no aceite
+
+**Plano:** store `useUpdateStore` e aviso `UpdatePrompt` (região de status, "Atualizar agora" / "Agora não") ligados ao `onNeedRefresh` do `registerSW`; recarga feita no `controllerchange` depois do aceite; checagem de versão nova quando o app volta a ficar visível; versão do app em Ajustes (`__APP_VERSION__`). Inclui as pendências S4 do QA da T01.6: `orientation` removido do manifest (F-02) e precache sem duplicatas, 12 entradas (F-03). Fecha CA01.5.
+
+**Verificação técnica (passo 4):** lint ✅ · typecheck ✅ · unit + browser ✅ (121/121) · 3 fusos ✅ · build ✅ (JS 119,2 KB + workbox-window 2,2 KB gzip; precache 12 entradas) · e2e ✅ (180/180) · lighthouse ✅ (LCP 1,95 s; script 122,3 KB)
+
+**QA (qa.md):** ✅ Aprovada · 5/5 CAs ✅ (CA01.5 vira ✅; CA01.1 e CA01.6 revalidados; CA01.3 e CA01.4 sem regressão) · 4/14 INV verdes, 10 n/a, 0 falhando · 4 falhas (2 S3 e 1 S4 resolvidas pelo QA nos testes; 1 S4 em aberto) · 0 flaky · vitest 123/123 nos 3 fusos · e2e 186/186 · specs de PWA 165/165 com `--repeat-each=5` · mutações 3/3 detectadas
+
+**Consistência (passo 5):**
+- A. CAs da task: CA01.5 ✅ (`e2e/f01-update.spec.ts` com builds A e B reais e servidor que troca a versão publicada; `src/app/update/UpdatePrompt.browser.test.tsx`)
+- B. Regressão: CA01.1, CA01.3, CA01.4 e CA01.6 verdes · invariantes 0 falhando
+- C. Princípios 5.2: textos do aviso passam no INV10 ("Atualize quando quiser. Seus registros continuam guardados.")
+- D. Definição de Pronto (itens tocados): i18n ✅ · axe ✅ nos 2 temas · alvos ≥ 44 px ✅ · teclado ✅ · offline ✅
+- E. Documentos: sem divergência
+
+**Resultado:** ✅ Consistente
+
+**Bug encontrado pelo teste:** o `registerSW` do plugin só recarrega quando o Workbox classifica a versão como "update"; uma versão achada por `registration.update()` chega como "externa" e o aceite não recarregava. Corrigido recarregando no `controllerchange`.
+
+**Testes reforçados pelo QA:** espera no caso "Agora não" (F-01), caso de quem volta ao app com o SW já no controle (F-02), aviso só pelo teclado e axe/alvos/320 px com o aviso aberto na tela real (F-03).
+
+**Pendências (S4, não bloqueiam):** F-04 a região `role="status"` entra no DOM já preenchida; alguns leitores (VoiceOver no Safari) podem não anunciar. Proposta: manter a região sempre montada e trocar só o conteúdo, e conferir no VoiceOver/TalkBack na revisão manual. Aviso do QA, não verificado: com duas abas, aceitar numa pode deixar o botão da outra sem efeito.
+
+**Novas tasks ou divergências:** proposta: tratar F-04 (região de status sempre montada) junto com T01.10 ou NFR.
 
 ### 2026-10-24 · T01.6 · PWA: service worker, precache e manifest pt-BR
 

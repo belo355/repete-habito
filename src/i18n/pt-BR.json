@@ -37,6 +37,13 @@
       "system": "Igual ao sistema",
       "light": "Claro",
       "dark": "Escuro"
-    }
+    },
+    "version": "Versão {{version}}"
+  },
+  "update": {
+    "available": "Nova versão disponível",
+    "description": "Atualize quando quiser. Seus registros continuam guardados.",
+    "accept": "Atualizar agora",
+    "dismiss": "Agora não"
   }
 }

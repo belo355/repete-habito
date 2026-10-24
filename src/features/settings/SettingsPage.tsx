@@ -7,6 +7,7 @@ export function SettingsPage() {
     <>
       <h1 className="mb-6 text-2xl font-bold">{t('settings.title')}</h1>
       <ThemeSetting />
+      <p className="mt-8 text-text-muted">{t('settings.version', { version: __APP_VERSION__ })}</p>
     </>
   );
 }
