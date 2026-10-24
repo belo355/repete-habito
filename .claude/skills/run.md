@@ -510,6 +510,30 @@ Adicionar uma entrada **por task executada**, da mais recente para a mais antiga
 
 ### Execuções
 
+### 2026-10-24 · T01.4 · i18n pt-BR e nenhuma string fixa em componente
+
+**Plano:** i18next + react-i18next com `src/i18n/pt-BR.json` (todos os textos atuais) e chaves tipadas (`i18next.d.ts`: chave inexistente não compila); componentes migrados para `t()`; regra `i18next/no-literal-string` (modo `jsx-only`) bloqueante em `src/**/*.tsx`. Sem CA próprio; ativa INV10 (`src/i18n/tone.test.ts` + `tests/fixtures/forbidden-terms.json`) e INV11 (lint + `src/i18n/keys.test.ts`). Resolve F-05 do QA de F00.
+
+**Verificação técnica (passo 4):** lint ✅ · typecheck ✅ · unit ✅ (50/50) · 3 fusos ✅ · build ✅ (JS 117,3 KB gzip, era 101,2; o aumento é do i18next) · e2e ✅ (147/147) · lighthouse ✅ (LCP 1,65 s)
+
+**QA (qa.md):** 🟡 Aprovada com pendência · 1/3 CAs ✅ (CA01.3 ✅; CA01.1 🟡 aguarda T01.6; CA01.4 🟡 aguarda T01.5) · 4/14 INV verdes, 10 n/a, 0 falhando · 3 falhas (S3: 1 lacuna da regra de lint do INV11 fora do JSX · S4: 2) · 0 flaky · e2e 147/147 · F-05 de F00 resolvido
+
+**Consistência (passo 5):**
+- A. CAs da task: sem CA próprio; CA01.1, CA01.3 e CA01.4 revalidados sem regressão
+- B. Regressão: nenhum CA ✅ quebrou · invariantes 4/14 verdes, 0 falhando
+- C. Princípios 5.2: as 18 strings pt-BR passam no INV10
+- D. Definição de Pronto (itens tocados): textos no i18n ✅ (componentes), com as ressalvas abaixo
+- E. Documentos: sem divergência
+
+**Resultado:** 🟡 Consistente com pendência
+
+**Pendências do QA:**
+- F-01 (S3): a regra `jsx-only` não pega texto fixo em objeto/constante renderizado depois, em template literal no JSX nem em arquivos `.ts`. Hoje o código está limpo (revisão manual). Proposta: `should-validate-template: true` e um teste U complementar, ou `mode: 'all'` com exclusões.
+- F-02 (S4): `<title>` e meta description do `index.html` fora do i18n e da varredura do INV10.
+- F-03 (S4): os E2E escrevem os textos à mão em vez de lê-los de `pt-BR.json` (qa.md §3.3.6).
+
+**Novas tasks ou divergências:** propostas: tratar F-01 a F-03 do QA de T01.4; validar `preference` ao reidratar o store de tema (pendente desde T01.3).
+
 ### 2026-10-24 · T01.3 · Tema claro/escuro com escolha manual persistida
 
 **Plano:** store Zustand com persistência (`repete-habito:tema`: sistema, claro ou escuro; padrão sistema) em `src/ui/theme/theme.ts`; `applyTheme()` mantém `<html data-theme>` com o tema efetivo e acompanha o `prefers-color-scheme` ao vivo; script inline no `index.html` aplica o tema antes do bundle (sem piscar); seletor "Tema" em Ajustes com rádios nativos (alvo ≥ 44 px na linha inteira). Cobre CA01.3; revalida CA01.4 em Ajustes.

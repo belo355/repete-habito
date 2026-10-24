@@ -75,7 +75,7 @@ Status possíveis: ⬜ Pendente · 🚧 Em andamento · ✅ Concluída · ⏸️
 - [x] **T01.1** Roteamento SPA com React Router: rotas `/hoje`, `/atividades`, `/dashboard`, `/progresso`, `/onboarding`, `/ajustes`; navegação principal. — P
 - [x] **T01.2** Tailwind v4 com tokens em variáveis CSS (cores, espaçamento, raio), contraste AA nos dois temas. — M
 - [x] **T01.3** Tema claro/escuro: segue `prefers-color-scheme` com override manual persistido (Zustand). — P
-- [ ] **T01.4** i18next + react-i18next com recursos pt-BR; nenhuma string fixa em componentes (regra de lint ou revisão). — P
+- [x] **T01.4** i18next + react-i18next com recursos pt-BR; nenhuma string fixa em componentes (regra de lint ou revisão). — P
 - [ ] **T01.5** Base de componentes acessíveis (Radix): Button, Dialog, Switch, Menu, alvos de toque ≥ 44px, foco visível. — M
 - [ ] **T01.6** vite-plugin-pwa (`generateSW`, precache do app shell), manifest pt-BR com ícones maskable e `theme_color` dos dois temas. — M
 - [ ] **T01.7** Atualização com `registerType: 'prompt'`: aviso "Nova versão disponível" e recarga só com aceite. — P

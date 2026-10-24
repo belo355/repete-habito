@@ -1,6 +1,7 @@
 import js from '@eslint/js';
 import prettier from 'eslint-config-prettier';
 import boundaries from 'eslint-plugin-boundaries';
+import i18next from 'eslint-plugin-i18next';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import reactHooks from 'eslint-plugin-react-hooks';
 import globals from 'globals';
@@ -46,6 +47,28 @@ export default tseslint.config(
   {
     files: ['src/**/*.tsx'],
     ...jsxA11y.flatConfigs.strict,
+  },
+  // INV11 (qa.md §5): nenhum texto visível fixo em componente; textos vêm de src/i18n.
+  // `jsx-only` cobre texto no JSX e atributos como aria-label, title e placeholder.
+  {
+    files: ['src/**/*.tsx'],
+    ignores: ['src/**/*.test.tsx'],
+    plugins: { i18next },
+    rules: {
+      'i18next/no-literal-string': [
+        'error',
+        {
+          mode: 'jsx-only',
+          'jsx-attributes': {
+            exclude: [
+              '^(className|style|styleName|type|key|id|width|height|to|href|name|value|role|rel|target|lang|dir|htmlFor|src|method|inputMode|autoComplete|tabIndex|viewBox|d|fill|stroke|xmlns)$',
+              '^aria-(hidden|labelledby|describedby|controls|current|live|expanded|selected|checked|pressed|modal|orientation|haspopup|level|atomic)$',
+              '^data-',
+            ],
+          },
+        },
+      ],
+    },
   },
   {
     files: ['*.{js,ts}', 'e2e/**/*.ts', 'scripts/**/*.{js,ts}'],

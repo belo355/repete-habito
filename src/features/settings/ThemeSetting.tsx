@@ -1,23 +1,25 @@
 import { useId } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useThemeStore, type ThemePreference } from '../../ui/theme/theme.ts';
 
-const options: ReadonlyArray<{ value: ThemePreference; label: string }> = [
-  { value: 'system', label: 'Igual ao sistema' },
-  { value: 'light', label: 'Claro' },
-  { value: 'dark', label: 'Escuro' },
-];
+const options = [
+  { value: 'system', labelKey: 'settings.theme.system' },
+  { value: 'light', labelKey: 'settings.theme.light' },
+  { value: 'dark', labelKey: 'settings.theme.dark' },
+] as const satisfies ReadonlyArray<{ value: ThemePreference; labelKey: string }>;
 
 export function ThemeSetting() {
   const preference = useThemeStore((s) => s.preference);
   const setPreference = useThemeStore((s) => s.setPreference);
   const titleId = useId();
+  const { t } = useTranslation();
 
   return (
     <div role="radiogroup" aria-labelledby={titleId}>
       <h2 id={titleId} className="mb-2 text-lg font-bold">
-        Tema
+        {t('settings.theme.title')}
       </h2>
-      {options.map(({ value, label }) => (
+      {options.map(({ value, labelKey }) => (
         // O input cobre o rótulo inteiro (alvo ≥ 44 px); o círculo visível é desenhado pelo span.
         <label key={value} className="relative flex min-h-touch cursor-pointer items-center gap-3">
           <input
@@ -34,7 +36,7 @@ export function ThemeSetting() {
           >
             <span className="hidden size-2.5 rounded-full bg-primary" />
           </span>
-          {label}
+          {t(labelKey)}
         </label>
       ))}
     </div>

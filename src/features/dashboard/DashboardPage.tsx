@@ -1,3 +1,6 @@
+import { useTranslation } from 'react-i18next';
+
 export function DashboardPage() {
-  return <h1 className="text-2xl font-bold">Dashboard</h1>;
+  const { t } = useTranslation();
+  return <h1 className="text-2xl font-bold">{t('dashboard.title')}</h1>;
 }

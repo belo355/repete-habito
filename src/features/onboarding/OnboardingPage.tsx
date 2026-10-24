@@ -1,3 +1,6 @@
+import { useTranslation } from 'react-i18next';
+
 export function OnboardingPage() {
-  return <h1 className="text-2xl font-bold">Boas-vindas</h1>;
+  const { t } = useTranslation();
+  return <h1 className="text-2xl font-bold">{t('onboarding.title')}</h1>;
 }

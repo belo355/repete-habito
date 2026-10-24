@@ -1,0 +1,37 @@
+{
+  "app": {
+    "name": "Repete Hábito"
+  },
+  "nav": {
+    "label": "Navegação principal",
+    "today": "Hoje",
+    "activities": "Atividades",
+    "dashboard": "Dashboard",
+    "progress": "Progresso",
+    "settings": "Ajustes"
+  },
+  "today": {
+    "title": "Hoje"
+  },
+  "activities": {
+    "title": "Atividades"
+  },
+  "dashboard": {
+    "title": "Dashboard"
+  },
+  "progress": {
+    "title": "Progresso"
+  },
+  "onboarding": {
+    "title": "Boas-vindas"
+  },
+  "settings": {
+    "title": "Ajustes",
+    "theme": {
+      "title": "Tema",
+      "system": "Igual ao sistema",
+      "light": "Claro",
+      "dark": "Escuro"
+    }
+  }
+}
