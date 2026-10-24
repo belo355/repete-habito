@@ -64,7 +64,7 @@ Status possíveis: ⬜ Pendente · 🚧 Em andamento · ✅ Concluída · ⏸️
 - [x] **T00.7** Playwright (Chromium, WebKit, viewport mobile) + `@axe-core/playwright`, com um teste smoke. — M
 - [x] **T00.8** GitHub Actions: lint → typecheck → unit → build → e2e → Lighthouse CI (orçamentos: PWA instalável, LCP < 2,5 s, JS inicial < 200 KB gzip). — M
 - [x] **T00.9** Renovate com agrupamento semanal e auto-merge de patches com CI verde. **(D5)** — P
-- [ ] ⏸️ **T00.10** Hospedagem estática (Netlify / Vercel) com HTTPS e preview por PR. Provedor em aberto (tech-spec §8, item 5; DV04). — P
+- [ ] **T00.10** Demo local do build de produção (`pnpm build && pnpm preview`) documentada, no lugar de hospedagem e preview por PR (decisão DV04, 24/10/2026). — P
 
 ---
 

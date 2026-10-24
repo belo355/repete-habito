@@ -176,9 +176,9 @@ Decisão: a interface `NotificationScheduler` fica em `platform/` com duas imple
 
 ## 5. Infraestrutura
 
-- **Hospedagem:** site estático (Netlify ou Vercel) com HTTPS e preview por PR. Sem provedor definido por enquanto (ver seção 8).
+- **Hospedagem:** sem hospedagem no MVP por enquanto. A demonstração é feita localmente com o build de produção (`pnpm build && pnpm preview`), no lugar do preview por PR (ver seção 8, item 5).
 - **CI:** GitHub Actions com lint → typecheck → unit → build → e2e → Lighthouse.
-- **Dependências:** Renovate com agrupamento semanal e auto-merge para patches com CI verde.
+- **Dependências:** Renovate com agrupamento semanal e auto-merge para patches com CI verde (feito pelo próprio Renovate, sem exigir proteção de branch).
 - **Erros em produção:** Sentry (ou equivalente) **sem dados pessoais e sem conteúdo dos registros**, com opt-in.
 - **Métricas de produto (seção 6 do product.md):** analytics sem cookies e sem PII (ex.: Plausible ou Umami), apenas eventos agregados (`activity_created`, `log_marked`). Decisão final pendente (ver seção 7).
 
@@ -220,4 +220,4 @@ Itens que a escolha "somente frontend" cria ou que precisam de atenção desde o
 2. Momento de iniciar o app Capacitor: logo após o MVP ou só se os lembretes na PWA se mostrarem bloqueantes no beta.
 3. Forma de cobrança do premium na versão web (se houver) antes das lojas.
 4. Necessidade de sync entre dispositivos: os testes de sync da seção 7.2 do product.md ficam **fora do MVP** enquanto não houver backend.
-5. Provedor de hospedagem e preview por PR. Em 23/10/2026 o deploy no Cloudflare Pages foi retirado do projeto por decisão do responsável; até outra escolha, o CI não publica o app (ver divergência DV04 em run.md §6.2).
+5. ~~Provedor de hospedagem e preview por PR.~~ **Decidido em 24/10/2026:** o deploy no Cloudflare Pages foi retirado (23/10) e a demonstração passa a ser local, com `pnpm build && pnpm preview`, no lugar do preview do PR (DV04 em run.md §6.2). Reavaliar a hospedagem antes do beta fechado (Entrega 3).

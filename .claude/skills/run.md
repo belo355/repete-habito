@@ -217,7 +217,7 @@ Quando todas as features de uma entrega estiverem ✅, conferir os critérios de
 
 | Entrega | Checagem de saída | Evidência exigida |
 |---|---|---|
-| **0** | CI completo rodando; preview por PR; Renovate ativo | Link de um PR com o pipeline verde |
+| **0** | CI completo rodando; demo local do build (DV04); Renovate ativo | Link de um PR com o pipeline verde |
 | **1** | Todos os CAs de F01, F02, F03 e F05 ✅; usuário novo, offline, cria e marca em < 5 s; CA02.2 e CA02.3 verdes | E2E verde + demo gravada ou registrada |
 | **2** | Cobertura ≥ 90% em `domain/streak` com testes de fuso e de propriedade; CA10.6 registrado; decisão sobre o Capacitor tomada | Relatório de cobertura + nota da decisão (tech-spec §8) |
 | **3** | E2E onboarding → atividade → marcação verde; Dashboard e progresso < 1 s com 2 anos de histórico; analytics sem PII | Relatório de performance + evento recebido no painel. **Libera o beta.** |
@@ -260,7 +260,7 @@ Além disso, em todo fechamento de entrega:
 | DV01 | 22/10/2026 | CA13.9 | Lacuna | Entrega 3 exige Dashboard < 1 s com 2 anos de histórico, mas a única task de medição é NFR.4, da Entrega 4. | Criar task em F13: "Fixture de 2 anos e medição de performance do Dashboard". | — | ⬜ Aberta |
 | DV02 | 22/10/2026 | CA12.6 | Lacuna | Nenhuma task cobre explicitamente "pular a etapa de lembrete" no onboarding. | Ampliar T12.3: "com opção de pular". | — | ⬜ Aberta |
 | DV03 | 22/10/2026 | CA11.1 | Dependência | CA11.1 exige desafios na exportação, mas desafios só existem em F14 (Entrega 5). | Na Entrega 4, validar CA11.1 sem desafios; revalidar em T14.10. | — | ⬜ Aberta |
-| DV04 | 23/10/2026 | T00.10 · product 4.9.1 (DoD) · 4.9.3 (saída da Entrega 0) | Conflito | O deploy no Cloudflare Pages foi retirado do projeto e não há outro provedor. Sem hospedagem não existe preview por PR, exigido pela Definição de Pronto ("demonstrada no ambiente de preview do PR") e pela saída da Entrega 0. | Escolher outro provedor (Netlify ou Vercel) antes de fechar a Entrega 0, ou o responsável de produto aceitar demo local (`pnpm preview`) no lugar do preview do PR. | — | ⬜ Aberta |
+| DV04 | 23/10/2026 | T00.10 · product 4.9.1 (DoD) · 4.9.3 (saída da Entrega 0) | Conflito | O deploy no Cloudflare Pages foi retirado do projeto e não há outro provedor. Sem hospedagem não existe preview por PR, exigido pela Definição de Pronto ("demonstrada no ambiente de preview do PR") e pela saída da Entrega 0. | Escolher outro provedor (Netlify ou Vercel) antes de fechar a Entrega 0, ou o responsável de produto aceitar demo local (`pnpm preview`) no lugar do preview do PR. | Demo local (`pnpm build && pnpm preview`) substitui o preview do PR na Definição de Pronto (4.9.1) e na saída da Entrega 0 (4.9.3). Decisão do responsável de produto em 24/10/2026. | ✅ Resolvida |
 
 Tipos: **Lacuna** (CA sem task) · **Conflito** (task × produto) · **Ambiguidade** (CA com mais de uma leitura) · **Dependência** (CA depende de feature futura) · **Desvio técnico** (spec não seguida).
 
@@ -571,8 +571,8 @@ Adicionar uma entrada **por task executada**, da mais recente para a mais antiga
 
 **Pendências para fechar F00:**
 - F-01 (S3): decidir a verificação de "PWA instalável" antes de T01.6 (proposta do QA: E2E `CA01.6 · app instalável` no chromium-android).
-- F-02: CI no GitHub resolvido; preview por PR depende de DV04.
-- F-03: instalar o app Renovate no repositório (D5 só fica ✅ com o Renovate ativo) e tornar o job `CI` obrigatório na `main`.
+- F-02: CI no GitHub resolvido; preview por PR substituído por demo local (DV04 resolvida em 24/10/2026).
+- F-03: instalar o app Renovate no repositório (D5 só fica ✅ com o Renovate ativo). Em 24/10/2026 o responsável decidiu não exigir o job `CI` na proteção da `main`; o próprio Renovate só faz o merge com o CI verde.
 - F-04: fixar a major do Node em `engines`.
 - F-05: texto fixo em `App.tsx`, resolvido em T01.4.
 

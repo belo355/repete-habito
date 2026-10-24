@@ -42,4 +42,14 @@ e2e/          Playwright
 ## CI e dependências
 
 - `.github/workflows/ci.yml`: lint → typecheck → unit (+ 3 fusos) → build → e2e → Lighthouse.
-- `renovate.json`: PRs toda segunda; minor/patch agrupados; patches entram sozinhos com CI verde. Para o auto-merge funcionar, instale o app Renovate no repositório e torne o job `CI` obrigatório na proteção da branch `main`.
+- `renovate.json`: PRs toda segunda; minor/patch agrupados; patches entram sozinhos. O próprio Renovate faz o merge só depois do CI verde, então não é preciso proteção na `main`. Requer o app Renovate instalado no repositório.
+
+## Demo
+
+Não há hospedagem no MVP por enquanto (decisão DV04). Para demonstrar uma feature, rode o build de produção localmente:
+
+```bash
+pnpm build && pnpm preview
+```
+
+e abra http://localhost:4173. É o mesmo build que o E2E e o Lighthouse validam.

@@ -16,12 +16,12 @@
       "groupName": "dependências (minor e patch)"
     },
     {
-      "description": "Patches entram sozinhos quando o CI fica verde.",
+      "description": "Patches entram sozinhos: o próprio Renovate faz o merge só depois do CI verde, sem exigir proteção na main.",
       "matchUpdateTypes": ["patch"],
       "groupName": "dependências (patch)",
       "automerge": true,
       "automergeType": "pr",
-      "platformAutomerge": true
+      "platformAutomerge": false
     },
     {
       "description": "typescript-eslint ainda exige TypeScript < 6.1.",
