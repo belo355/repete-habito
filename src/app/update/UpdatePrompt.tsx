@@ -8,23 +8,32 @@ type UpdatePromptProps = {
   onDismiss: () => void;
 };
 
-// Aviso de versão nova (CA01.5): região de status anunciada pelo leitor de tela, sem roubar o foco.
+// Aviso de versão nova (CA01.5). A região de status fica sempre montada e só o conteúdo muda:
+// alguns leitores de tela (ex.: VoiceOver no Safari) não anunciam uma região viva que já entra
+// preenchida no DOM. O aviso não rouba o foco.
 export function UpdatePrompt({ open, onAccept, onDismiss }: UpdatePromptProps) {
   const { t } = useTranslation();
-  if (!open) return null;
   return (
     <div
       role="status"
-      className="fixed inset-x-4 bottom-16 z-10 mx-auto max-w-md rounded-lg border border-border bg-surface p-4 text-text shadow-lg"
+      className={
+        open
+          ? 'fixed inset-x-4 bottom-16 z-10 mx-auto max-w-md rounded-lg border border-border bg-surface p-4 text-text shadow-lg'
+          : 'sr-only'
+      }
     >
-      <p className="m-0 font-bold">{t('update.available')}</p>
-      <p className="mt-1 mb-3 text-text-muted">{t('update.description')}</p>
-      <div className="flex flex-wrap gap-2">
-        <Button onClick={onAccept}>{t('update.accept')}</Button>
-        <Button variant="ghost" onClick={onDismiss}>
-          {t('update.dismiss')}
-        </Button>
-      </div>
+      {open && (
+        <>
+          <p className="m-0 font-bold">{t('update.available')}</p>
+          <p className="mt-1 mb-3 text-text-muted">{t('update.description')}</p>
+          <div className="flex flex-wrap gap-2">
+            <Button onClick={onAccept}>{t('update.accept')}</Button>
+            <Button variant="ghost" onClick={onDismiss}>
+              {t('update.dismiss')}
+            </Button>
+          </div>
+        </>
+      )}
     </div>
   );
 }

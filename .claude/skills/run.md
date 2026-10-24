@@ -262,6 +262,7 @@ Além disso, em todo fechamento de entrega:
 | DV03 | 22/10/2026 | CA11.1 | Dependência | CA11.1 exige desafios na exportação, mas desafios só existem em F14 (Entrega 5). | Na Entrega 4, validar CA11.1 sem desafios; revalidar em T14.10. | — | ⬜ Aberta |
 | DV04 | 23/10/2026 | T00.10 · product 4.9.1 (DoD) · 4.9.3 (saída da Entrega 0) | Conflito | O deploy no Cloudflare Pages foi retirado do projeto e não há outro provedor. Sem hospedagem não existe preview por PR, exigido pela Definição de Pronto ("demonstrada no ambiente de preview do PR") e pela saída da Entrega 0. | Escolher outro provedor (Netlify ou Vercel) antes de fechar a Entrega 0, ou o responsável de produto aceitar demo local (`pnpm preview`) no lugar do preview do PR. | Demo local (`pnpm build && pnpm preview`) substitui o preview do PR na Definição de Pronto (4.9.1) e na saída da Entrega 0 (4.9.3). Decisão do responsável de produto em 24/10/2026. | ✅ Resolvida |
 | DV05 | 24/10/2026 | CA01.6 · T00.8 · T01.6 | Desvio técnico | O Lighthouse 12 (usado pelo `@lhci/cli` 0.15) removeu o audit `installable-manifest`; o orçamento "PWA instalável" do CA01.6 não pode mais ser medido no Lighthouse CI. | Verificar a instalabilidade com o E2E `CA01.6 · app instalável` no `chromium-android` (manifest, service worker controlando a página e checagem de instalabilidade do Chromium); LCP e JS continuam no Lighthouse CI. Ajustar qa.md §4 (linha CA01.6) e tech-spec §4. | Aprovada pelo responsável de produto em 24/10/2026. | ✅ Resolvida |
+| DV06 | 24/10/2026 | T01.8 · tech-spec §2.1 e §3.1 | Desvio técnico | A tech-spec manda usar `date-fns` + `@date-fns/tz` para datas; a T01.8 fez a aritmética de calendário própria (inteiros, algoritmo de Hinnant) e `Intl.DateTimeFormat` para o fuso, sem date-fns. O `LocalDate` também ganhou marca de tipo (continua string em tempo de execução). | Manter a implementação própria: não depende do fuso do processo, não cria `Date` no domínio (INV05), tem cobertura de 100% e não pesa no bundle. Atualizar a tech-spec §2.1 (linha "Datas") e §3.1. | — | ⬜ Aberta |
 
 Tipos: **Lacuna** (CA sem task) · **Conflito** (task × produto) · **Ambiguidade** (CA com mais de uma leitura) · **Dependência** (CA depende de feature futura) · **Desvio técnico** (spec não seguida).
 
@@ -510,6 +511,31 @@ Adicionar uma entrada **por task executada**, da mais recente para a mais antiga
 ```
 
 ### Execuções
+
+### 2026-10-24 · T01.8 · `domain/date`: LocalDate, helpers e porta Clock
+
+**Plano:** `src/domain/date/local-date.ts` com `LocalDate` ("AAAA-MM-DD" com marca de tipo), validação, dias corridos (aritmética inteira, algoritmo de Hinnant), soma e diferença de dias, dia da semana, semana seg–dom, mês e `localDateAt(instante, fuso)` via `Intl`; porta `Clock` em `src/domain/date/clock.ts` e `systemClock` em `src/platform/clock/`; lint proibindo `new Date`, `Date()`, `Date.now` e APIs do navegador em `src/domain/**`. Inclui F-04 do QA da T01.7 (região de status sempre montada). Trata D1 (parcial).
+
+**Verificação técnica (passo 4):** lint ✅ · typecheck ✅ · unit + browser ✅ (196/196) · cobertura domain 100% linhas/funções, 97,8% ramos ✅ · 3 fusos ✅ · build ✅ (JS 119,2 KB gzip) · e2e ✅ (186/186) · lighthouse ✅
+
+**QA (qa.md):** 🟡 Aprovada com pendência · 5/5 CAs ✅ (CA01.1, CA01.3–CA01.6 revalidados; T01.8 sem CA próprio; CA05.5/CA07.6 seguem ⬜ até T01.9) · 5/14 INV verdes, 9 n/a, 0 falhando · 2 falhas S4 · 0 flaky · vitest 201/201 nos 3 fusos · e2e 186/186 · domain 100% · mutações 8/8 detectadas
+
+**Consistência (passo 5):**
+- A. CAs da task: sem CA próprio; F-04 resolvida (mesma região `role="status"` antes e depois de abrir o aviso)
+- B. Regressão: CAs da F01 verdes · invariantes 0 falhando (INV05 e INV08 com teste de propriedade adicionado pelo QA em `local-date.property.test.ts`)
+- C. Princípios 5.2: sem texto novo
+- D. Definição de Pronto (itens tocados): regra em `domain/` com cobertura ≥ 90% ✅
+- E. Documentos: desvio da tech-spec (date-fns) registrado como DV06, aberta
+
+**Resultado:** 🟡 Consistente com pendência
+
+**Pendências do QA:**
+- F-01 (S4): DV06 aberta (aritmética própria em vez de date-fns; `LocalDate` com marca de tipo).
+- F-02 (S4): o lint e a busca do INV05 não pegam `Date["now"]()`, `globalThis.Date.now()`/`self.Date.now()` (só o lint deixa passar) nem `new Intl.DateTimeFormat().format()` sem instante. Sem violação no código hoje. Proposta: mais seletores no lint e `self`/`globalThis` em `no-restricted-globals`.
+- D1 fica 🚧: faltam T01.9, T02.1 e o uso em T05.x/T07.x.
+- Observação do QA: o bloco de fronteiras passou a ignorar arquivos de teste.
+
+**Novas tasks ou divergências:** DV06.
 
 ### 2026-10-24 · T01.7 · Aviso "Nova versão disponível" com recarga só no aceite
 

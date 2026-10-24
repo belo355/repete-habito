@@ -28,6 +28,21 @@ describe('UpdatePrompt', () => {
       .toBeVisible();
   });
 
+  it('CA01.5 · a região de status já existe antes do aviso e o texto entra nela (leitor de tela anuncia)', async () => {
+    const screen = await render(
+      <UpdatePrompt open={false} onAccept={() => {}} onDismiss={() => {}} />,
+    );
+    const region = screen.getByRole('status');
+    await expect.element(region).toBeInTheDocument();
+    await expect.element(region).toBeEmptyDOMElement();
+    const regionElement = region.element();
+
+    await screen.rerender(<UpdatePrompt open onAccept={() => {}} onDismiss={() => {}} />);
+    // Mesmo nó: o conteúdo muda dentro de uma região viva que já estava montada.
+    expect(screen.getByRole('status').element()).toBe(regionElement);
+    await expect.element(region.getByText('Nova versão disponível')).toBeVisible();
+  });
+
   it('CA01.5 · fechado, não mostra nada', async () => {
     const screen = await render(
       <UpdatePrompt open={false} onAccept={() => {}} onDismiss={() => {}} />,

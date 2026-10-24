@@ -80,9 +80,50 @@ export default tseslint.config(
     rules: { 'no-empty-pattern': 'off' },
   },
 
-  // Fronteiras de arquitetura (tech-spec §3).
+  // Domínio puro (D1, INV05): sem relógio nem APIs do navegador. A hora entra pela porta Clock
+  // (src/domain/date/clock.ts) ou como parâmetro `today: LocalDate`.
+  {
+    files: ['src/domain/**/*.ts'],
+    ignores: ['src/domain/**/*.test.ts'],
+    rules: {
+      'no-restricted-syntax': [
+        'error',
+        {
+          selector: "NewExpression[callee.name='Date']",
+          message: 'Domínio não cria Date: use LocalDate e receba o instante pela porta Clock.',
+        },
+        {
+          selector: "CallExpression[callee.name='Date']",
+          message: 'Domínio não lê o relógio: use a porta Clock.',
+        },
+        {
+          selector: "MemberExpression[object.name='Date'][property.name='now']",
+          message: 'Domínio não lê o relógio: use a porta Clock.',
+        },
+      ],
+      'no-restricted-globals': [
+        'error',
+        ...[
+          'window',
+          'document',
+          'navigator',
+          'localStorage',
+          'sessionStorage',
+          'indexedDB',
+          'performance',
+        ].map((name) => ({
+          name,
+          message: 'Domínio não acessa APIs do navegador (tech-spec §3).',
+        })),
+      ],
+    },
+  },
+
+  // Fronteiras de arquitetura (tech-spec §3). Testes ficam de fora: não vão para o bundle e
+  // usam vitest, fast-check e Testing Library.
   {
     files: ['src/**/*.{ts,tsx}'],
+    ignores: ['src/**/*.test.{ts,tsx}'],
     plugins: { boundaries },
     settings: {
       'import/resolver': {

@@ -64,3 +64,34 @@ describe('fronteiras de arquitetura', () => {
     ).toEqual([]);
   });
 });
+
+// D1 · INV05: o domínio não lê o relógio nem APIs do navegador (regras do eslint.config.js).
+async function domainRuleErrors(code: string): Promise<string[]> {
+  const filePath = `src/domain/${PROBE}/clock-probe-${++probeCount}.ts`;
+  writeFileSync(filePath, code);
+  const [result] = await eslint.lintFiles([filePath]);
+  return (result?.messages ?? [])
+    .filter((m) => m.ruleId === 'no-restricted-syntax' || m.ruleId === 'no-restricted-globals')
+    .map((m) => m.message);
+}
+
+describe('relógio e navegador no domínio', () => {
+  it.each([
+    ['new Date()', 'export const t = new Date();'],
+    ['Date()', 'export const t = Date();'],
+    ['Date.now()', 'export const t = Date.now();'],
+    ['window', 'export const w = window.innerWidth;'],
+    ['localStorage', "export const v = localStorage.getItem('x');"],
+    ['navigator', 'export const l = navigator.language;'],
+  ])('domain não pode usar %s', async (_name, code) => {
+    expect(await domainRuleErrors(code)).toHaveLength(1);
+  });
+
+  it('domain pode receber o dia como parâmetro', async () => {
+    expect(
+      await domainRuleErrors(
+        'export const isToday = (date: string, today: string) => date === today;',
+      ),
+    ).toEqual([]);
+  });
+});
