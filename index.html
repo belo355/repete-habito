@@ -8,6 +8,17 @@
       content="Repete Hábito: acompanhe suas atividades físicas sem culpa."
     />
     <title>Repete Hábito</title>
+    <!-- Aplica o tema salvo antes do primeiro desenho, para não piscar (src/ui/theme/theme.ts). -->
+    <script>
+      try {
+        var saved = JSON.parse(localStorage.getItem('repete-habito:tema') || '{}');
+        var pref = (saved.state && saved.state.preference) || 'system';
+        var dark =
+          pref === 'dark' ||
+          (pref === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>

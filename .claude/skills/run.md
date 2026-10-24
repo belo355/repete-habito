@@ -279,7 +279,7 @@ Status: ⬜ Não verificado · 🟡 Parcial · ✅ Aprovado · ❌ Falhando
 |---|---|---|---|---|
 | CA01.1 | T01.1, T01.6 | T11.8 | E | 🟡 |
 | CA01.2 | T01.10 | T12.6 | E + M (iOS) | ⬜ |
-| CA01.3 | T01.3 | — | E | ⬜ |
+| CA01.3 | T01.3 | — | E | ✅ |
 | CA01.4 | T01.2, T01.5 | NFR.1 | E (axe) | 🟡 |
 | CA01.5 | T01.7 | — | E | ⬜ |
 | CA01.6 | T00.8, T01.6 | NFR.8 | Lighthouse | ⬜ |
@@ -509,6 +509,25 @@ Adicionar uma entrada **por task executada**, da mais recente para a mais antiga
 ```
 
 ### Execuções
+
+### 2026-10-24 · T01.3 · Tema claro/escuro com escolha manual persistida
+
+**Plano:** store Zustand com persistência (`repete-habito:tema`: sistema, claro ou escuro; padrão sistema) em `src/ui/theme/theme.ts`; `applyTheme()` mantém `<html data-theme>` com o tema efetivo e acompanha o `prefers-color-scheme` ao vivo; script inline no `index.html` aplica o tema antes do bundle (sem piscar); seletor "Tema" em Ajustes com rádios nativos (alvo ≥ 44 px na linha inteira). Cobre CA01.3; revalida CA01.4 em Ajustes.
+
+**Verificação técnica (passo 4):** lint ✅ · typecheck ✅ · unit ✅ (45/45) · 3 fusos ✅ (São Paulo repetido após sono do Mac) · build ✅ (JS 101,2 KB gzip, CSS 2,7 KB) · e2e ✅ (132/132) · lighthouse ✅ (LCP 1,65 s)
+
+**QA (qa.md):** 🟡 Aprovada com pendência · 1/2 CAs ✅ (CA01.3 ✅; CA01.4 🟡, aguarda T01.5) · 2/14 INV verdes, 12 n/a, 0 falhando · 1 falha S4 (ambiente: preview antigo reaproveitado na 4173, mesmos hashes) · 0 flaky · e2e 147/147 · 2 execuções anteriores do QA travaram por sono do Mac (tampa fechada)
+
+**Consistência (passo 5):**
+- A. CAs da task: CA01.3 ✅ (`e2e/f01-theme.spec.ts`, `src/ui/theme/theme.test.ts`, `tests/unit/theme-boot.test.ts`; o QA acrescentou a prova pela cor de fundo, axe com tema escolhido contra o SO e teclado; mutação sem o script inline detectada)
+- B. Regressão: nenhum CA ✅ quebrou · revalidados: CA01.4 em Ajustes · invariantes 0 falhando
+- C. Princípios 5.2: ok
+- D. Definição de Pronto (itens tocados): axe ✅ nos 2 temas · alvos ≥ 44 px ✅ · teclado ✅ · i18n pendente (T01.4) · offline pendente (T01.6)
+- E. Documentos: sem divergência
+
+**Resultado:** 🟡 Consistente com pendência
+
+**Novas tasks ou divergências:** proposta: validar `preference` ao reidratar o store de tema (um valor corrompido no localStorage geraria `data-theme` inválido); encaixar em T01.4 ou T01.5.
 
 ### 2026-10-23 · T01.2 · Tailwind v4 e tokens com contraste AA
 

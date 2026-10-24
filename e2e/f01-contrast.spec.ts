@@ -2,7 +2,8 @@ import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from './support/test.ts';
 
 // qa.md §4 · CA01.4: zero violações `color-contrast` do axe em cada rota × tema.
-// O tema vem do sistema operacional (prefers-color-scheme); o override manual chega em T01.3.
+// O tema vem do sistema operacional (prefers-color-scheme); o tema escolhido em Ajustes contra o
+// SO é auditado em e2e/f01-theme.spec.ts (CA01.4 · contraste AA em /ajustes com …).
 const routes = ['/hoje', '/atividades', '/dashboard', '/progresso', '/ajustes', '/onboarding'];
 const themes = ['light', 'dark'] as const;
 
