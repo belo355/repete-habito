@@ -29,6 +29,10 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      # Antes dos testes: os testes de componente (Vitest, projeto browser) também usam os navegadores.
+      - name: Instalar navegadores do Playwright
+        run: pnpm exec playwright install --with-deps chromium webkit
+
       - name: Lint (ESLint + fronteiras + Prettier)
         run: pnpm lint && pnpm format:check
 
@@ -43,9 +47,6 @@ jobs:
 
       - name: Build
         run: pnpm build
-
-      - name: Instalar navegadores do Playwright
-        run: pnpm exec playwright install --with-deps chromium webkit
 
       - name: E2E + axe
         run: pnpm e2e

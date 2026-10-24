@@ -280,7 +280,7 @@ Status: ⬜ Não verificado · 🟡 Parcial · ✅ Aprovado · ❌ Falhando
 | CA01.1 | T01.1, T01.6 | T11.8 | E | 🟡 |
 | CA01.2 | T01.10 | T12.6 | E + M (iOS) | ⬜ |
 | CA01.3 | T01.3 | — | E | ✅ |
-| CA01.4 | T01.2, T01.5 | NFR.1 | E (axe) | 🟡 |
+| CA01.4 | T01.2, T01.5 | NFR.1 | E (axe) | ✅ |
 | CA01.5 | T01.7 | — | E | ⬜ |
 | CA01.6 | T00.8, T01.6 | NFR.8 | Lighthouse | ⬜ |
 
@@ -509,6 +509,27 @@ Adicionar uma entrada **por task executada**, da mais recente para a mais antiga
 ```
 
 ### Execuções
+
+### 2026-10-24 · T01.5 · Componentes acessíveis (Button, Dialog, Switch, Menu)
+
+**Plano:** componentes em `src/ui/components/` sobre Radix: Button (4 variantes, alvo ≥ 44 px, `type="button"`), Dialog (título obrigatório, foco preso, Esc devolve o foco, Fechar com rótulo do i18n), Switch (papel `switch`, botão de 44 px com trilha menor, rótulo associado) e Menu (`modal={false}`, nomeado pelo gatilho, setas/Enter/Esc). Testes de componente em navegador real (projeto `browser` do Vitest, Chromium e WebKit a 320 px, axe-core). Fecha CA01.4.
+
+**Verificação técnica (passo 4):** lint ✅ · typecheck ✅ · unit + browser ✅ (110/110, cobertura istanbul) · 3 fusos ✅ · build ✅ (JS 117,3 KB gzip, inalterado; CSS 4,0 KB) · e2e ✅ (147/147) · lighthouse ✅
+
+**QA (qa.md):** 🟡 Aprovada com pendência (2ª tentativa) · CA01.4 vira ✅ com T01.5 `[x]` (T01.2 já `[x]`) · CA01.3 ✅ · CA01.1 🟡 aguarda T01.6 · 4/14 INV verdes, 10 n/a, 0 falhando · 0 falhas abertas · 0 flaky · vitest 110/110 · e2e 147/147
+
+**Consistência (passo 5):**
+- A. CAs da task: CA01.4 ✅ (12 testes de componente × 2 navegadores + 42 E2E de rotas × temas × projetos)
+- B. Regressão: nenhum CA ✅ quebrou · CA01.3 21/21 · invariantes 0 falhando
+- C. Princípios 5.2: ok
+- D. Definição de Pronto (itens tocados): axe ✅ nos 2 temas · alvos ≥ 44 px ✅ · teclado ✅ · foco visível ✅ · leitor de tela (papéis e nomes) ✅ · i18n ✅
+- E. Documentos: desvio registrado na tech-spec §4 (nível "Componente de UI") e §8 item 6 (cobertura istanbul em vez de v8); falta o QA incluir esse nível em qa.md §3.1/§3.4
+
+**Resultado:** 🟡 Consistente com pendência (só a atualização de qa.md pelo QA)
+
+**Tentativa 1 (❌):** itens do Menu sem foco visível (`outline-none` anulava o contorno de destaque no Tailwind v4) e nenhum teste verificava isso. Corrigido com `data-[highlighted]:outline-solid`; o QA adicionou testes de foco visível no Menu e no Dialog.
+
+**Novas tasks ou divergências:** —
 
 ### 2026-10-24 · T01.4 · i18n pt-BR e nenhuma string fixa em componente
 

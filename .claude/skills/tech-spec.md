@@ -168,6 +168,7 @@ Decisão: a interface `NotificationScheduler` fica em `platform/` com duas imple
 | Unitário | **Vitest** | `domain/` com cobertura ≥ 90% (gate no CI). Datas com `vi.setSystemTime` e testes parametrizados por fuso (`TZ=America/Sao_Paulo`, `TZ=Pacific/Auckland`, `TZ=UTC`). |
 | Propriedade | **fast-check** | Invariantes do motor de sequência (ex.: adicionar um registro nunca diminui a melhor sequência). |
 | Componente / integração | **Vitest** + **Testing Library** + **fake-indexeddb** | Repositórios, migrações, exportação/importação ida e volta. |
+| Componente de UI | **Vitest** em modo navegador (`@vitest/browser-playwright`, Chromium e WebKit a 320 px) + **axe-core** | Componentes de `ui/` isolados: contraste nos 2 temas, alvos ≥ 44 px, teclado e foco visível (`src/ui/**/*.browser.test.tsx`, utilitários em `src/ui/test/a11y.ts`). Por causa do WebKit, a cobertura usa o provedor istanbul. |
 | E2E | **Playwright** (Chromium, WebKit, viewport mobile) | Fluxos críticos da seção 7.2 do produto, incluindo modo offline (`context.setOffline`). |
 | Acessibilidade | **@axe-core/playwright** + revisão manual (VoiceOver / TalkBack) | WCAG 2.1 AA. |
 | PWA / performance | **Lighthouse CI** | Orçamentos: PWA instalável, LCP < 2,5 s em 4G simulado, JS inicial < 200 KB gzip. |
@@ -221,3 +222,4 @@ Itens que a escolha "somente frontend" cria ou que precisam de atenção desde o
 3. Forma de cobrança do premium na versão web (se houver) antes das lojas.
 4. Necessidade de sync entre dispositivos: os testes de sync da seção 7.2 do product.md ficam **fora do MVP** enquanto não houver backend.
 5. ~~Provedor de hospedagem e preview por PR.~~ **Decidido em 24/10/2026:** o deploy no Cloudflare Pages foi retirado (23/10) e a demonstração passa a ser local, com `pnpm build && pnpm preview`, no lugar do preview do PR (DV04 em run.md §6.2). Reavaliar a hospedagem antes do beta fechado (Entrega 3).
+6. **Registrado em 24/10/2026 (T01.5):** testes de componente de UI em navegador real (projeto `browser` do Vitest) e cobertura com istanbul em vez de v8. Complementam o E2E, sem substituir nenhum nível de qa.md §3.1. Falta o QA incluir esse nível em qa.md §3.1/§3.4.

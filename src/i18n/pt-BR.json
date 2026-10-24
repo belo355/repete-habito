@@ -2,6 +2,9 @@
   "app": {
     "name": "Repete Hábito"
   },
+  "common": {
+    "close": "Fechar"
+  },
   "nav": {
     "label": "Navegação principal",
     "today": "Hoje",

@@ -1,5 +1,6 @@
 /// <reference types="vitest/config" />
 import tailwindcss from '@tailwindcss/vite';
+import { playwright } from '@vitest/browser-playwright';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
@@ -10,10 +11,9 @@ export default defineConfig({
     strictPort: true,
   },
   test: {
-    environment: 'jsdom',
-    include: ['src/**/*.test.{ts,tsx}', 'tests/**/*.test.{ts,tsx}'],
     coverage: {
-      provider: 'v8',
+      // istanbul (não v8): o projeto browser roda também no WebKit, onde o v8 não funciona.
+      provider: 'istanbul',
       include: ['src/domain/**/*.ts'],
       exclude: ['src/domain/**/*.test.ts', 'src/**/__boundary_probe__/**'],
       reporter: ['text', 'json-summary', 'html'],
@@ -27,5 +27,35 @@ export default defineConfig({
         },
       },
     },
+    projects: [
+      {
+        extends: true,
+        test: {
+          name: 'unit',
+          environment: 'jsdom',
+          include: ['src/**/*.test.{ts,tsx}', 'tests/**/*.test.{ts,tsx}'],
+          exclude: ['**/*.browser.test.tsx', '**/node_modules/**'],
+        },
+      },
+      // Componentes de UI em navegador real: layout, contraste (axe) e teclado de verdade.
+      {
+        extends: true,
+        test: {
+          name: 'browser',
+          include: ['src/**/*.browser.test.tsx'],
+          setupFiles: ['src/ui/test/browser-setup.ts'],
+          browser: {
+            enabled: true,
+            headless: true,
+            provider: playwright(),
+            screenshotFailures: false,
+            instances: [
+              { browser: 'chromium', viewport: { width: 320, height: 640 } },
+              { browser: 'webkit', viewport: { width: 320, height: 640 } },
+            ],
+          },
+        },
+      },
+    ],
   },
 });
