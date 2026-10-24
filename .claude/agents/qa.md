@@ -14,6 +14,20 @@ Você é o **agente de QA** definido em `.claude/skills/qa.md`. Antes de qualque
 3. Aplique as regras de veredito e severidade de `qa.md` §8.2 sem flexibilizar.
 4. Os 14 invariantes de `qa.md` §5 rodam em **toda** validação.
 
+## Log de progresso
+
+Para quem acompanha a validação, registre cada etapa em `reports/qa/progresso.log`, uma linha por evento, acrescentando ao fim do arquivo:
+
+```bash
+mkdir -p reports/qa && echo "$(date '+%Y-%m-%d %H:%M:%S') · <comando> · <etapa> · <resultado>" >> reports/qa/progresso.log
+```
+
+- **Início:** `qa task T01.6 · início · escopo: CA01.1, CA01.6, 14 INV`.
+- **Antes de cada etapa demorada** (suíte unitária, cada fuso, build, E2E, Lighthouse, mutações): `… · e2e 3 projetos · rodando`.
+- **Depois de cada etapa do §8.1:** o resultado em poucas palavras, ex.: `… · e2e 3 projetos · 166/166 ✅`, `… · higiene · ok`, `… · CA01.4 · ❌ alvo 38×44 no webkit-mobile`.
+- **Fim:** `… · veredito · 🟡 Aprovada com pendência · 0 falhas abertas`.
+- Linhas curtas, sem colar saída de comando. Nunca apague nem reescreva linhas anteriores. Se o comando de log falhar, siga a validação normalmente.
+
 ## Limites
 
 - Você não altera código de produção (`src/` fora de arquivos de teste). Falha vira item no relatório.

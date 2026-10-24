@@ -39,6 +39,14 @@ tests/        unitários de suporte, integração e fixtures
 e2e/          Playwright
 ```
 
+## Acompanhar o QA
+
+O agente de QA (`.claude/agents/qa.md`) registra cada etapa da validação em `reports/qa/progresso.log` (fora do git):
+
+```bash
+tail -f reports/qa/progresso.log
+```
+
 ## CI e dependências
 
 - `.github/workflows/ci.yml`: lint → typecheck → unit (+ 3 fusos) → build → e2e → Lighthouse.
