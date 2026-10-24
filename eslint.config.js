@@ -86,44 +86,18 @@ export default tseslint.config(
     files: ['src/domain/**/*.ts'],
     ignores: ['src/domain/**/*.test.ts'],
     rules: {
-      'no-restricted-syntax': [
-        'error',
-        {
-          selector: "NewExpression[callee.name='Date']",
-          message: 'Domínio não cria Date: use LocalDate e receba o instante pela porta Clock.',
-        },
-        {
-          selector: "CallExpression[callee.name='Date']",
-          message: 'Domínio não lê o relógio: use a porta Clock.',
-        },
-        {
-          selector: "MemberExpression[object.name='Date'][property.name='now']",
-          message: 'Domínio não lê o relógio: use a porta Clock.',
-        },
-        // Formas indiretas: Date['now'](), globalThis.Date / self.Date / window.Date, Temporal.Now.
-        {
-          selector: "MemberExpression[object.name='Date'][computed=true]",
-          message: 'Domínio não lê o relógio: use a porta Clock.',
-        },
-        {
-          selector: "MemberExpression[property.name='Date']",
-          message: 'Domínio não acessa Date pelo objeto global: use LocalDate e a porta Clock.',
-        },
-        {
-          selector: "MemberExpression[object.name='Temporal'][property.name='Now']",
-          message: 'Domínio não lê o relógio: use a porta Clock.',
-        },
-        // Intl.DateTimeFormat#format()/formatToParts() sem instante usa a hora atual.
-        {
-          selector:
-            'CallExpression[callee.property.name=/^(format|formatToParts)$/][arguments.length=0]',
-          message: 'Passe o instante explicitamente: sem argumento, format() usa a hora atual.',
-        },
-      ],
+      // Date e Temporal como globais cobrem qualquer uso como valor: new Date, Date(), Date.now,
+      // Date['now'], desestruturação e apelido. self/globalThis/window fecham o acesso indireto.
       'no-restricted-globals': [
         'error',
+        ...['Date', 'Temporal'].map((name) => ({
+          name,
+          message: 'Domínio não lê o relógio: use LocalDate e receba o instante pela porta Clock.',
+        })),
         ...[
           'window',
+          'self',
+          'globalThis',
           'document',
           'navigator',
           'localStorage',
@@ -134,6 +108,20 @@ export default tseslint.config(
           name,
           message: 'Domínio não acessa APIs do navegador (tech-spec §3).',
         })),
+      ],
+      // Intl.DateTimeFormat#format()/formatToParts() sem instante usa a hora atual.
+      'no-restricted-syntax': [
+        'error',
+        {
+          selector:
+            'CallExpression[callee.property.name=/^(format|formatToParts)$/][arguments.length=0]',
+          message: 'Passe o instante explicitamente: sem argumento, format() usa a hora atual.',
+        },
+        {
+          selector:
+            "CallExpression[callee.property.name=/^(format|formatToParts)$/] > Identifier.arguments[name='undefined']",
+          message: 'Passe o instante explicitamente: format(undefined) usa a hora atual.',
+        },
       ],
     },
   },

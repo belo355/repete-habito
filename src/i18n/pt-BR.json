@@ -45,5 +45,15 @@
     "description": "Atualize quando quiser. Seus registros continuam guardados.",
     "accept": "Atualizar agora",
     "dismiss": "Agora não"
+  },
+  "install": {
+    "title": "Usar como app",
+    "description": "Abra direto da tela inicial, em tela cheia, e use mesmo sem internet.",
+    "button": "Instalar app",
+    "ios": {
+      "title": "Adicionar à Tela de Início",
+      "step1": "No Safari, toque em Compartilhar.",
+      "step2": "Escolha \"Adicionar à Tela de Início\"."
+    }
   }
 }

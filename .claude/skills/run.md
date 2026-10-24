@@ -280,7 +280,7 @@ Status: ⬜ Não verificado · 🟡 Parcial · ✅ Aprovado · ❌ Falhando
 | CA | Tasks | Revalidar quando | Teste | Status |
 |---|---|---|---|---|
 | CA01.1 | T01.1, T01.6 | T11.8 | E | ✅ |
-| CA01.2 | T01.10 | T12.6 | E + M (iOS) | ⬜ |
+| CA01.2 | T01.10 | T12.6 | E + M (iOS) | 🟡 |
 | CA01.3 | T01.3 | — | E | ✅ |
 | CA01.4 | T01.2, T01.5 | NFR.1 | E (axe) | ✅ |
 | CA01.5 | T01.7 | — | E | ✅ |
@@ -511,6 +511,29 @@ Adicionar uma entrada **por task executada**, da mais recente para a mais antiga
 ```
 
 ### Execuções
+
+### 2026-10-24 · T01.10 · Convite "Instalar app" e instrução para o iOS
+
+**Plano:** `src/platform/install/` com detecção pura (iOS por UA, inclusive iPad em modo desktop; modo instalado) e store que captura o `beforeinstallprompt` no bootstrap; em Ajustes, seção "Usar como app" com o botão "Instalar app" (Chrome Android/desktop) ou "Adicionar à Tela de Início" com dois passos ilustrados (iOS); nada quando o app já está instalado. Modelo de evidência manual em `reports/qa/evidencias/CA01.2-ios.md`. Inclui F-01 do QA da T01.9 (Date, Temporal, self e globalThis proibidos no domínio por `no-restricted-globals`; testes com contagem exata). Fecha a parte automática do CA01.2.
+
+**Verificação técnica (passo 4):** lint ✅ · typecheck ✅ · unit + browser ✅ (245/245) · domain 100% ✅ · 3 fusos ✅ · build ✅ (JS 121,3 KB gzip) · e2e ✅ (216/216) · lighthouse ✅ (LCP 1,95 s; script 124,4 KB)
+
+**QA (qa.md):** 🟡 Aprovada com pendência · 5/5 CAs da F01 revalidados ✅; CA01.2 🟡 (falta evidência manual iOS); CA05.5/CA07.6 🟡 sem regressão · 5/14 INV verdes, 9 sem código, 0 falhando · 1 falha S4 · 0 flaky · vitest 245/245 nos 3 fusos · e2e 222/222 · domain 100% · mutações 5/5 detectadas
+
+**Consistência (passo 5):**
+- A. CAs da task: CA01.2 🟡 (`e2e/f01-install.spec.ts` 36/36 nos 3 projetos; `src/platform/install/detect.test.ts`; falta a instalação real no iPhone)
+- B. Regressão: CA01.1, CA01.3–CA01.6 verdes · invariantes 0 falhando
+- C. Princípios 5.2: textos `install.*` passam no INV10
+- D. Definição de Pronto (itens tocados): i18n ✅ · axe ✅ nos 2 temas · alvos ≥ 44 px ✅ · 320 px sem rolagem ✅ · teclado ✅
+- E. Documentos: sem divergência
+
+**Resultado:** 🟡 Consistente com pendência
+
+**Testes reforçados pelo QA:** o app intercepta o `beforeinstallprompt` (sem a mini barra do navegador); recusa no diálogo esconde o convite e não chama `prompt()` de novo (pelo teclado); 320 px sem rolagem nos dois casos.
+
+**Pendências:** F-01 (S4) evidência manual do CA01.2 no iOS (`reports/qa/evidencias/CA01.2-ios.md`), a preencher pelo responsável. Observações do QA: `format(void 0)` e `format(...[])` ainda passam pelo lint e pelo INV05; o passo 1 do iOS cita só o Safari, mas Chrome e Firefox no iPhone também adicionam pelo menu Compartilhar.
+
+**Novas tasks ou divergências:** —
 
 ### 2026-10-24 · T01.9 · Testes de virada de dia, horário de verão e fusos
 

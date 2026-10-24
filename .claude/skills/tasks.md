@@ -81,7 +81,7 @@ Status possíveis: ⬜ Pendente · 🚧 Em andamento · ✅ Concluída · ⏸️
 - [x] **T01.7** Atualização com `registerType: 'prompt'`: aviso "Nova versão disponível" e recarga só com aceite. — P
 - [x] **T01.8** `domain/date`: tipo `LocalDate`, helpers (início/fim de semana seg–dom, mês, soma de dias) e porta `Clock` injetável; proibir `new Date()` em `domain/` via lint. **(D1)** — M
 - [x] **T01.9** Testes do `domain/date`: virada de dia, horário de verão, registros perto da meia-noite, semanas que atravessam dois meses, nos três fusos. **(D1)** — M
-- [ ] **T01.10** Prompt de instalação (Android/desktop) e instrução visual "Adicionar à Tela de Início" (iOS). — M
+- [x] **T01.10** Prompt de instalação (Android/desktop) e instrução visual "Adicionar à Tela de Início" (iOS). — M
 
 ### F02 · Armazenamento local · Must · Cobre product 4.5 · Dívidas: D1, D2, D3
 
