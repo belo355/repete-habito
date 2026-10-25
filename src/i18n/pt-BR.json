@@ -10,37 +10,29 @@
   "nav": {
     "label": "Navegação principal",
     "today": "Hoje",
-    "activities": "Atividades",
-    "dashboard": "Dashboard",
+    "album": "Álbum",
     "settings": "Ajustes"
-  },
-  "mark": {
-    "action": "Marcar",
-    "done": "Feito",
-    "rest": "Folga"
   },
   "today": {
     "title": "Hoje",
+    "weekAndDate": "Semana {{week}} · {{date}}",
     "summaryEmpty": "Seu dia começa quando você escolher suas atividades.",
     "emptyTitle": "Nenhuma atividade por aqui ainda",
     "emptyBody": "Escolha de 1 a 3 atividades leves para começar. Dá para mudar depois.",
-    "exampleTitle": "Veja como marcar",
+    "exampleTitle": "Veja como colar",
     "exampleName": "Caminhada",
     "exampleMeta": "Exemplo, não fica salvo",
     "create": "Criar primeira atividade",
     "guided": "Usar o passo a passo"
   },
-  "activities": {
-    "title": "Atividades",
-    "emptyTitle": "Você ainda não tem atividades",
-    "emptyBody": "Comece com poucas, como uma caminhada ou um alongamento. O que conta é aparecer.",
-    "start": "Escolher atividades"
-  },
-  "dashboard": {
-    "title": "Dashboard",
-    "summaryEmpty": "Sua semana e seu mês aparecem aqui.",
-    "emptyTitle": "Nada marcado neste período",
-    "emptyBody": "Quando você marcar atividades, as vezes e os dias ativos aparecem aqui.",
+  "album": {
+    "title": "Álbum",
+    "summaryEmpty": "Suas atividades, suas semanas e seus meses ficam aqui.",
+    "activitiesTitle": "Suas atividades",
+    "activitiesEmptyBody": "Comece com poucas, como uma caminhada ou um alongamento. O que conta é aparecer.",
+    "start": "Escolher atividades",
+    "pagesTitle": "Semanas e meses",
+    "pagesEmptyBody": "Quando você colar figurinhas, cada semana e cada mês ganham uma página aqui, com as vezes e os dias ativos.",
     "goToday": "Ir para Hoje"
   },
   "onboarding": {
@@ -74,5 +66,10 @@
       "step1": "Toque no botão Compartilhar do navegador.",
       "step2": "Escolha \"Adicionar à Tela de Início\"."
     }
+  },
+  "sticker": {
+    "label": "Colar figurinha nº {{count}} de {{name}}",
+    "stick": "colar",
+    "number": "Nº"
   }
 }

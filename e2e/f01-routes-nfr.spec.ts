@@ -7,8 +7,7 @@ import { expect, test } from './support/test.ts';
 // em todas as rotas criadas por T01.1, nos 3 projetos (webkit-mobile = 320 px).
 const routes = [
   { path: '/hoje', heading: pt.today.title },
-  { path: '/atividades', heading: pt.activities.title },
-  { path: '/dashboard', heading: pt.dashboard.title },
+  { path: '/album', heading: pt.album.title },
   { path: '/ajustes', heading: pt.settings.title },
   { path: '/onboarding', heading: pt.onboarding.title },
 ] as const;
@@ -43,13 +42,13 @@ test('T01.1 · NFR · voltar e avançar do navegador seguem o histórico da nave
 }) => {
   await page.goto('/hoje');
   const nav = page.getByRole('navigation', { name: pt.nav.label });
-  await nav.getByRole('link', { name: pt.nav.dashboard }).click();
-  await expect(page.getByRole('heading', { level: 1, name: pt.dashboard.title })).toBeVisible();
+  await nav.getByRole('link', { name: pt.nav.album }).click();
+  await expect(page.getByRole('heading', { level: 1, name: pt.album.title })).toBeVisible();
   await page.goBack();
   await expect(page).toHaveURL(/\/hoje$/);
   await expect(page.getByRole('heading', { level: 1, name: pt.today.title })).toBeVisible();
   await page.goForward();
-  await expect(page).toHaveURL(/\/dashboard$/);
+  await expect(page).toHaveURL(/\/album$/);
 });
 
 // Adicionado pelo QA (qa feature F01 · Definição de Pronto, product 4.9.1 e qa.md §7): axe completo

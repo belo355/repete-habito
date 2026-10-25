@@ -1,86 +1,117 @@
 @import 'tailwindcss';
 
 /*
- * Mundo visual "Mapa do parque" (.impeccable/ux-brief.md): cor chapada, verde de estrutura,
- * cápsulas coloridas com texto escuro e uma grotesca só. O tema claro é o padrão; o escuro
- * vale com <html data-theme="dark"> ou, sem escolha salva, com o sistema em modo escuro.
- * Todo par texto × fundo atende WCAG AA (tests/unit/theme-contrast.test.ts). Só cores em
- * #rrggbb, para o teste ler.
+ * Mundo visual "Álbum da semana" (contrato em .impeccable/surfaces/): página branca, faixa
+ * azul de estrutura, figurinhas de cor chapada com borda de papel e numeral condensado.
+ * O tema claro é o padrão; o escuro vale com <html data-theme="dark"> ou, sem escolha salva,
+ * com o sistema em modo escuro. Todo par texto × fundo atende WCAG AA
+ * (tests/unit/theme-contrast.test.ts). Só cores em #rrggbb, para o teste ler.
  */
 @theme static {
   /* Paleta restrita aos tokens: sem as cores padrão do Tailwind. */
   --color-*: initial;
 
   --color-bg: #ffffff;
-  --color-surface: #f2f4ee;
-  --color-text: #2c2e2a;
-  --color-text-muted: #5d5f59;
-  /* Estrutura: o lobo do cabeçalho e a aba ativa. */
-  --color-shell: #8ed462;
-  --color-on-shell: #2c2e2a;
-  /* Ação principal: cápsula em tinta (o verde fica só na estrutura). */
-  --color-primary: #2c2e2a;
+  --color-surface: #eef0f6;
+  --color-text: #16181d;
+  --color-text-muted: #50555f;
+  /* Estrutura: a faixa da semana no topo de Hoje e do Álbum. */
+  --color-shell: #1b3fbf;
+  --color-on-shell: #ffffff;
+  /* Anel de foco dentro da faixa azul (a tinta não aparece sobre o azul). */
+  --color-focus-on-shell: #ffffff;
+  /* Ação principal em tinta. */
+  --color-primary: #16181d;
   --color-on-primary: #ffffff;
   --color-danger: #b3261e;
-  --color-border: #767a70;
-  --color-focus: #2c2e2a;
-  /* Cápsulas das atividades (cor automática por atividade); texto sempre escuro. */
-  --color-capsule-yellow: #f5e211;
-  --color-capsule-coral: #ff705d;
-  --color-capsule-blue: #2ba0ff;
-  --color-capsule-lilac: #ebc1ff;
-  --color-on-capsule: #2c2e2a;
-  --color-chip: #ffffff;
+  --color-border: #6b7180;
+  --color-focus: #16181d;
+  /* Figurinhas: uma cor por atividade, sempre com numeral e texto em tinta escura. */
+  --color-sticker-yellow: #ffc20e;
+  --color-sticker-red: #ff5a3c;
+  --color-sticker-green: #00a65a;
+  --color-sticker-magenta: #ff4fa3;
+  --color-sticker-cyan: #00a3e0;
+  --color-on-sticker: #16181d;
+  /* Borda de papel da figurinha. */
+  --color-sticker-edge: #ffffff;
+  /* Folga: vaga impressa em lilás, parte da página. */
+  --color-rest: #efe4ff;
+  --color-on-rest: #3d2366;
+  --color-rest-border: #8b6bb8;
 
-  --font-sans: 'Archivo Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Barlow', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Barlow Condensed', 'Barlow', ui-sans-serif, system-ui, sans-serif;
 
   --radius-sm: 0.375rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1.25rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 1rem;
 
   /* Alvo de toque mínimo (product 4.7). */
   --spacing-touch: 2.75rem;
+
+  --animate-sticker-in: sticker-in 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  /* A figurinha cai na vaga um pouco torta e assenta. */
+  @keyframes sticker-in {
+    0% {
+      transform: translateY(-0.5rem) rotate(9deg) scale(1.14);
+    }
+    100% {
+      transform: rotate(-2deg) scale(1);
+    }
+  }
 }
 
 :root[data-theme='dark'] {
-  --color-bg: #1a1c19;
-  --color-surface: #242722;
-  --color-text: #f2f3ee;
-  --color-text-muted: #b5b8ae;
-  --color-shell: #3d6b28;
-  --color-on-shell: #f2f3ee;
-  --color-primary: #f2f3ee;
-  --color-on-primary: #2c2e2a;
+  --color-bg: #16181d;
+  --color-surface: #23262e;
+  --color-text: #f1f2f6;
+  --color-text-muted: #b3b8c4;
+  --color-shell: #1b3fbf;
+  --color-on-shell: #ffffff;
+  --color-focus-on-shell: #ffffff;
+  --color-primary: #f1f2f6;
+  --color-on-primary: #16181d;
   --color-danger: #ff8a80;
-  --color-border: #8b8f84;
-  --color-focus: #f2f3ee;
-  --color-capsule-yellow: #f5e211;
-  --color-capsule-coral: #ff705d;
-  --color-capsule-blue: #2ba0ff;
-  --color-capsule-lilac: #ebc1ff;
-  --color-on-capsule: #2c2e2a;
-  --color-chip: #ffffff;
+  --color-border: #8b909c;
+  --color-focus: #f1f2f6;
+  --color-sticker-yellow: #ffc20e;
+  --color-sticker-red: #ff5a3c;
+  --color-sticker-green: #00a65a;
+  --color-sticker-magenta: #ff4fa3;
+  --color-sticker-cyan: #00a3e0;
+  --color-on-sticker: #16181d;
+  --color-sticker-edge: #ffffff;
+  --color-rest: #efe4ff;
+  --color-on-rest: #3d2366;
+  --color-rest-border: #b79ad6;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
-    --color-bg: #1a1c19;
-    --color-surface: #242722;
-    --color-text: #f2f3ee;
-    --color-text-muted: #b5b8ae;
-    --color-shell: #3d6b28;
-    --color-on-shell: #f2f3ee;
-    --color-primary: #f2f3ee;
-    --color-on-primary: #2c2e2a;
+    --color-bg: #16181d;
+    --color-surface: #23262e;
+    --color-text: #f1f2f6;
+    --color-text-muted: #b3b8c4;
+    --color-shell: #1b3fbf;
+    --color-on-shell: #ffffff;
+    --color-focus-on-shell: #ffffff;
+    --color-primary: #f1f2f6;
+    --color-on-primary: #16181d;
     --color-danger: #ff8a80;
-    --color-border: #8b8f84;
-    --color-focus: #f2f3ee;
-    --color-capsule-yellow: #f5e211;
-    --color-capsule-coral: #ff705d;
-    --color-capsule-blue: #2ba0ff;
-    --color-capsule-lilac: #ebc1ff;
-    --color-on-capsule: #2c2e2a;
-    --color-chip: #ffffff;
+    --color-border: #8b909c;
+    --color-focus: #f1f2f6;
+    --color-sticker-yellow: #ffc20e;
+    --color-sticker-red: #ff5a3c;
+    --color-sticker-green: #00a65a;
+    --color-sticker-magenta: #ff4fa3;
+    --color-sticker-cyan: #00a3e0;
+    --color-on-sticker: #16181d;
+    --color-sticker-edge: #ffffff;
+    --color-rest: #efe4ff;
+    --color-on-rest: #3d2366;
+    --color-rest-border: #b79ad6;
   }
 }
 
@@ -104,7 +135,7 @@
     background-color: var(--color-bg);
     color: var(--color-text);
     font-family: var(--font-sans);
-    font-weight: 450;
+    font-weight: 500;
     caret-color: var(--color-text);
     scrollbar-color: var(--color-border) var(--color-bg);
     -webkit-font-smoothing: antialiased;
@@ -131,9 +162,19 @@
   }
 }
 
-/* Títulos do mundo: grotesca justa (entrelinha 0,95, tracking no limite de −0,04em). */
+/* Títulos do mundo: condensada pesada em caixa alta, como o numeral de uma figurinha. */
 @utility title-display {
+  font-family: var(--font-display);
   font-weight: 800;
   line-height: 0.95;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+/* Rótulos de seção: a mesma condensada, em tamanho de lista. */
+@utility title-section {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1.1;
+  text-transform: uppercase;
 }

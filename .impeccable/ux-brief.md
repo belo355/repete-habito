@@ -1,8 +1,7 @@
 # Brief de UX — Repete Hábito (MVP)
 
 > Confirmado pelo responsável em 2026-10-24 (impeccable `shape`). Fonte de produto: `PRODUCT.md` e `.claude/skills/product.md`.
-> Mundo visual escolhido na rodada de direções (seed `c1445c9ff52bed9a`): **Mapa do parque** (catálogo `aww2-zoo-gardens-guide-map`), adaptado ao modo Operate.
-> Ainda não há contrato de direção nem `DESIGN.md`: eles nascem no passo de construção.
+> **Atualizado em 2026-10-25 (T01.14):** o mundo "Mapa do parque" foi substituído pelo **Álbum da semana** (rodada de direções com seed `774749bce7ca0a27`, escolhida pelo responsável), com mudança de estrutura: 3 abas e o Álbum no lugar de Atividades e Dashboard (DV10). Contrato em `.impeccable/surfaces/src-features-today-todaypage-tsx.md`; sistema em `DESIGN.md`.
 
 ## 1. Público e tarefa
 
@@ -15,18 +14,20 @@
 - Sucesso: ativação no 1º dia, ≥ 4 dias ativos por semana, nenhum momento de culpa.
 - Verdade única: sequência tolerante (folga não quebra, meta semanal, nada zera).
 
-## 3. Direção: Mapa do parque
+## 3. Direção: Álbum da semana
 
-- **Paleta:** fundo branco (sem o creme do original), tinta grafite `#2C2E2A`, verde `#8ED462` como cor da estrutura. Cada atividade recebe uma cor de cápsula: amarelo `#F5E211`, coral `#FF705D`, azul `#2BA0FF`, lilás `#EBC1FF`, sempre com texto escuro (AA).
-- **Tipo:** uma grotesca só; títulos grandes bem justos (entrelinha 0,95, tracking negativo); escala fixa em rem.
-- **Lobo:** só o cabeçalho de Hoje e do Dashboard é um lobo verde de borda orgânica (data, título, resumo). Abaixo, lista padrão de app.
-- **Gesto próprio — a cápsula de marcar:** cápsula colorida com um ponto branco; ao marcar, o ponto atravessa para o outro lado e o texto vira "Feito" (~250 ms, leve overshoot; instantâneo com movimento reduzido). Folga usa a cápsula lilás "Folga". O estado sempre aparece também no texto e na posição do ponto.
-- **Alcance:** Status do Corpo (F14) vira uma trilha no mapa do parque com marcos; no Dashboard, período atual em verde e anterior em lilás claro.
+- **Ideia:** marcar o dia é colar uma figurinha; o número dela conta quantas vezes a pessoa apareceu naquela atividade.
+- **Paleta:** página branca (escuro `#16181D`), faixa de estrutura em azul álbum `#1B3FBF` com texto branco, tinta `#16181D`. Figurinhas por atividade: amarelo `#FFC20E`, vermelho `#FF5A3C`, verde `#00A65A`, magenta `#FF4FA3`, ciano `#00A3E0`, sempre com numeral em tinta e borda de papel branca. Folga em lilás `#EFE4FF`.
+- **Tipo:** Barlow Condensed 800 em caixa alta para títulos e numerais; Barlow 500/700 para texto; servidas pelo app.
+- **Faixa:** só o cabeçalho de Hoje e do Álbum é uma faixa azul (semana e data, título, resumo). Abaixo, lista padrão de app.
+- **Gesto próprio — colar a figurinha:** vaga tracejada com o número que vai ganhar; ao tocar, a figurinha cai na vaga levemente torta (320 ms; sem animação com movimento reduzido). Nome acessível fixo, estado em `aria-pressed`, no texto e na forma.
+- **Sem cobrança:** não existe vaga vazia de dia passado; as figurinhas colam em sequência e só a semana atual mostra o que falta. Folga é uma vaga lilás impressa.
+- **Alcance:** Status do Corpo (F14) pode virar páginas especiais do álbum; no Álbum, semana e mês são páginas com o período anterior para comparação neutra.
 
 ## 4. Escopo e limites
 
 - App inteiro do MVP: onboarding, Hoje, criar/editar atividade, Atividades, detalhe da atividade, Dashboard, Ajustes; esboço do Status do Corpo.
-- Fora: chamas de streak, anéis, pontos/moedas/conquistas, fundo creme, lobo virando layout, modal como primeira solução, qualquer texto de culpa.
+- Fora: chamas de streak, anéis, pontos/moedas/conquistas, fundo creme, faixa virando layout, vaga vazia de dia passado, modal como primeira solução, qualquer texto de culpa.
 
 ## 5. Estados e volumes
 
@@ -36,17 +37,17 @@
 
 ## 6. Interação e layout
 
-- **Navegação:** 4 abas no rodapé — **Hoje · Atividades · Dashboard · Ajustes**. O "Progresso" (sequência, heatmap, notas) passa a ser o detalhe de cada atividade.
-- **Onboarding:** 3 telas (objetivo → 1 a 3 atividades como cápsulas a partir dos modelos, "Avançar" só habilita nessa faixa com motivo visível → lembrete, com pular). Bloco grátis × premium antes do fim. Termina em Hoje com a primeira cápsula sinalizada.
-- **Hoje:** lobo com data, "Hoje" e "Você treinou 4 de 5 dias planejados"; linhas com nome, apoio ("32 min · meta 20" ou "faltam 2 nesta semana") e a cápsula. Duração/quantidade abre folha inferior com o valor da meta preenchido (Confirmar = 2 toques). Desfazer pelo aviso de 5 s ou tocando de novo na cápsula. Seletor "Hoje ▾" no cabeçalho abre os últimos 7 dias.
-- **Criar/editar atividade:** tela própria (não modal); modelos como cápsulas no topo; nome, tipo (abas), frequência, meta (+/−), ícone; erros inline presos ao campo.
-- **Atividades:** Ativas / Pausadas / Arquivadas; menu na linha (Editar, Pausar, Arquivar); tocar abre o detalhe (sequência atual e melhor, taxa, heatmap mensal na cor da atividade em 4 níveis, notas).
-- **Dashboard:** lobo com abas Semana | Mês, ‹ › e "voltar ao atual"; 3 indicadores em algarismos tabulares; gráfico de área que para em hoje, com tabela acessível; detalhamento por atividade na cor da cápsula; comparação sempre neutra; estado vazio com atalho para Hoje.
+- **Navegação:** 3 abas no rodapé — **Hoje · Álbum · Ajustes**. O Álbum reúne a lista de atividades, a página de cada atividade (sequência, heatmap, notas) e as páginas de semana e mês (DV10).
+- **Onboarding:** 3 telas (objetivo → 1 a 3 atividades como figurinhas a partir dos modelos, "Avançar" só habilita nessa faixa com motivo visível → lembrete, com pular). Bloco grátis × premium antes do fim. Termina em Hoje com a primeira cápsula sinalizada.
+- **Hoje:** faixa com semana e data, "Hoje", "Você apareceu 4 de 5 dias planejados" e a tira de figurinhas da semana; linhas com nome, apoio ("32 min · meta 20" ou "faltam 2 nesta semana") e a vaga/figurinha. Duração/quantidade abre folha inferior com o valor da meta preenchido (Confirmar = 2 toques). Desfazer pelo aviso de 5 s ou tocando de novo na figurinha. Seletor "Hoje ▾" no cabeçalho abre os últimos 7 dias.
+- **Criar/editar atividade:** tela própria (não modal); modelos como figurinhas no topo; nome, tipo (abas), frequência, meta (+/−), ícone; erros inline presos ao campo.
+- **Álbum · atividades:** Ativas / Pausadas / Arquivadas; menu na linha (Editar, Pausar, Arquivar); tocar abre o detalhe (sequência atual e melhor, taxa, heatmap mensal na cor da figurinha em 4 níveis, notas).
+- **Álbum · semana e mês:** faixa com abas Semana | Mês, ‹ › e "voltar ao atual"; 3 indicadores em algarismos tabulares; gráfico de área que para em hoje, com tabela acessível; detalhamento por atividade na cor da figurinha; comparação sempre neutra; estado vazio com atalho para Hoje.
 - **Ajustes:** tema, lembretes (Switch + horário), instalar app, exportar/importar, excluir dados, versão.
 
 ## 7. Decisões
 
-- **Tema escuro:** traduzido do mundo — fundo grafite, lobo em verde escurecido, cápsulas saturadas com texto escuro; contraste AA verificado nos dois temas.
-- **Cor da atividade:** automática como padrão (próxima cor livre da paleta de cápsulas ao criar), com opção de trocar no formulário (DV07, opção a; atende o CA03.1).
+- **Tema escuro:** traduzido do mundo — fundo `#16181D`, a mesma faixa azul, figurinhas saturadas com numeral escuro; contraste AA verificado nos dois temas.
+- **Cor da atividade:** automática como padrão (próxima cor livre da paleta de figurinhas ao criar), com opção de trocar no formulário (DV07, opção a; atende o CA03.1).
 - **Restrições:** i18n pt-BR, WCAG 2.1 AA, 320 px ao desktop, offline, alvos ≥ 44 px; os componentes da T01.5 (Button, Dialog, Switch, Menu) são redesenhados neste mundo.
-- **Em aberto:** a fonte exata (uma grotesca de trabalho, fora da lista de fontes batidas) é decidida na construção; conteúdo do premium e Status do Corpo seguem pendentes de validação no product.md.
+- **Fontes:** Barlow e Barlow Condensed, servidas pelo app (T01.14). **Em aberto:** conteúdo do premium e Status do Corpo seguem pendentes de validação no product.md.

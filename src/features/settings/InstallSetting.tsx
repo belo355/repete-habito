@@ -16,7 +16,7 @@ export function InstallSetting() {
   if (deferredPrompt) {
     return (
       <section aria-labelledby={titleId} className="mt-8">
-        <h2 id={titleId} className="mb-2 text-xl font-extrabold tracking-[-0.01em]">
+        <h2 id={titleId} className="title-section mb-2 text-2xl">
           {t('install.title')}
         </h2>
         <p className="mb-3 text-text-muted">{t('install.description')}</p>
@@ -28,7 +28,7 @@ export function InstallSetting() {
   if (isIOS) {
     return (
       <section aria-labelledby={titleId} className="mt-8">
-        <h2 id={titleId} className="mb-2 text-xl font-extrabold tracking-[-0.01em]">
+        <h2 id={titleId} className="title-section mb-2 text-2xl">
           {t('install.ios.title')}
         </h2>
         <p className="mb-3 text-text-muted">{t('install.description')}</p>

@@ -37,18 +37,24 @@ const pairs: Array<[string, string, number]> = [
   ['color-text-muted', 'color-surface', 4.5],
   ['color-on-shell', 'color-shell', 4.5],
   ['color-on-primary', 'color-primary', 4.5],
-  ['color-on-capsule', 'color-capsule-yellow', 4.5],
-  ['color-on-capsule', 'color-capsule-coral', 4.5],
-  ['color-on-capsule', 'color-capsule-blue', 4.5],
-  ['color-on-capsule', 'color-capsule-lilac', 4.5],
+  ['color-on-sticker', 'color-sticker-yellow', 4.5],
+  ['color-on-sticker', 'color-sticker-red', 4.5],
+  ['color-on-sticker', 'color-sticker-green', 4.5],
+  ['color-on-sticker', 'color-sticker-magenta', 4.5],
+  ['color-on-sticker', 'color-sticker-cyan', 4.5],
+  ['color-on-rest', 'color-rest', 4.5],
+  ['color-rest-border', 'color-bg', 3],
   ['color-danger', 'color-bg', 4.5],
   ['color-border', 'color-bg', 3],
   ['color-border', 'color-surface', 3],
   ['color-focus', 'color-bg', 3],
   ['color-focus', 'color-surface', 3],
-  // O anel de foco fica 2 px fora do elemento (outline-offset): é desenhado sobre o fundo
-  // da página ou sobre o lobo, nunca sobre o próprio botão.
-  ['color-focus', 'color-shell', 3],
+  // Dentro da faixa azul o anel de foco usa o token próprio (o anel fica sobre o azul).
+  ['color-focus-on-shell', 'color-shell', 3],
+  // Interruptor ligado: ponto de papel sobre o trilho azul.
+  ['color-sticker-edge', 'color-shell', 3],
+  // A borda de papel separa a figurinha do fundo no tema escuro; no claro, o contorno em tinta.
+  ['color-on-sticker', 'color-sticker-edge', 4.5],
 ];
 
 const light = block('@theme static');

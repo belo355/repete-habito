@@ -9,9 +9,7 @@ export function OnboardingPage() {
     <>
       <PageTitle>{t('onboarding.title')}</PageTitle>
       <div className="mx-auto w-full max-w-2xl px-5 pb-10">
-        <p className="mt-2 max-w-[22rem] text-xl font-bold tracking-[-0.01em]">
-          {t('onboarding.tagline')}
-        </p>
+        <p className="mt-2 max-w-[22rem] text-xl font-bold">{t('onboarding.tagline')}</p>
         <p className="mt-4 max-w-[60ch] text-text-muted">{t('onboarding.body')}</p>
         <div className="mt-8">
           <ButtonLink to="/hoje">{t('onboarding.goToday')}</ButtonLink>

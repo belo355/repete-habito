@@ -74,7 +74,7 @@ src/
     notifications/ # NotificationScheduler: WebScheduler, CapacitorScheduler
     storage/       # persist(), estimativa de quota
     share/
-  features/        # Telas e fluxos (today, activities, progress, onboarding, settings)
+  features/        # Telas e fluxos (today, album, onboarding, settings); o Álbum reúne atividades, progresso e Dashboard (DV10)
   ui/              # Componentes de design system, tokens, tema
   i18n/            # Recursos pt-BR
   app/             # Rotas, providers, bootstrap, registro do service worker

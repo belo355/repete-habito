@@ -266,6 +266,7 @@ Além disso, em todo fechamento de entrega:
 | DV07 | 24/10/2026 | CA03.1 · product 4.1 · T03.1 · brief de UX (`.impeccable/ux-brief.md`) | Conflito | O brief de UX confirmado define a cor da atividade como **automática** (próxima cor livre da paleta de cápsulas), mas product 4.1 ("nome, ícone/cor") e o CA03.1 ("quando o usuário informa nome, ícone, cor…") preveem que o usuário escolha a cor. | (a) Cor automática como padrão, com opção de trocar no formulário (atende o CA03.1 sem mudar o produto); ou (b) responsável de produto ajusta product 4.1 e CA03.1 para cor automática. | Opção (a), escolhida pelo responsável de produto em 24/10/2026: cor automática como padrão, com opção de trocar no formulário (T03.1). Product 4.1 e CA03.1 inalterados. | ✅ Resolvida |
 | DV08 | 25/10/2026 | CA01.2 · qa.md §4 (linha CA01.2) · run.md §7 | Decisão de produto | A parte *(manual)* do CA01.2 (instalação real no iPhone com evidência em `reports/qa/evidencias/`) deixa de ser exigida. | O CA01.2 é provado só pelos testes automáticos (`e2e/f01-install.spec.ts` e `src/platform/install/detect.test.ts`). | Decisão do responsável de produto em 25/10/2026. | ✅ Resolvida |
 | DV09 | 25/10/2026 | product 4.9.1 (DoD: "demonstrada no preview do PR e aprovada") · 4.9.3 (Entrega 1: "Demo para o responsável de produto") · DV04 | Decisão de produto | A demo (preview do PR ou, pela DV04, demo local) deixa de ser exigida para fechar feature ou entrega. | Feature e entrega são aceitas quando o app executa e segue as diretrizes do produto: Definição de Pronto automática verde (CI, testes, axe, offline, Lighthouse) e veredito do QA. Substitui a parte de demo da DV04. | Decisão do responsável de produto em 25/10/2026. | ✅ Resolvida |
+| DV10 | 25/10/2026 | T01.14 · product 4.3.1 ("Tela própria, acessível pela navegação principal") · T01.12 (4 abas) · T03.9 · T08.5 · T13.5 | Decisão de produto | O responsável de produto pediu um UX novo (visual e estrutura). A direção escolhida, "Álbum da semana", troca as 4 abas por 3 (Hoje · Álbum · Ajustes): o Álbum reúne a lista de atividades, o detalhe de cada uma e as páginas de semana e mês (o Dashboard). | O Dashboard continua acessível pela navegação principal, como página do Álbum; `/atividades` e `/dashboard` redirecionam para `/album`. Ajustar T03.9, T08.5 e T13.5 e a tech-spec §3 (pasta `features/album`). | Decisão do responsável de produto em 25/10/2026 (pedido "faça a implementação e altere os itens necessários" após escolher a direção). product.md continua com o texto original; vale esta decisão. | ✅ Resolvida |
 
 Tipos: **Lacuna** (CA sem task) · **Conflito** (task × produto) · **Ambiguidade** (CA com mais de uma leitura) · **Dependência** (CA depende de feature futura) · **Desvio técnico** (spec não seguida).
 
@@ -514,6 +515,38 @@ Adicionar uma entrada **por task executada**, da mais recente para a mais antiga
 ```
 
 ### Execuções
+
+### 2026-10-25 · T01.14 · Novo UX "Álbum da semana"
+
+**Plano:** a pedido do responsável de produto (impeccable: proposta de UX diferente, visual e estrutura, registro ousado), rodada de direções com seed `774749bce7ca0a27`; escolhida a direção "Álbum da semana" (marcar o dia é colar uma figurinha cujo número conta as vezes). Implementação: tokens claro/escuro (faixa azul `#1B3FBF`, 5 cores de figurinha com tinta, folga em lilás), Barlow e Barlow Condensed servidas pelo app (só latin), `BandHeader` e `Sticker` no lugar de `LobeHeader` e `MarkCapsule`, Button/Switch/Menu/Dialog/EmptyState restilizados, navegação de 3 abas (Hoje · Álbum · Ajustes) com `/album` novo e redirecionamento de `/atividades` e `/dashboard` (DV10), `isoWeek` em `domain/date`. Documentação: `DESIGN.md` e `.impeccable/design.json` reescritos, `PRODUCT.md`, brief de UX, contrato de direção, tech-spec §3, T03.9/T08.5/T13.5 ajustadas.
+
+**Verificação técnica (passo 4):** lint ✅ · typecheck ✅ · unit + browser ✅ (349/349) · domain 100% ✅ · 3 fusos ✅ · build ✅ (JS 124,9 KB gzip) · e2e ✅ (249/249) · lighthouse ✅ (LCP 2,40 s)
+
+**Revisão final do impeccable:** 1ª rodada `recapture` (capturas de página inteira com a barra presa no meio); 2ª `fix` (títulos de seção na condensada, página vazia de 7 vagas no Álbum, figurinha de exemplo antes das ações, adaptação da paleta registrada por contraste AA); 3ª `fix` (ação principal coberta a 320 px; compactação abaixo de 360 px); veredito final `ship` nos itens apontados. Revisor e documentador rodaram como agentes novos com os roteiros do impeccable; detector com 0 achados.
+
+**QA (qa.md):** 🟡 Aprovada com pendência · 6/6 CAs da F01 ✅ (CA05.5/CA07.6 🟡 por T05.5/T07.8, sem regressão) · 5/14 INV verdes, 9 n/a, 0 falhando · 4 falhas S4 · 0 flaky · vitest 349/349 ×3 fusos · e2e 264/264 (792/792 ×3) · LCP 2.403 ms · relatório: [reports/qa/2026-10-25-T01.14.md](../../reports/qa/2026-10-25-T01.14.md)
+
+**Consistência (passo 5):**
+- A. CAs da task: sem CA próprio; CAs da F01 revalidados sem regressão
+- B. Regressão: INV05, INV08, INV10, INV11 e INV12 verdes (fontes da própria origem, offline)
+- C. Princípios 5.2: sem vaga vazia de dia passado; textos novos passam no INV10
+- D. Definição de Pronto (itens tocados): axe nos 2 temas ✅ · alvos ≥ 44 px ✅ · 320 px ✅ · i18n ✅ · offline com as fontes no precache ✅
+- E. Documentos: DV10 registrada; product.md inalterado (vale a decisão)
+
+**Resultado:** 🟡 Consistente com pendência
+
+**Pendências da F01 resolvidas:** P-02 (ponto do Switch no escuro ligado), P-04 (aba ativa com pouco contraste), P-05 (nome da figurinha fixo, estado em `aria-pressed`).
+
+**Testes adicionados pelo QA:** `e2e/t01-14-week.spec.ts` (semana ISO e dia local em São Paulo × Auckland, virada do ano 53 → 1, fonte Barlow da origem usada offline).
+
+**Pendências do QA:**
+- F-01 (S4) LCP 2.403 ms com 97 ms de folga (3 woff2); proposta: preload da Barlow Condensed 800.
+- F-02 (S4) P-06 continua: no desktop a navegação aparece no topo, mas vem depois do conteúdo no Tab.
+- F-03 (S4) WCAG 2.5.3: na vaga pendente, o texto visível "1 colar" não aparece em sequência no nome "Colar figurinha nº 1 de Caminhada".
+- F-04 (S4) qa.md §4 ainda fala em "abrir Progresso" (CA08.4) e "abrir Dashboard" (CA13.x); ajustar quando T08.5/T13.5 entrarem (DV10).
+- Nota para a T05.5: data e semana da faixa são calculadas na renderização e não viram sozinhas à meia-noite.
+
+**Novas tasks ou divergências:** DV10 registrada e resolvida. A F01 ganhou a T01.14 e precisa de novo `qa feature F01` para fechar.
 
 ### 2026-10-25 · F01 · Fechamento de feature (qa feature F01) — ✅ fechada
 

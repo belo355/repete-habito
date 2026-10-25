@@ -26,7 +26,7 @@ export function Menu({ trigger, items }: MenuProps) {
               key={item.label}
               onSelect={item.onSelect}
               {...(item.disabled !== undefined && { disabled: item.disabled })}
-              className="flex min-h-touch cursor-pointer items-center rounded-md px-3 font-semibold outline-none data-[disabled]:cursor-not-allowed data-[disabled]:opacity-60 data-[highlighted]:bg-surface data-[highlighted]:outline-3 data-[highlighted]:outline-solid data-[highlighted]:outline-offset-[-3px] data-[highlighted]:outline-focus"
+              className="flex min-h-touch cursor-pointer items-center rounded-sm px-3 font-bold outline-none data-[disabled]:cursor-not-allowed data-[disabled]:opacity-60 data-[highlighted]:bg-surface data-[highlighted]:outline-3 data-[highlighted]:outline-solid data-[highlighted]:outline-offset-[-3px] data-[highlighted]:outline-focus"
             >
               {item.label}
             </DropdownMenu.Item>
