@@ -1,3 +1,4 @@
+import { expectNoA11yViolations } from './support/a11y.ts';
 import { expectNoHorizontalScroll, expectTouchTargets } from './support/touch.ts';
 import { expect, test } from './support/test.ts';
 
@@ -50,3 +51,20 @@ test('T01.1 · NFR · voltar e avançar do navegador seguem o histórico da nave
   await page.goForward();
   await expect(page).toHaveURL(/\/dashboard$/);
 });
+
+// Adicionado pelo QA (qa feature F01 · Definição de Pronto, product 4.9.1 e qa.md §7): axe completo
+// (WCAG 2.1 AA, não só contraste) em toda rota × tema × projeto. Antes, o tema escuro só tinha
+// `color-contrast` fora de Ajustes e /onboarding não tinha axe completo em nenhum tema.
+for (const colorScheme of ['light', 'dark'] as const) {
+  for (const { path, heading } of routes) {
+    test(`F01 · DoD · axe WCAG 2.1 AA em ${path} no tema ${colorScheme} @e2e @axe`, async ({
+      page,
+    }) => {
+      await page.emulateMedia({ colorScheme });
+      await page.goto(path);
+      await expect(page.getByRole('heading', { level: 1, name: heading })).toBeVisible();
+      await expect(page.locator('html')).toHaveAttribute('data-theme', colorScheme);
+      await expectNoA11yViolations(page);
+    });
+  }
+}

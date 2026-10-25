@@ -512,6 +512,19 @@ Adicionar uma entrada **por task executada**, da mais recente para a mais antiga
 
 ### Execuções
 
+### 2026-10-24 · F01 · Fechamento de feature (qa feature F01)
+
+**QA (qa.md):** 🟡 Aprovada com pendência · 5/6 CAs ✅ (CA01.2 🟡, manual iOS) · 5/14 INV verdes, 9 sem código, 0 falhando · 9 falhas (1 S3, 8 S4) · 0 flaky · vitest 245/245 nos 3 fusos · e2e 258/258 · domain 100% · LCP 1.952 ms, script 124,4 KB · relatório: [reports/qa/2026-10-24-F01.md](../../reports/qa/2026-10-24-F01.md)
+
+**Resultado:** a F01 **não fecha** (run.md §4: só fecha com ✅). Tudo o que é automático passou; o QA adicionou o axe WCAG 2.1 AA completo em toda rota × tema (36 testes em `e2e/f01-routes-nfr.spec.ts`).
+
+**Para a F01 virar ✅ (responsável):**
+1. CA01.2: instalação real no iPhone, em `reports/qa/evidencias/CA01.2-ios.md` (F-01).
+2. Demo local aprovada (DV04), em `reports/qa/evidencias/F01-demo.md` (F-09).
+3. Push dos commits T01.5–T01.10 e link do run verde do CI (F-02).
+
+**Pendências que não impedem a Definição de Pronto:** F-03 (S3) lacuna da regra `jsx-only` fora do JSX, tratar antes da T03.1 · F-04 preferência de tema não validada ao reidratar · F-05 `<title>` e description do `index.html` fora do i18n ("sem culpa" acusaria no INV10) · F-06 E2E com textos à mão · F-07 `format(void 0)`/`format(...[])` · F-08 passo do iOS cita só o Safari. A revisão manual com VoiceOver/TalkBack é critério da Entrega 4.
+
 ### 2026-10-24 · T01.10 · Convite "Instalar app" e instrução para o iOS
 
 **Plano:** `src/platform/install/` com detecção pura (iOS por UA, inclusive iPad em modo desktop; modo instalado) e store que captura o `beforeinstallprompt` no bootstrap; em Ajustes, seção "Usar como app" com o botão "Instalar app" (Chrome Android/desktop) ou "Adicionar à Tela de Início" com dois passos ilustrados (iOS); nada quando o app já está instalado. Modelo de evidência manual em `reports/qa/evidencias/CA01.2-ios.md`. Inclui F-01 do QA da T01.9 (Date, Temporal, self e globalThis proibidos no domínio por `no-restricted-globals`; testes com contagem exata). Fecha a parte automática do CA01.2.
