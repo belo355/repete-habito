@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=390" />
+    <title>Álbum da semana</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Barlow:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --azul: #1b3fbf;
+        --tinta: #16181d;
+        --apoio: #555a66;
+        --papel: #fff;
+        --trilho: #e8ebf3;
+        --am: #ffc20e;
+        --ver: #e8412c;
+        --vd: #00a65a;
+        --mg: #e5007e;
+        --ci: #00a3e0;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        width: 390px;
+        height: 844px;
+        overflow: hidden;
+        background: var(--papel);
+        color: var(--tinta);
+        font-family: Barlow, system-ui, sans-serif;
+      }
+      .top {
+        background: var(--azul);
+        color: #fff;
+        padding: 22px 20px 20px;
+      }
+      .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .date {
+        font-weight: 700;
+        font-size: 15px;
+      }
+      .pick {
+        font-weight: 700;
+        font-size: 14px;
+        border: 2px solid #fff;
+        border-radius: 999px;
+        padding: 6px 12px;
+      }
+      h1 {
+        font-family: 'Barlow Condensed';
+        font-weight: 800;
+        font-size: 64px;
+        line-height: 0.9;
+        letter-spacing: -0.01em;
+        margin-top: 14px;
+        text-transform: uppercase;
+      }
+      .sum {
+        font-weight: 700;
+        font-size: 17px;
+        margin-top: 6px;
+      }
+      .strip {
+        display: flex;
+        gap: 8px;
+        margin-top: 18px;
+      }
+      .st {
+        width: 44px;
+        height: 56px;
+        border: 3px solid #fff;
+        border-radius: 6px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding-bottom: 4px;
+        font-family: 'Barlow Condensed';
+        font-weight: 800;
+        font-size: 18px;
+        color: var(--tinta);
+        box-shadow: 0 2px 0 rgba(0, 0, 0, 0.25);
+      }
+      .st:nth-child(odd) {
+        transform: rotate(-3deg);
+      }
+      .st:nth-child(even) {
+        transform: rotate(2deg);
+      }
+      .slot {
+        width: 44px;
+        height: 56px;
+        border: 2px dashed rgba(255, 255, 255, 0.8);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        font-weight: 700;
+        text-align: center;
+      }
+      .sec {
+        padding: 18px 20px 6px;
+        font-family: 'Barlow Condensed';
+        font-weight: 800;
+        font-size: 24px;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: space-between;
+      }
+      .sec small {
+        font-family: Barlow;
+        font-weight: 700;
+        font-size: 13px;
+        color: var(--apoio);
+        text-transform: none;
+        align-self: center;
+      }
+      .it {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 12px 20px;
+        border-bottom: 2px solid var(--trilho);
+        min-height: 92px;
+      }
+      .it .tx {
+        flex: 1;
+      }
+      .nm {
+        font-weight: 700;
+        font-size: 19px;
+      }
+      .ap {
+        font-size: 14px;
+        color: var(--apoio);
+        margin-top: 2px;
+      }
+      .bar {
+        height: 6px;
+        background: var(--trilho);
+        border-radius: 3px;
+        margin-top: 8px;
+        width: 150px;
+        overflow: hidden;
+      }
+      .bar i {
+        display: block;
+        height: 100%;
+        background: var(--tinta);
+      }
+      .fig {
+        width: 64px;
+        height: 76px;
+        border: 4px solid #fff;
+        outline: 2px solid var(--tinta);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 5px 6px;
+        transform: rotate(-2deg);
+      }
+      .fig b {
+        font-family: 'Barlow Condensed';
+        font-weight: 800;
+        font-size: 28px;
+        line-height: 1;
+      }
+      .fig span {
+        font-size: 10px;
+        font-weight: 700;
+      }
+      .vaga {
+        width: 64px;
+        height: 76px;
+        border: 2px dashed var(--tinta);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        font-weight: 700;
+        font-size: 13px;
+      }
+      .vaga em {
+        font-style: normal;
+        font-family: 'Barlow Condensed';
+        font-weight: 800;
+        font-size: 22px;
+      }
+      .folga {
+        background: #f3e8ff;
+        border-style: solid;
+        border-color: #b79ad6;
+        color: #4b2a73;
+      }
+      nav {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 76px;
+        border-top: 2px solid var(--trilho);
+        background: #fff;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 8px 12px 14px;
+        gap: 8px;
+      }
+      nav a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 13px;
+        color: var(--apoio);
+        border-radius: 12px;
+      }
+      nav a.on {
+        background: var(--tinta);
+        color: #fff;
+      }
+      nav i {
+        width: 20px;
+        height: 20px;
+        border: 2.5px solid currentColor;
+        border-radius: 5px;
+        margin-bottom: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="top">
+      <div class="row">
+        <span class="date">Domingo, 25 de outubro</span><span class="pick">Hoje ▾</span>
+      </div>
+      <h1>Semana 43</h1>
+      <p class="sum">Você apareceu 4 de 5 dias planejados</p>
+      <div class="strip" aria-label="Figurinhas da semana">
+        <div class="st" style="background: var(--am)">37</div>
+        <div class="st" style="background: var(--ver)">12</div>
+        <div class="st" style="background: var(--vd)">38</div>
+        <div class="st" style="background: var(--mg)">9</div>
+        <div class="slot">falta<br />1</div>
+      </div>
+    </header>
+    <div class="sec">Para colar hoje <small>2 de 3</small></div>
+    <div class="it">
+      <div class="tx">
+        <p class="nm">Caminhada</p>
+        <p class="ap">32 min · meta 20 min</p>
+        <div class="bar"><i style="width: 100%; background: var(--vd)"></i></div>
+      </div>
+      <div class="fig" style="background: var(--vd)"><span>Nº</span><b>38</b></div>
+    </div>
+    <div class="it">
+      <div class="tx">
+        <p class="nm">Alongamento</p>
+        <p class="ap">Toque para colar</p>
+      </div>
+      <div class="vaga"><em>39</em>colar</div>
+    </div>
+    <div class="it">
+      <div class="tx">
+        <p class="nm">Flexões</p>
+        <p class="ap">Folga planejada · conta na semana</p>
+      </div>
+      <div class="vaga folga"><em>~</em>folga</div>
+    </div>
+    <nav>
+      <a class="on"><i></i>Hoje</a><a><i></i>Álbum</a><a><i></i>Ajustes</a>
+    </nav>
+  </body>
+</html>

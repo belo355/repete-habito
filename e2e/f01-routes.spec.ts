@@ -5,8 +5,7 @@ import { expect, test } from './support/test.ts';
 // T01.1 · Roteamento SPA e navegação principal. Base do CA01.1, cuja parte offline chega com T01.6.
 const screens = [
   { path: '/hoje', heading: pt.today.title, nav: pt.nav.today },
-  { path: '/atividades', heading: pt.activities.title, nav: pt.nav.activities },
-  { path: '/dashboard', heading: pt.dashboard.title, nav: pt.nav.dashboard },
+  { path: '/album', heading: pt.album.title, nav: pt.nav.album },
   { path: '/ajustes', heading: pt.settings.title, nav: pt.nav.settings },
 ] as const;
 
@@ -62,13 +61,13 @@ test('T01.1 · navegação principal funciona só com teclado @e2e', async ({ pa
   await page.goto('/hoje');
   const link = page
     .getByRole('navigation', { name: pt.nav.label })
-    .getByRole('link', { name: pt.nav.activities });
+    .getByRole('link', { name: pt.nav.album });
   for (let i = 0; i < 10 && !(await link.evaluate((el) => el === document.activeElement)); i++) {
     await page.keyboard.press(tab);
   }
   await expect(link).toBeFocused();
   await page.keyboard.press('Enter');
-  await expect(page.getByRole('heading', { level: 1, name: pt.activities.title })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1, name: pt.album.title })).toBeVisible();
 });
 
 test('T01.11 · título e descrição do documento vêm do i18n @e2e', async ({ page }) => {
@@ -80,12 +79,22 @@ test('T01.11 · título e descrição do documento vêm do i18n @e2e', async ({ 
   );
 });
 
-test('T01.12 · navegação principal tem 4 abas e Progresso não é mais aba @e2e', async ({
+test('T01.14 · navegação principal tem 3 abas e Progresso não é mais aba @e2e', async ({
   page,
 }) => {
   await page.goto('/hoje');
   const nav = page.getByRole('navigation', { name: pt.nav.label });
-  await expect(nav.getByRole('link')).toHaveCount(4);
+  await expect(nav.getByRole('link')).toHaveCount(3);
   await page.goto('/progresso');
   await expect(page).toHaveURL(/\/hoje$/);
+});
+
+test('T01.14 · endereços antigos de Atividades e Dashboard abrem o Álbum @e2e', async ({
+  page,
+}) => {
+  for (const path of ['/atividades', '/dashboard']) {
+    await page.goto(path);
+    await expect(page).toHaveURL(/\/album$/);
+    await expect(page.getByRole('heading', { level: 1, name: pt.album.title })).toBeVisible();
+  }
 });

@@ -34,7 +34,7 @@ Frase-guia: **"Aparecer todo dia vale mais do que treinar perfeito."**
 ## Capabilities and Constraints
 
 - **MVP (product.md §4):** atividades com tipo check, duração ou quantidade; frequência diária, dias da semana ou X por semana; meta opcional; modelos prontos (caminhada, alongamento, flexões, abdominais, mobilidade, corrida); pausar e arquivar sem perder histórico; tela Hoje com marcação em 1 toque (check) ou 2 toques (valor); desfazer; registro retroativo de 7 dias; nota de até 140 caracteres; sequência atual e melhor, com dias de folga; taxa semanal e mensal; heatmap mensal; Dashboard; lembretes; exportar/importar JSON e CSV; onboarding de no máximo 3 telas (objetivo → 1 a 3 atividades → horário do lembrete) com grátis × premium explicado ali.
-- **Rotas atuais:** `/hoje`, `/atividades`, `/dashboard`, `/onboarding`, `/ajustes`; navegação principal de 4 abas (Hoje · Atividades · Dashboard · Ajustes), no rodapé no celular e no topo a partir de 1024 px. O progresso por atividade (sequência, heatmap, notas) fica no detalhe da atividade.
+- **Rotas atuais:** `/hoje`, `/album`, `/onboarding`, `/ajustes`; navegação principal de 3 abas (Hoje · Álbum · Ajustes), no rodapé no celular e no topo a partir de 1024 px. O Álbum reúne a lista de atividades, o detalhe de cada uma (sequência, heatmap, notas) e as páginas de semana e mês (o Dashboard da F13); `/atividades` e `/dashboard` redirecionam para `/album` (DV10).
 - **Técnicas:** somente frontend (React 19, TypeScript, Vite, Tailwind v4, Radix); PWA offline-first; i18n pt-BR sem texto fixo; datas como `LocalDate`; desfazer é soft delete; valores calculados não são persistidos.
 - **Em aberto (pendente de validação no product.md):** Status do Corpo (F14, fases por dias ativos acumulados, com aviso de saúde e revisão profissional antes de implementar); formato e preço do premium; ferramenta de analytics; sync entre dispositivos (fora do MVP).
 - **Fora do produto (decisões de princípio, product.md §5.2):** séries e cargas; gamificação pesada (moedas, avatares, loja); zerar progresso ou mensagens de culpa; paywall surpresa ou limite escondido; notificações de marketing ou mais de um lembrete por atividade por dia; calorias e dieta; anúncios; coleta ou venda de dados de saúde; conselho médico ou prescrição.
@@ -44,7 +44,7 @@ Frase-guia: **"Aparecer todo dia vale mais do que treinar perfeito."**
 - Nome: **Repete Hábito**.
 - Frase-guia: "Aparecer todo dia vale mais do que treinar perfeito."
 - Tom: sem culpa, sem cobrança, sem promessa de resultado; recomeçar também conta. Textos sobre o corpo usam linguagem de possibilidade ("costuma", "em geral").
-- O ícone atual (check branco sobre verde) e a paleta verde atual são **provisórios** e podem ser substituídos.
+- Mundo visual "Álbum da semana" desde 25/10/2026 (marcar o dia é colar uma figurinha). O ícone atual (check branco sobre verde) é **provisório** e ainda não acompanha o novo mundo.
 
 ## Evidence on Hand
 

@@ -5,8 +5,7 @@ import { expect, test } from './support/test.ts';
 // qa.md §4 · CA01.1: depois do 1º acesso, o app recarrega e navega entre todas as rotas sem conexão.
 const routes = [
   { path: '/hoje', heading: pt.today.title },
-  { path: '/atividades', heading: pt.activities.title },
-  { path: '/dashboard', heading: pt.dashboard.title },
+  { path: '/album', heading: pt.album.title },
   { path: '/ajustes', heading: pt.settings.title },
   { path: '/onboarding', heading: pt.onboarding.title },
 ] as const;

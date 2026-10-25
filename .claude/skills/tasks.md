@@ -18,7 +18,7 @@ Status possíveis: ⬜ Pendente · 🚧 Em andamento · ✅ Concluída · ⏸️
 | Entrega | Feature | Descrição | Prioridade | Depende de | Tasks | Status |
 |---|---|---|---|---|---|---|
 | 0 | F00 | Setup do repositório, qualidade e CI | Must | — | 10 | 🚧 Em andamento |
-| 1 | F01 | Fundação do app (PWA, rotas, tema, i18n, a11y) | Must | F00 | 13 | ✅ Concluída |
+| 1 | F01 | Fundação do app (PWA, rotas, tema, i18n, a11y) | Must | F00 | 14 | 🚧 Em andamento |
 | 1 | F02 | Armazenamento local (Dexie, repositórios, migração) | Must | F01 | 11 | ⬜ Pendente |
 | 1 | F03 | Cadastro de atividades | Must | F02 | 9 | ⬜ Pendente |
 | 1 | F05 | Tela Hoje e marcação | Must | F03 | 9 | ⬜ Pendente |
@@ -85,6 +85,7 @@ Status possíveis: ⬜ Pendente · 🚧 Em andamento · ✅ Concluída · ⏸️
 - [x] **T01.11** Pendências do QA da F01: regra de i18n sem lacuna fora do JSX (F-03), `<title>`/description do `index.html` no i18n (F-05), preferência de tema validada ao reidratar (F-04), E2E lendo textos de `pt-BR.json` (F-06), `format(void 0)`/`format(...[])` no lint do domínio (F-07) e texto do passo do iOS (F-08). — M
 - [x] **T01.12** Mundo visual "Mapa do parque" (brief em `.impeccable/ux-brief.md`): tokens claro/escuro, tipografia, componentes da T01.5 redesenhados, cápsula de marcar e cabeçalho em lobo, navegação de 4 abas (Hoje · Atividades · Dashboard · Ajustes; Progresso vira detalhe da atividade) e estados vazios das telas. — G
 - [x] **T01.13** CI verde no GitHub: os testes que rodam o ESLint com tipos (`tests/unit/boundaries.test.ts`, `tests/unit/i18n-lint.test.ts`) estouravam o tempo padrão de 5 s no runner; aquecimento no `beforeAll` e prazo explícito. — P
+- [x] **T01.14** Novo UX "Álbum da semana" (contrato em `.impeccable/surfaces/`, esboço em `.impeccable/mocks/decision/r2/assigned.html`): tokens claro/escuro (faixa azul, figurinhas, folga em lilás), Barlow e Barlow Condensed servidas pelo app, `BandHeader` e `Sticker` no lugar do lobo e da cápsula, botões e interruptor redesenhados, navegação de 3 abas (Hoje · Álbum · Ajustes) com `/album` reunindo Atividades, detalhe e Dashboard (`/atividades` e `/dashboard` redirecionam; DV10), `isoWeek` em `domain/date`, `DESIGN.md` reescrito. — G
 
 ### F02 · Armazenamento local · Must · Cobre product 4.5 · Dívidas: D1, D2, D3
 
@@ -110,7 +111,7 @@ Status possíveis: ⬜ Pendente · 🚧 Em andamento · ✅ Concluída · ⏸️
 - [ ] **T03.6** Catálogo de modelos prontos (caminhada, alongamento, flexões, abdominais, mobilidade, corrida) em `domain/activity`. — P
 - [ ] **T03.7** `domain/activity`: `isScheduledOn(activity, date)` respeitando a regra vigente e `createdOn`. — M
 - [ ] **T03.8** Testes unitários de frequência: atividade criada no meio da semana, troca de regra, dias específicos. — M
-- [ ] **T03.9** Tela de lista de atividades. — P
+- [ ] **T03.9** Lista de atividades na seção "Suas atividades" do Álbum (`/album`, DV10). — P
 
 ### F05 · Tela Hoje e marcação · Must · Cobre product 4.2
 
@@ -185,7 +186,7 @@ Status possíveis: ⬜ Pendente · 🚧 Em andamento · ✅ Concluída · ⏸️
 - [ ] **T13.2** Série diária (7 pontos semana, 28–31 mês) e série do período anterior alinhada por posição. — M
 - [ ] **T13.3** Regras: registros desfeitos não contam; pausadas/arquivadas contam como feitas, não como planejadas no período inativo. — M
 - [ ] **T13.4** Testes: limites seg–dom e de mês, semanas que atravessam meses, desfeitos, atividade criada no meio do período, fusos. — M
-- [ ] **T13.5** Tela com alternância Semana/Mês (padrão: semana atual). — P
+- [ ] **T13.5** Páginas de semana e mês no Álbum (`/album`, DV10), com alternância Semana/Mês (padrão: semana atual). — P
 - [ ] **T13.6** Navegação ‹ › entre períodos e "voltar ao atual" com um toque. — P
 - [ ] **T13.7** Cards de indicadores: vezes, dias ativos ("5 de 7 dias"), taxa de conclusão. — P
 - [ ] **T13.8** Gráfico de área em SVG próprio: atual em destaque, anterior sobreposto mais claro, Y começando em 0, linha para no dia de hoje. — G
@@ -201,7 +202,7 @@ Status possíveis: ⬜ Pendente · 🚧 Em andamento · ✅ Concluída · ⏸️
 - [ ] **T08.2** Testes de taxa com atividades pausadas e arquivadas. — P
 - [ ] **T08.3** `monthHeatmap(activity, logs, month)` com níveis 0–3 + testes. — M
 - [ ] **T08.4** Componente heatmap mensal em SVG por atividade, acessível (rótulo por dia). — M
-- [ ] **T08.5** Tela de progresso por atividade (sequência, taxa, heatmap). — M
+- [ ] **T08.5** Página de cada atividade no Álbum (sequência, taxa, heatmap). — M
 - [ ] **T08.6** Memoização dos cálculos; medir com 2 anos de histórico. — P
 
 ### F09 · Resumo semanal · Should · Cobre product 4.3

@@ -140,6 +140,16 @@ export function endOfWeek(date: LocalDate): LocalDate {
   return addDays(startOfWeek(date), 6);
 }
 
+/**
+ * Número da semana ISO 8601 (1 a 53), com semanas de segunda a domingo. A semana pertence ao
+ * ano da sua quinta-feira, então 29/12 pode ser a semana 1 do ano seguinte.
+ */
+export function isoWeek(date: LocalDate): number {
+  const thursday = addDays(startOfWeek(date), 3);
+  const firstDay = format({ year: toParts(thursday).year, month: 1, day: 1 });
+  return Math.floor(diffInDays(thursday, firstDay) / 7) + 1;
+}
+
 export function startOfMonth(date: LocalDate): LocalDate {
   const { year, month } = toParts(date);
   return format({ year, month, day: 1 });

@@ -1,0 +1,180 @@
+{
+  "title": "Nova UX do Repete Hábito",
+  "question": "O sorteio indicou o Álbum da semana. Fique com ele, escolha uma alternativa ou peça outra rodada.",
+  "options": [
+    {
+      "id": "assigned",
+      "kind": "assigned",
+      "label": "Álbum da semana",
+      "kicker": "THE ROLL",
+      "lineage": "álbuns de figurinhas de banca, colados à mão",
+      "thesis": "Marcar o dia é colar uma figurinha; o número dela conta quantas vezes você apareceu e nunca volta a zero.",
+      "palette": ["#1b3fbf", "#ffffff", "#ffc20e", "#e8412c", "#00a65a", "#e5007e", "#16181d"],
+      "materials": [
+        "figurinha com borda branca recortada",
+        "numeral condensado pesado",
+        "página chapada sem textura"
+      ],
+      "viewport": "Hoje: faixa azul com a semana (figurinhas já coladas e uma vaga tracejada por dia planejado restante); lista de atividades com a vaga à direita; 3 abas no rodapé: Hoje · Álbum · Ajustes (Dashboard e detalhes viram páginas do Álbum).",
+      "risk": "Álbum convida a 'completar'; por isso não existe vaga vazia de dia passado: as figurinhas colam em sequência e só a semana atual mostra o que falta.",
+      "raised": [
+        {
+          "from": "challenger-saville",
+          "raise": "Uma peça domina cada tela: em Hoje, a página da semana; nada disputa com ela."
+        },
+        {
+          "from": "challenger-mascots",
+          "raise": "Cada atividade tem ficha fixa (cor, nome, contagem) que não muda em nenhuma tela."
+        },
+        {
+          "from": "challenger-console",
+          "raise": "Arquivar e excluir ficam isolados por espaço vazio, nunca perto de marcar."
+        },
+        {
+          "from": "challenger-laban",
+          "raise": "Em duração, a figurinha traz uma barra cujo comprimento é a fração exata da meta."
+        },
+        {
+          "from": "challenger-splitflap",
+          "raise": "Colar muda o estado no lugar; a lista nunca reordena ao tocar."
+        }
+      ],
+      "html": ".impeccable/mocks/decision/r2/assigned.html",
+      "htmlFrame": "390x844"
+    },
+    {
+      "id": "model-pick",
+      "kind": "pick",
+      "label": "Calçadão",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "calçadas de pedra portuguesa em onda (Copacabana, Santos, Manaus)",
+      "thesis": "Cada dia ativo assenta uma pedra; a onda da calçada cresce com você e nenhuma pedra é arrancada.",
+      "palette": ["#f7f7f5", "#16181a", "#0a6fb8", "#ffcf3f", "#e4e6e2"],
+      "materials": [
+        "pedra preta e branca em mosaico",
+        "onda contínua",
+        "sol e mar como cores de estado"
+      ],
+      "viewport": "Hoje: faixa de calçada no topo onde a onda da semana se forma pedra a pedra; lista abaixo com botão Marcar; 3 abas: Hoje · Calçada · Ajustes.",
+      "risk": "Muito ligado ao litoral e ao Rio; o mosaico preto e branco pode virar enfeite se não carregar dados reais.",
+      "html": ".impeccable/mocks/decision/r2/model-pick.html",
+      "htmlFrame": "390x844"
+    },
+    {
+      "id": "challenger-gate",
+      "kind": "challenger",
+      "catalogId": "vernacular-ephemera-boarding-pass-and-gate-board",
+      "label": "Quadro do dia",
+      "verdict": "competitive",
+      "lineage": "cartão de embarque e painel de portão",
+      "thesis": "Hoje é um painel ordenado pelo horário do lembrete; cada atividade muda de estado no lugar e a semana vira um cartão segmentado.",
+      "palette": ["#ffffff", "#0b1f3a", "#f2a900", "#e9edf2", "#1f7a4d"],
+      "materials": [
+        "painéis neutros de alto contraste",
+        "algarismos tabulares",
+        "uma cor só para mudança"
+      ],
+      "viewport": "Hoje: cartão da semana segmentado no topo (dias, sequência, meta); painel com horário, atividade e estado (No horário / Feito / Folga); abas padrão.",
+      "case": "Funde bem e ganha em clareza (é um painel de tarefas por horário); perde em identificação: viagem aérea não é o mundo de quem caminha no bairro.",
+      "risk": "Tende a parecer agenda corporativa; sem cuidado, 'atrasado' soa como cobrança.",
+      "html": ".impeccable/mocks/decision/r2/challenger-gate.html",
+      "htmlFrame": "390x844",
+      "hero": "https://impeccable.style/worlds/cards/vernacular-ephemera-boarding-pass-and-gate-board-hero.webp"
+    },
+    {
+      "id": "challenger-saville",
+      "kind": "challenger",
+      "catalogId": "brand-identity-canon-saville-catalog-sleeve",
+      "label": "Capa de catálogo",
+      "verdict": "declined",
+      "lineage": "capas de disco com código de cores",
+      "thesis": "Atividades viram códigos de cor numa capa preta.",
+      "palette": ["#0d0d0d", "#ffffff", "#e63946", "#2a9d8f"],
+      "materials": ["preto fosco", "linhas brancas"],
+      "viewport": "Hoje como uma capa preta com um gráfico de linhas.",
+      "case": "Perde nos dois eixos: nomes viram código e o público não se reconhece nesse mundo.",
+      "risk": "Ilegível para quem só quer marcar o dia.",
+      "kept": "Uma peça domina a tela.",
+      "hero": "https://impeccable.style/worlds/cards/brand-identity-canon-saville-catalog-sleeve-hero.webp"
+    },
+    {
+      "id": "challenger-mascots",
+      "kind": "challenger",
+      "catalogId": "pop-culture-shelf-character-goods-catalog",
+      "label": "Catálogo de mascotes",
+      "verdict": "declined",
+      "lineage": "catálogos de personagens",
+      "thesis": "Cada atividade vira um mascote com ficha.",
+      "palette": ["#fde2e4", "#cde7f0", "#fff1b6", "#2b2b2b"],
+      "materials": ["pastel chapado", "contorno branco"],
+      "viewport": "Grade de mascotes, um por atividade.",
+      "case": "Perde nos dois eixos: mascote é avatar, e avatar está fora do produto.",
+      "risk": "Gamificação disfarçada.",
+      "kept": "Ficha fixa por atividade.",
+      "hero": "https://impeccable.style/worlds/cards/pop-culture-shelf-character-goods-catalog-hero.webp"
+    },
+    {
+      "id": "challenger-console",
+      "kind": "challenger",
+      "catalogId": "digital-design-canon-dark-first-developer-console",
+      "label": "Console escuro",
+      "verdict": "declined",
+      "lineage": "consoles de desenvolvedor",
+      "thesis": "Painéis grafite com filetes e cores de sintaxe.",
+      "palette": ["#16181d", "#2a2e36", "#7ee787", "#79c0ff"],
+      "materials": ["grafite", "filetes de 1 px"],
+      "viewport": "Painéis empilhados com a lista do dia.",
+      "case": "Perde nos dois eixos: frio e técnico para quem quer recomeçar.",
+      "risk": "Fantasia de ferramenta.",
+      "kept": "Ação destrutiva isolada por espaço.",
+      "hero": "https://impeccable.style/worlds/cards/digital-design-canon-dark-first-developer-console-hero.webp"
+    },
+    {
+      "id": "challenger-laban",
+      "kind": "challenger",
+      "catalogId": "notation-diagram-systems-labanotation",
+      "label": "Partitura de dança",
+      "verdict": "declined",
+      "lineage": "labanotação",
+      "thesis": "O tempo sobe numa pauta; comprimento é duração.",
+      "palette": ["#ffffff", "#111111", "#d9d9d9"],
+      "materials": ["papel de partitura", "blocos hachurados"],
+      "viewport": "Pauta vertical com blocos por atividade.",
+      "case": "Perde nos dois eixos: notação obscura e leitura lenta.",
+      "risk": "Exige aprender um código.",
+      "kept": "Comprimento como medida exata.",
+      "hero": "https://impeccable.style/worlds/cards/notation-diagram-systems-labanotation-hero.webp"
+    },
+    {
+      "id": "challenger-splitflap",
+      "kind": "challenger",
+      "catalogId": "signals-instruments-split-flap-concourse",
+      "label": "Painel de estação",
+      "verdict": "declined",
+      "lineage": "painéis split-flap",
+      "thesis": "Atividades como linhas de partida.",
+      "palette": ["#111111", "#ffffff", "#f5a623", "#b3261e"],
+      "materials": ["placas pretas", "letra branca"],
+      "viewport": "Painel preto com linhas por atividade.",
+      "case": "Perde nos dois eixos: já recusado antes e com cara de fantasia de painel.",
+      "risk": "Atraso em vermelho soa como culpa.",
+      "kept": "Estado muda no lugar, sem reordenar.",
+      "hero": "https://impeccable.style/worlds/cards/signals-instruments-split-flap-concourse-hero.webp"
+    }
+  ],
+  "reroll": { "registers": ["safer", "bolder"] },
+  "buildPath": { "value": "code" },
+  "canon": true,
+  "canonCard": {
+    "kind": "canon",
+    "label": "O padrão da categoria",
+    "thesis": "Lista de hábitos com círculos de check, anel de progresso e abas, feita com capricho.",
+    "palette": ["#ffffff", "#111827", "#22c55e", "#f3f4f6"],
+    "materials": ["lista limpa", "anel de progresso", "ícones de linha"],
+    "viewport": "Hoje: anel do dia no topo, lista com círculos de check, 4 abas.",
+    "risk": "Igual aos concorrentes por definição, e usa o anel que o produto hoje recusa.",
+    "html": ".impeccable/mocks/decision/r2/canon.html",
+    "htmlFrame": "390x844"
+  },
+  "steer": true
+}

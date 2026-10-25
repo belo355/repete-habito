@@ -28,12 +28,12 @@ export function Dialog({ title, description, trigger, children, open, onOpenChan
           className="fixed top-1/2 left-1/2 w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-lg border-2 border-text bg-bg p-5 text-text shadow-[0_16px_40px_-12px_rgb(0_0_0/0.4)]"
         >
           <div className="mb-2 flex items-start justify-between gap-2">
-            <DialogPrimitive.Title className="m-0 pt-2 text-xl font-extrabold tracking-[-0.01em]">
+            <DialogPrimitive.Title className="title-section m-0 pt-2 text-2xl">
               {title}
             </DialogPrimitive.Title>
             <DialogPrimitive.Close
               aria-label={t('common.close')}
-              className="inline-flex min-h-touch min-w-touch cursor-pointer items-center justify-center rounded-full text-text hover:bg-surface"
+              className="inline-flex min-h-touch min-w-touch cursor-pointer items-center justify-center rounded-md text-text hover:bg-surface"
             >
               <X aria-hidden="true" className="size-6" />
             </DialogPrimitive.Close>

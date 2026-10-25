@@ -24,7 +24,7 @@ export function UpdatePrompt({ open, onAccept, onDismiss }: UpdatePromptProps) {
     >
       {open && (
         <>
-          <p className="m-0 text-lg font-extrabold tracking-[-0.01em]">{t('update.available')}</p>
+          <p className="title-section m-0 text-xl">{t('update.available')}</p>
           <p className="mt-1 mb-3 text-text-muted">{t('update.description')}</p>
           <div className="flex flex-wrap gap-2">
             <Button onClick={onAccept}>{t('update.accept')}</Button>

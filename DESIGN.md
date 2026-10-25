@@ -1,108 +1,138 @@
 ---
 name: Repete Hábito
-description: Rotina de exercício leve e tolerante a falhas; marcar o dia em um toque.
+description: Rotina de exercício leve e tolerante a falhas; marcar o dia é colar uma figurinha.
 colors:
   bg: '#ffffff'
-  surface: '#f2f4ee'
-  text: '#2c2e2a'
-  text-muted: '#5d5f59'
-  shell: '#8ed462'
-  on-shell: '#2c2e2a'
-  primary: '#2c2e2a'
+  surface: '#eef0f6'
+  text: '#16181d'
+  text-muted: '#50555f'
+  shell: '#1b3fbf'
+  on-shell: '#ffffff'
+  focus-on-shell: '#ffffff'
+  primary: '#16181d'
   on-primary: '#ffffff'
   danger: '#b3261e'
-  border: '#767a70'
-  focus: '#2c2e2a'
-  capsule-yellow: '#f5e211'
-  capsule-coral: '#ff705d'
-  capsule-blue: '#2ba0ff'
-  capsule-lilac: '#ebc1ff'
-  on-capsule: '#2c2e2a'
-  chip: '#ffffff'
-  dark-bg: '#1a1c19'
-  dark-surface: '#242722'
-  dark-text: '#f2f3ee'
-  dark-text-muted: '#b5b8ae'
-  dark-shell: '#3d6b28'
-  dark-on-shell: '#f2f3ee'
-  dark-primary: '#f2f3ee'
-  dark-on-primary: '#2c2e2a'
+  border: '#6b7180'
+  focus: '#16181d'
+  sticker-yellow: '#ffc20e'
+  sticker-red: '#ff5a3c'
+  sticker-green: '#00a65a'
+  sticker-magenta: '#ff4fa3'
+  sticker-cyan: '#00a3e0'
+  on-sticker: '#16181d'
+  sticker-edge: '#ffffff'
+  rest: '#efe4ff'
+  on-rest: '#3d2366'
+  rest-border: '#8b6bb8'
+  dark-bg: '#16181d'
+  dark-surface: '#23262e'
+  dark-text: '#f1f2f6'
+  dark-text-muted: '#b3b8c4'
+  dark-primary: '#f1f2f6'
+  dark-on-primary: '#16181d'
   dark-danger: '#ff8a80'
-  dark-border: '#8b8f84'
-  dark-focus: '#f2f3ee'
+  dark-border: '#8b909c'
+  dark-focus: '#f1f2f6'
+  dark-rest-border: '#b79ad6'
 typography:
   display:
-    fontFamily: "'Archivo Variable', ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "'Barlow Condensed', 'Barlow', ui-sans-serif, system-ui, sans-serif"
+    fontSize: '4rem'
+    fontWeight: 800
+    lineHeight: 0.95
+    letterSpacing: '-0.01em'
+  headline:
+    fontFamily: "'Barlow Condensed', 'Barlow', ui-sans-serif, system-ui, sans-serif"
     fontSize: '3rem'
     fontWeight: 800
     lineHeight: 0.95
-    letterSpacing: '-0.04em'
-  headline:
-    fontFamily: "'Archivo Variable', ui-sans-serif, system-ui, sans-serif"
-    fontSize: '2.25rem'
-    fontWeight: 800
-    lineHeight: 0.95
-    letterSpacing: '-0.04em'
-  title:
-    fontFamily: "'Archivo Variable', ui-sans-serif, system-ui, sans-serif"
+    letterSpacing: '-0.01em'
+  title-section:
+    fontFamily: "'Barlow Condensed', 'Barlow', ui-sans-serif, system-ui, sans-serif"
     fontSize: '1.5rem'
     fontWeight: 800
-    lineHeight: 1.333
-    letterSpacing: '-0.01em'
-  title-sm:
-    fontFamily: "'Archivo Variable', ui-sans-serif, system-ui, sans-serif"
+    lineHeight: 1.1
+  title-section-sm:
+    fontFamily: "'Barlow Condensed', 'Barlow', ui-sans-serif, system-ui, sans-serif"
     fontSize: '1.25rem'
     fontWeight: 800
-    lineHeight: 1.4
-    letterSpacing: '-0.01em'
+    lineHeight: 1.1
+  sticker-numeral:
+    fontFamily: "'Barlow Condensed', 'Barlow', ui-sans-serif, system-ui, sans-serif"
+    fontSize: '2rem'
+    fontWeight: 800
+    lineHeight: 1
+  sticker-numeral-slot:
+    fontFamily: "'Barlow Condensed', 'Barlow', ui-sans-serif, system-ui, sans-serif"
+    fontSize: '1.375rem'
+    fontWeight: 800
+    lineHeight: 1
   lead:
-    fontFamily: "'Archivo Variable', ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "'Barlow', ui-sans-serif, system-ui, sans-serif"
     fontSize: '1.125rem'
-    fontWeight: 600
+    fontWeight: 700
     lineHeight: 1.556
+  lead-lg:
+    fontFamily: "'Barlow', ui-sans-serif, system-ui, sans-serif"
+    fontSize: '1.25rem'
+    fontWeight: 700
+    lineHeight: 1.4
+  band-meta:
+    fontFamily: "'Barlow', ui-sans-serif, system-ui, sans-serif"
+    fontSize: '0.9375rem'
+    fontWeight: 700
+    lineHeight: 1.5
   body:
-    fontFamily: "'Archivo Variable', ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "'Barlow', ui-sans-serif, system-ui, sans-serif"
     fontSize: '1rem'
-    fontWeight: 450
+    fontWeight: 500
     lineHeight: 1.5
   meta:
-    fontFamily: "'Archivo Variable', ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "'Barlow', ui-sans-serif, system-ui, sans-serif"
     fontSize: '0.875rem'
-    fontWeight: 450
+    fontWeight: 500
     lineHeight: 1.429
   label:
-    fontFamily: "'Archivo Variable', ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "'Barlow', ui-sans-serif, system-ui, sans-serif"
     fontSize: '1rem'
     fontWeight: 700
     lineHeight: 1.5
+  label-sticker:
+    fontFamily: "'Barlow', ui-sans-serif, system-ui, sans-serif"
+    fontSize: '0.8125rem'
+    fontWeight: 700
+    lineHeight: 1
   label-nav:
-    fontFamily: "'Archivo Variable', ui-sans-serif, system-ui, sans-serif"
-    fontSize: '0.75rem'
-    fontWeight: 600
-    lineHeight: 1.333
+    fontFamily: "'Barlow', ui-sans-serif, system-ui, sans-serif"
+    fontSize: '0.8125rem'
+    fontWeight: 700
+    lineHeight: 1.385
 rounded:
-  md: '0.75rem'
-  lg: '1.25rem'
+  sm: '0.375rem'
+  md: '0.625rem'
+  lg: '1rem'
   full: '9999px'
 spacing:
   gutter: '1.25rem'
   touch: '2.75rem'
-  row: '4.5rem'
+  row: '5.75rem'
   nav-tab: '3.5rem'
+  sticker-w: '4rem'
+  sticker-h: '4.75rem'
   content-max: '42rem'
 components:
   button-primary:
     backgroundColor: '{colors.primary}'
     textColor: '{colors.on-primary}'
     typography: '{typography.label}'
-    rounded: '{rounded.full}'
+    rounded: '{rounded.md}'
     padding: '0 1.25rem'
     height: '{spacing.touch}'
   button-secondary:
     backgroundColor: 'transparent'
     textColor: '{colors.text}'
     typography: '{typography.label}'
-    rounded: '{rounded.full}'
+    rounded: '{rounded.md}'
     padding: '0 1.25rem'
     height: '{spacing.touch}'
   button-secondary-hover:
@@ -111,7 +141,7 @@ components:
     backgroundColor: 'transparent'
     textColor: '{colors.text}'
     typography: '{typography.label}'
-    rounded: '{rounded.full}'
+    rounded: '{rounded.md}'
     padding: '0 1.25rem'
     height: '{spacing.touch}'
   button-ghost-hover:
@@ -120,55 +150,57 @@ components:
     backgroundColor: 'transparent'
     textColor: '{colors.danger}'
     typography: '{typography.label}'
-    rounded: '{rounded.full}'
+    rounded: '{rounded.md}'
     padding: '0 1.25rem'
     height: '{spacing.touch}'
-  button-chip:
-    backgroundColor: '{colors.on-primary}'
-    textColor: '{colors.primary}'
-    rounded: '{rounded.full}'
-    size: '2rem'
-  mark-capsule:
-    backgroundColor: '{colors.capsule-yellow}'
-    textColor: '{colors.on-capsule}'
-    typography: '{typography.label}'
-    rounded: '{rounded.full}'
-    padding: '0 3rem 0 1.25rem'
-    height: '{spacing.touch}'
-    width: '8rem'
-  mark-capsule-done:
-    padding: '0 1.25rem 0 3rem'
-  mark-capsule-dot:
-    backgroundColor: '{colors.chip}'
-    rounded: '{rounded.full}'
-    size: '2rem'
+  sticker-slot:
+    backgroundColor: 'transparent'
+    textColor: '{colors.text}'
+    typography: '{typography.sticker-numeral-slot}'
+    rounded: '{rounded.md}'
+    width: '{spacing.sticker-w}'
+    height: '{spacing.sticker-h}'
+  sticker-slot-hover:
+    backgroundColor: '{colors.surface}'
+  sticker:
+    backgroundColor: '{colors.sticker-green}'
+    textColor: '{colors.on-sticker}'
+    typography: '{typography.sticker-numeral}'
+    rounded: '{rounded.md}'
+    width: '{spacing.sticker-w}'
+    height: '{spacing.sticker-h}'
   switch:
     backgroundColor: '{colors.surface}'
     rounded: '{rounded.full}'
     height: '{spacing.touch}'
     width: '4.5rem'
   switch-checked:
-    backgroundColor: '{colors.primary}'
+    backgroundColor: '{colors.shell}'
+  switch-thumb:
+    backgroundColor: '{colors.sticker-edge}'
+    rounded: '{rounded.full}'
+    size: '2.25rem'
   nav-tab:
     backgroundColor: 'transparent'
     textColor: '{colors.text-muted}'
     typography: '{typography.label-nav}'
-    rounded: '{rounded.full}'
+    rounded: '{rounded.md}'
     height: '{spacing.nav-tab}'
   nav-tab-active:
+    backgroundColor: '{colors.primary}'
+    textColor: '{colors.on-primary}'
+  band-header:
     backgroundColor: '{colors.shell}'
     textColor: '{colors.on-shell}'
-  lobe-header:
-    backgroundColor: '{colors.shell}'
-    textColor: '{colors.on-shell}'
-    padding: '1.5rem 1.25rem 5rem'
+    padding: '1.5rem 1.25rem 1.75rem'
   menu:
     backgroundColor: '{colors.bg}'
     textColor: '{colors.text}'
     rounded: '{rounded.lg}'
     padding: '0.375rem'
   menu-item:
-    rounded: '{rounded.md}'
+    typography: '{typography.label}'
+    rounded: '{rounded.sm}'
     padding: '0 0.75rem'
     height: '{spacing.touch}'
   menu-item-highlighted:
@@ -184,125 +216,138 @@ components:
 
 ## Overview
 
-**Creative North Star: "Mapa do parque"**
+**Creative North Star: "Álbum da semana"**
 
-O app empresta a linguagem de um mapa-guia de parque e a traduz para uma interface de uso diário (modo Operate): cor chapada, um verde que marca só a estrutura, cápsulas coloridas que identificam cada atividade e uma única grotesca com títulos grandes e justos. Quem usa encontra tudo antes de reparar no visual; navegação, formulários e menus seguem o padrão web, e o mundo aparece na tipografia, na paleta, na densidade e num gesto próprio, a cápsula de marcar.
+Marcar o dia é colar uma figurinha. O app empresta a linguagem do álbum de figurinhas de banca e a traduz para uma interface de uso diário (modo Operate): página branca, uma faixa azul chapada que marca a semana, figurinhas de cor chapada com borda de papel e numeral condensado, e títulos em caixa alta numa condensada pesada. O número da figurinha conta quantas vezes a pessoa apareceu naquela atividade e nunca volta a zero. Navegação, formulários, menus e diálogos seguem o padrão web; o mundo aparece no tipo, na paleta, na densidade e num gesto próprio, colar a figurinha.
 
-A densidade é de lista de app: uma coluna de até 42rem, linhas de 72 px, alvos de toque de 44 px, ação principal ao alcance do polegar. O cabeçalho de Hoje e do Dashboard é um "lobo" verde de borda inferior orgânica; abaixo dele, o conteúdo é uma lista comum sobre fundo branco (ou grafite no tema escuro). Não há gradiente, textura nem sombra decorativa. O tom é calmo e sem cobrança: nada de chama de sequência, anel de progresso ou lista cinza de círculos de check.
+A densidade é de lista de app: uma coluna de até 42rem, linhas de 92 px com a vaga ou figurinha à direita, alvos de toque de 44 px. Hoje e Álbum abrem com a faixa azul (a capa da página); abaixo dela, o conteúdo é uma lista aberta sobre fundo branco, separada por filetes de 2 px. Não há gradiente nem textura; a única sombra do mundo é o assentamento da figurinha. O tom é calmo e sem cobrança: nada de chama de sequência, anel de progresso ou lista cinza com círculos de check.
 
-O tema claro é o padrão. O escuro é uma tradução do mesmo mundo, não uma inversão: fundo grafite, lobo em verde escurecido, ação principal em tinta clara e as cápsulas com a mesma saturação e o mesmo texto escuro.
+O tema claro é o padrão. O escuro é a mesma página em tinta: fundo #16181d, ação principal em tinta clara com texto escuro, e a faixa azul, as figurinhas e a borda de papel com os mesmos valores do claro.
 
 **Key Characteristics:**
 
-- Cor chapada; o verde só em estrutura (lobo, aba ativa, seleção de texto).
-- Cápsulas totalmente arredondadas para todo controle de ação.
-- Uma grotesca variável (Archivo), títulos com entrelinha 0,95 e tracking −0,04em.
-- O estado nunca depende só da cor: texto, posição do ponto e `aria-pressed`.
+- Cor chapada; o azul só em estrutura (faixa da semana, interruptor ligado, seleção de texto).
+- Figurinha de cor chapada, borda de papel de 4 px, numeral condensado em tinta, levemente torta (−2°).
+- Barlow Condensed 800 em caixa alta para todo título e numeral; Barlow 500/700 para texto.
+- Controles em retângulos de canto curto (0.625rem); só o interruptor e o rádio são redondos.
+- O estado nunca depende só da cor: texto, forma (vaga tracejada × figurinha) e `aria-pressed`.
 - Contraste AA garantido por teste em todos os pares de token, nos dois temas.
 
 ## Colors
 
-Paleta restrita aos tokens do tema (as cores padrão do Tailwind estão desligadas): neutros esverdeados de tinta e papel, um verde de estrutura e quatro cores de cápsula sempre com texto escuro.
+Paleta restrita aos tokens do tema (as cores padrão do Tailwind estão desligadas): papel branco e tinta azulada, um azul álbum de estrutura, cinco cores de figurinha sempre com tinta escura e um lilás reservado à folga.
 
 ### Primary
 
-- **Tinta Grafite** (`primary`): a ação principal é uma cápsula em tinta, não em verde. Fundo do botão principal, do interruptor ligado e do miolo do rádio selecionado. No escuro vira **Tinta Clara** (`dark-primary`) com texto grafite (`dark-on-primary`).
-- **Verde Parque** (`shell`): cor de estrutura. Preenche o lobo do cabeçalho, a aba ativa da navegação e a seleção de texto, sempre com texto `on-shell`. No escuro vira **Verde Musgo** (`dark-shell`) com texto claro.
+- **Tinta Álbum** (`primary`): a ação principal é um bloco em tinta. Fundo do botão principal, da aba ativa da navegação e do miolo do rádio selecionado. No escuro vira **Tinta Clara** (`dark-primary`) com texto escuro (`dark-on-primary`).
+- **Azul Álbum** (`shell`): cor de estrutura, igual nos dois temas. Preenche a faixa da semana no topo de Hoje e do Álbum, o trilho do interruptor ligado e a seleção de texto, sempre com texto `on-shell` (branco). Dentro da faixa o anel de foco troca para `focus-on-shell` (branco), porque a tinta não aparece sobre o azul.
 
 ### Secondary
 
-As quatro cores de cápsula identificam atividades (atribuição automática por atividade, segundo o brief); o texto sobre elas é sempre `on-capsule` (grafite) e o ponto é sempre `chip` (branco), nos dois temas.
+As cinco cores de figurinha identificam atividades; o numeral e o texto sobre elas são sempre `on-sticker` (tinta) e a borda é sempre `sticker-edge` (papel branco), com os mesmos valores nos dois temas.
 
-- **Amarelo Placa** (`capsule-yellow`): única cor de cápsula visível hoje, na linha de exemplo de Hoje.
-- **Coral Quiosque** (`capsule-coral`), **Azul Lago** (`capsule-blue`), **Lilás Jardim** (`capsule-lilac`): definidas e com contraste testado, ainda sem uso em tela. Pelo brief, o lilás é também a cor da folga.
+- **Verde Banca** (`sticker-green`): única cor de figurinha visível hoje, na figurinha de exemplo de Hoje.
+- **Amarelo Capa** (`sticker-yellow`), **Vermelho Escudo** (`sticker-red`), **Magenta Brilho** (`sticker-magenta`), **Ciano Céu** (`sticker-cyan`): definidas e com contraste testado, ainda sem uso em tela.
+- **Adaptação por contraste:** o vermelho e o magenta foram clareados em relação ao contrato da direção (#E8412C daria cerca de 4,4:1 com a tinta e #E5007E cerca de 3,9:1, abaixo de 4,5:1) para que o numeral em tinta passe AA. Os valores do frontmatter são os normativos.
+
+### Tertiary
+
+- **Lilás Folga** (`rest`, com texto `on-rest` e contorno `rest-border` / `dark-rest-border`): a vaga de folga, impressa na página. Tokens prontos e testados; o componente ainda não existe. Também adaptado por contraste: o fundo é um pouco mais saturado que o do contrato (#F3E8FF) para dar 4,5:1 com `on-rest`, e o contorno é mais escuro no claro, para chegar a 3:1 sobre o papel branco; no escuro o contorno é o lilás claro do contrato.
 
 ### Neutral
 
-- **Papel Branco** (`bg`) / **Grafite Noite** (`dark-bg`): fundo da página, dos menus, diálogos e da barra de navegação.
-- **Papel Sálvia** (`surface`) / `dark-surface`: hover de botões secundários e fantasmas, item realçado do menu, trilho do interruptor desligado e os filetes de 2 px que separam linhas e a navegação.
-- **Tinta** (`text`) / `dark-text`: texto corrente, bordas de 2 px dos botões contornados, do interruptor, do menu e do diálogo.
-- **Tinta Apagada** (`text-muted`) / `dark-text-muted`: linhas de apoio, descrições, rótulos de aba inativa, versão.
-- **Cinza Trilha** (`border`) / `dark-border`: token de borda com 3:1 garantido; hoje usado na barra de rolagem.
+- **Papel Branco** (`bg`) / **Tinta Noite** (`dark-bg`): fundo da página, dos menus, diálogos e da barra de navegação.
+- **Papel Azulado** (`surface`) / `dark-surface`: hover de botões secundários, fantasmas e da vaga pendente, item realçado do menu, trilho do interruptor desligado e os filetes de 2 px que separam linhas, seções e a navegação.
+- **Tinta** (`text`) / `dark-text`: texto corrente, bordas de 2 px dos botões contornados, da vaga tracejada, do interruptor, do rádio, do menu e do diálogo; véu do diálogo a 50%.
+- **Tinta Apagada** (`text-muted`) / `dark-text-muted`: descrições, linhas de apoio, rótulos de aba inativa, versão.
+- **Cinza Régua** (`border`) / `dark-border`: token de borda com 3:1 garantido; contorno tracejado das vagas decorativas da página vazia do Álbum e barra de rolagem.
 - **Foco** (`focus`) / `dark-focus`: anel de foco, igual à tinta de cada tema.
 - **Alerta** (`danger`) / `dark-danger`: texto e borda do botão destrutivo.
 
 ### Named Rules
 
-**The Green Is Structure Rule.** O verde nunca é botão nem ação. Ele pinta regiões de estrutura (lobo, aba ativa, seleção); a ação principal é tinta.
+**The Blue Is Structure Rule.** O azul nunca é botão nem ação. Ele pinta a faixa da semana, o trilho do interruptor ligado e a seleção; a ação principal é tinta, e a aba ativa é um bloco em tinta.
 
-**The Dark Text On Capsules Rule.** Toda cápsula colorida leva texto grafite e ponto branco, também no tema escuro. A cor só identifica a atividade; o estado está no texto e na posição do ponto.
+**The Ink On Stickers Rule.** Toda figurinha leva numeral e texto em tinta (`on-sticker`) e borda de papel branca, nos dois temas. A cor só identifica a atividade; o estado está no texto, na forma e em `aria-pressed`.
 
 **The Tested Pair Rule.** Um par texto × fundo só entra no sistema se estiver em `tests/unit/theme-contrast.test.ts` com 4,5:1 (texto) ou 3:1 (borda e foco) nos dois temas. Cores do tema ficam em `#rrggbb` para o teste conseguir ler.
 
 ## Typography
 
-**Display Font:** Archivo Variable (com ui-sans-serif, system-ui, sans-serif)
-**Body Font:** Archivo Variable (mesma família)
+**Display Font:** Barlow Condensed 800 (com Barlow, ui-sans-serif, system-ui, sans-serif)
+**Body Font:** Barlow 500 e 700 (com ui-sans-serif, system-ui, sans-serif)
 
-**Character:** uma grotesca de trabalho, servida pelo próprio app (`@fontsource-variable/archivo`, eixo de peso). O contraste vem de peso e tamanho: títulos em 800 bem justos, texto corrente em 450, rótulos em 600 a 700.
+**Character:** a condensada pesada em caixa alta é o numeral da figurinha e o título da página do álbum; a Barlow, da mesma família, carrega o texto em 500 e rótulos em 700. As duas são servidas pelo próprio app (`@fontsource`, só o subconjunto latino, só os três pesos usados).
 
 ### Hierarchy
 
-- **Display** (800, 3rem, 0,95, −0,04em): título do lobo ("Hoje", "Dashboard").
-- **Headline** (800, 2.25rem, 0,95, −0,04em): título das telas sem lobo (Atividades, Ajustes, onboarding).
-- **Title** (800, 1.5rem, −0,01em): título do estado vazio.
-- **Title-sm** (800, 1.25rem, −0,01em): títulos de seção em Ajustes, título do diálogo; em 1.125rem no aviso de nova versão e no nome do app na barra do desktop.
-- **Lead** (600, 1.125rem): frase-resumo do lobo, limitada a 22rem; nome da atividade na linha usa 700 com −0,01em.
-- **Body** (450, 1rem, 1,5): texto corrente; descrições limitadas a 60ch.
-- **Meta** (450, 0.875rem): linha de apoio da atividade e versão (com algarismos tabulares); a data do lobo usa 600.
-- **Label** (700, 1rem): texto de botões e da cápsula. **Label-nav** (600, 0.75rem; 0.875rem a partir de 1024 px; 700 na aba ativa): rótulos da navegação.
+- **Display** (Condensed 800, 4rem, 0,95, −0,01em, caixa alta): título da faixa ("HOJE", "ÁLBUM").
+- **Headline** (Condensed 800, 3rem, 0,95, −0,01em, caixa alta): título das telas sem faixa (Ajustes, passo a passo).
+- **Title-section** (Condensed 800, 1.5rem, 1,1, caixa alta): título do estado vazio, títulos de seção em Ajustes, título do diálogo e nome do app na barra do desktop.
+- **Title-section-sm** (Condensed 800, 1.25rem, 1,1, caixa alta): título de seção dentro de outra seção ("VEJA COMO COLAR", no exemplo do estado vazio de Hoje) e do aviso de nova versão.
+- **Sticker numeral** (Condensed 800, 2rem, 1) na figurinha colada; **Sticker numeral slot** (Condensed 800, 1.375rem, 1) na vaga pendente.
+- **Band meta** (700, 0.9375rem): linha "Semana 43 · domingo, 25 de outubro" acima do título da faixa.
+- **Lead** (700, 1.125rem): frase-resumo da faixa (até 22rem) e nome da atividade na linha. **Lead-lg** (700, 1.25rem): frase do passo a passo.
+- **Body** (500, 1rem, 1,5): texto corrente; descrições limitadas a 60ch.
+- **Meta** (500, 0.875rem): linha de apoio da atividade e versão (com algarismos tabulares); em 700, as iniciais dos dias na página vazia do Álbum.
+- **Label** (700, 1rem): texto de botões e itens de menu. **Label-sticker** (700, 0.8125rem, 1): "Nº" na figurinha e "colar" na vaga. **Label-nav** (700, 0.8125rem; 0.875rem a partir de 1024 px): rótulos da navegação.
 
 ### Named Rules
 
-**The Tight Title Rule.** Títulos Display e Headline usam sempre o utilitário de título do mundo (800, entrelinha 0,95, tracking −0,04em). Títulos menores usam 800 com só −0,01em; o tracking extremo é reservado ao topo da tela.
+**The Condensed Caps Rule.** Todo título de página e de seção (inclusive o do estado vazio, do diálogo e do aviso) usa a condensada 800 em caixa alta, assim como os numerais. Texto corrente, rótulos e nomes de atividade ficam na Barlow em caixa normal.
 
-**The One Family Rule.** Uma família só, em escala fixa de rem. Hierarquia por peso e tamanho, nunca por uma segunda fonte.
+**The Two Weights Rule.** A Barlow tem só 500 e 700; a condensada, só 800. Hierarquia por tamanho e por essa troca de família, nunca por um peso novo ou uma terceira família.
 
 ## Layout
 
-Coluna única centralizada de até 42rem com respiro lateral de 1.25rem em todas as telas, do celular de 320 px ao desktop. No celular, a navegação de 4 abas (Hoje, Atividades, Dashboard, Ajustes) fica no rodapé, em grade de quatro colunas com abas de 56 px de altura; a partir de 1024 px ela sobe para uma barra no topo, com o nome do app à esquerda e abas em linha de 44 px.
+Coluna única centralizada de até 42rem com respiro lateral de 1.25rem em todas as telas, do celular de 320 px ao desktop. No celular, a navegação de 3 abas (Hoje · Álbum · Ajustes) fica fixa no rodapé, em grade de três colunas com abas de 56 px de altura; a partir de 1024 px ela sobe para uma barra no topo, com o nome do app à esquerda e abas em linha de 44 px.
 
-O lobo ocupa a largura toda e carrega título, data e frase-resumo; seu conteúdo respeita a mesma coluna. Abaixo, seções empilham com ritmo vertical de 2rem; linhas de lista têm no mínimo 72 px (4.5rem), com nome e apoio à esquerda e a cápsula à direita, separadas por filetes de 2 px em `surface`. Ações do estado vazio empilham na largura toda no celular e ficam lado a lado a partir de 640 px. Todo alvo interativo mede pelo menos 44 × 44 px (verificado em teste).
+A faixa da semana ocupa a largura toda e carrega a linha de semana e data, o título Display e a frase-resumo; seu conteúdo respeita a mesma coluna. Abaixo, seções empilham com ritmo vertical de 2rem; linhas de lista têm no mínimo 92 px (5.75rem), com nome e apoio à esquerda e a vaga ou figurinha de 64 × 76 px à direita, separadas por filetes de 2 px em `surface`. No Álbum, as duas seções vazias são separadas por um filete de 2 px. No estado vazio, a peça de exemplo do mundo fica entre o texto e as ações; as ações empilham na largura toda no celular e ficam lado a lado a partir de 640 px. Todo alvo interativo mede pelo menos 44 × 44 px (verificado em teste).
 
 ## Elevation & Depth
 
-O mundo é plano: profundidade vem de cor chapada e de filetes, não de sombra. Sombra existe só em três lugares funcionais: o ponto da cápsula (uma sombra mínima para destacá-lo da cor), e as camadas que flutuam sobre a página (menu, diálogo, aviso de nova versão), que também levam borda de 2 px em tinta. O diálogo escurece a página com um véu de tinta a 50%.
+O mundo é plano: profundidade vem de cor chapada, de borda e de filete, não de sombra. A figurinha colada assenta na página com uma sombra dura de 2 px, sem desfoque (a única sombra do mundo); as camadas funcionais que flutuam sobre a página (menu, diálogo, aviso de nova versão) levam borda de 2 px em tinta e uma sombra difusa de camada. O diálogo escurece a página com um véu de tinta a 50%.
 
 ### Shadow Vocabulary
 
-- **Ponto** (`box-shadow: 0 1px 2px rgb(0 0 0 / 0.25)`): só no ponto branco da cápsula de marcar.
+- **Assentamento** (`box-shadow: 0 2px 0 rgb(0 0 0 / 0.25)`): só na figurinha colada.
 - **Menu** (`box-shadow: 0 10px 24px -10px rgb(0 0 0 / 0.35)`): menu de ações suspenso.
 - **Camada** (`box-shadow: 0 16px 40px -12px rgb(0 0 0 / 0.4)`): diálogo modal e aviso de nova versão.
 
 ### Named Rules
 
-**The Flat Map Rule.** Superfícies em repouso não têm sombra, gradiente nem textura. Sombra só para o que flutua acima da página ou para o ponto da cápsula.
+**The Flat Page Rule.** Superfícies em repouso não têm sombra, gradiente nem textura. Sombra só para a figurinha colada (assentamento) e para o que flutua acima da página.
 
 ## Shapes
 
-Três formas. **Cápsula** (totalmente arredondada) para tudo que se aperta: botões, cápsula de marcar, interruptor, abas da navegação, botão de fechar. **Cantos suaves** (1.25rem) para camadas flutuantes, menu, diálogo e aviso, e 0.75rem para os itens do menu. **Borda orgânica** só no lobo: um contorno inferior ondulado em SVG que se estica com a largura. O resto é retangular: linhas e seções não têm caixa, apenas filetes de 2 px. Contornos são sempre de 2 px.
+Retângulos de canto curto. **Canto de controle** (0.625rem) para botões, abas da navegação, botão de fechar, vaga e figurinha; **canto pequeno** (0.375rem) para itens do menu; **canto de camada** (1rem) para menu, diálogo e aviso. Só o interruptor e o rádio são totalmente redondos. Linhas e seções não têm caixa, apenas filetes de 2 px. Contornos são de 2 px; a exceção é a borda de papel da figurinha, de 4 px. A figurinha colada fica girada −2°; a vaga pendente é reta e tracejada.
 
 ## Components
 
 ### Buttons
 
-Cápsulas firmes, de cor chapada e texto em negrito.
+Blocos firmes de canto curto, cor chapada e rótulo em negrito.
 
-- **Shape:** cápsula (raio total), altura mínima de 44 px, 1.25rem de respiro lateral, sem quebra de linha.
-- **Primary:** tinta com texto branco (no escuro, tinta clara com texto grafite). No hover escurece levemente (`brightness(0.95)`).
+- **Shape:** canto de controle (0.625rem), altura mínima de 44 px, 1.25rem de respiro lateral, sem quebra de linha.
+- **Primary:** tinta com texto branco (no escuro, tinta clara com texto escuro). No hover escurece levemente (`brightness(0.95)`).
 - **Secondary:** contorno de 2 px em tinta, fundo transparente; hover em `surface`.
 - **Ghost:** sem contorno, texto em tinta; hover em `surface`.
 - **Danger:** contorno e texto em `danger`; hover em `surface`.
 - **Pressionado / Desabilitado:** desce 1 px ao apertar (150 ms, sem transição com movimento reduzido); desabilitado a 60% de opacidade.
-- **Chip com seta:** os links com aparência de botão terminam num ponto redondo de 32 px com seta, em cor que contrasta com a cápsula (ponto branco com seta em tinta no principal; ponto em tinta com seta na cor do fundo no secundário e no fantasma; ponto em `danger` no destrutivo). Botões de ação comum não levam chip. Quando os botões empilham na largura toda no celular, o chip fica colado ao rótulo, no centro, e não na ponta direita (limite conhecido).
+- **Link com seta:** links com aparência de botão terminam numa seta de linha de 20 px (traço 2.5) logo depois do rótulo, indicando que levam a outra tela. Botões de ação comum não levam seta.
 
-### Mark Capsule (gesto próprio)
+### Sticker (gesto próprio)
 
-A cápsula de marcar é a assinatura do mundo: 128 × 44 px, cor da atividade, texto grafite e um ponto branco de 32 px. Pendente, o texto "Marcar" fica à esquerda e o ponto à direita; ao marcar, o ponto atravessa para a esquerda em 250 ms com leve overshoot (`cubic-bezier(0.34, 1.25, 0.64, 1)`) e o texto vira "Feito" à direita. Com movimento reduzido a troca é instantânea. O estado está no texto, na posição do ponto e em `aria-pressed`; o nome acessível inclui o nome da atividade. Hoje aparece só na linha de exemplo (amarelo); folga em lilás está no brief, ainda não construída.
+Colar a figurinha é a assinatura do mundo. Mede 64 × 76 px e ocupa a direita da linha.
+
+- **Vaga (pendente):** contorno tracejado de 2 px em tinta, fundo transparente (hover em `surface`), numeral que a pessoa vai ganhar em Sticker numeral slot e, abaixo, "colar" em Label-sticker.
+- **Figurinha (colada):** fundo na cor da atividade, borda de papel de 4 px (`sticker-edge`), contorno externo de 2 px em tinta, sombra **Assentamento**, girada −2°; "Nº" em Label-sticker acima e o numeral em Sticker numeral.
+- **Movimento:** ao colar agora, a figurinha cai na vaga um pouco torta e assenta (`sticker-in`, 320 ms, `cubic-bezier(0.22, 1, 0.36, 1)`, de −0.5rem, 9° e 114% para −2° e 100%, sem overshoot). Uma figurinha que já abre colada não anima; com movimento reduzido não há animação.
+- **Acessibilidade:** nome acessível fixo com o número e o nome da atividade; estado em `aria-pressed`, no texto e na forma (vaga × figurinha). A cor só identifica a atividade.
 
 ### Toggle (Switch)
 
-Mesmo gesto da cápsula: trilho de 72 × 44 px com contorno de 2 px em tinta, `surface` desligado e tinta ligado; o ponto branco de 36 px, também contornado, atravessa para a direita com a mesma curva de 250 ms. O rótulo à esquerda também alterna.
+Trilho de 72 × 44 px com contorno de 2 px em tinta, `surface` desligado e azul (`shell`) ligado; o ponto de papel de 36 px, contornado em tinta, atravessa para a direita em 250 ms com a mesma curva da figurinha (instantâneo com movimento reduzido). O rótulo fica à esquerda.
 
 ### Radio
 
@@ -314,50 +359,54 @@ Não há cartões. Conteúdo vive em seções abertas sobre o fundo; só camadas
 
 ### Menu
 
-Caixa em `bg` com contorno de 2 px em tinta, cantos de 1.25rem, sombra **Menu** e 0.375rem de respiro; itens de 44 px em 600, realçados com `surface` mais um anel de foco interno de 3 px.
+Caixa em `bg` com contorno de 2 px em tinta, canto de camada, sombra **Menu** e 0.375rem de respiro; itens de 44 px em Label, realçados com `surface` mais um anel de foco interno de 3 px.
 
 ### Dialog
 
-Caixa centralizada de até 28rem com contorno de 2 px, cantos de 1.25rem, 1.25rem de respiro e sombra **Camada**; título em Title-sm; botão de fechar em cápsula de 44 px com ícone. O aviso de nova versão usa a mesma caixa, fixa acima da navegação, sem roubar o foco.
+Caixa centralizada de até 28rem com contorno de 2 px, canto de camada, 1.25rem de respiro e sombra **Camada**; título em Title-section; botão de fechar de 44 px com ícone, hover em `surface`. O aviso de nova versão usa a mesma caixa, fixa acima da navegação, com título em Title-section-sm, sem roubar o foco.
 
 ### Navigation
 
-Barra em `bg` separada do conteúdo por filete de 2 px em `surface`. Abas com ícone de linha (lucide, traço 2.25, 20 px) e rótulo; inativa em `text-muted` (hover em `text`), ativa como cápsula preenchida em `shell` com texto `on-shell` em 700. Rodapé no celular, topo a partir de 1024 px.
+Barra em `bg` separada do conteúdo por filete de 2 px em `surface`. Abas com ícone de linha (lucide, traço 2.25, 20 px) e rótulo em Label-nav; inativa em `text-muted` (hover em `text`), ativa como bloco em tinta (`primary` com `on-primary`). Rodapé fixo no celular, barra no topo a partir de 1024 px com o nome do app em Title-section.
 
-### Lobe Header
+### Band Header
 
-Região de estrutura em `shell` com a borda inferior orgânica, usada só em Hoje e Dashboard. Leva o título Display, a data (0.875rem, 600) e a frase-resumo em Lead.
+A faixa da semana: região de estrutura em azul chapado, largura toda, usada só em Hoje e no Álbum, como a capa de uma página do álbum. Leva a linha de semana e data em Band meta (só em Hoje), o título Display e a frase-resumo em Lead. Dentro dela o anel de foco é branco (`focus-on-shell`).
 
 ### Empty State
 
-Título em Title, texto em `text-muted` até 60ch e ações que ensinam o próximo passo (botão principal e, quando houver, um secundário). Nunca só "nada aqui".
+Título em Title-section (condensada em caixa alta), texto em `text-muted` até 60ch, uma peça opcional do mundo e ações que ensinam o próximo passo (botão principal e, quando houver, um secundário). Nunca só "nada aqui". As telas sem faixa usam o título de página em Headline.
+
+- **Peça de exemplo:** entra entre o texto e as ações e mostra o mundo antes de haver dados. Em Hoje, a seção "VEJA COMO COLAR" com uma linha de atividade e uma figurinha de exemplo que funciona, mas não é salva. Em "Semanas e meses", no Álbum, uma página vazia: sete vagas tracejadas de 2 px (proporção 4:5, canto de controle) em grade de sete colunas, com a inicial de cada dia embaixo em Meta 700; as vagas são `border` com texto `text-muted`, e a de hoje tem contorno e texto em tinta. É só decoração (`aria-hidden`).
 
 ### Focus
 
-Anel de 3 px em `focus` a 2 px de distância do elemento, com 3:1 garantido sobre `bg`, `surface` e `shell`.
+Anel de 3 px em `focus` a 2 px de distância do elemento, com 3:1 garantido sobre `bg` e `surface`; dentro da faixa azul, o anel usa `focus-on-shell`.
 
 ## Do's and Don'ts
 
 ### Do:
 
-- **Do** usar o verde (`shell`) só em estrutura: lobo, aba ativa, seleção de texto.
-- **Do** fazer toda ação em cápsula de raio total com pelo menos 44 px de altura e texto em 700.
-- **Do** mostrar o estado da cápsula no texto e na posição do ponto, além de `aria-pressed`; a cor só identifica a atividade.
-- **Do** manter texto grafite e ponto branco em todas as cápsulas coloridas, também no tema escuro.
-- **Do** usar o utilitário de título (800, 0,95, −0,04em) para Display e Headline, e −0,01em nos títulos menores.
+- **Do** usar o azul (`shell`) só em estrutura: faixa da semana, interruptor ligado, seleção de texto.
+- **Do** fazer toda ação em bloco de canto curto (0.625rem) com pelo menos 44 px de altura e rótulo em 700.
+- **Do** mostrar o estado da figurinha no texto e na forma (vaga tracejada × figurinha colada), além de `aria-pressed`; a cor só identifica a atividade.
+- **Do** manter numeral em tinta e borda de papel branca em todas as figurinhas, também no tema escuro.
+- **Do** usar a condensada 800 em caixa alta para todo título de página e de seção e para os numerais, e a Barlow 500/700 para todo o resto.
+- **Do** dar a todo estado vazio uma peça do mundo (figurinha de exemplo, página com vagas) quando ela ensinar o que vai aparecer ali.
 - **Do** separar linhas e regiões com filetes de 2 px em `surface`, não com caixas.
 - **Do** adicionar todo novo par texto × fundo ao teste de contraste, nos dois temas.
 - **Do** dar a toda transição uma saída com movimento reduzido.
 
 ### Don't:
 
-- **Don't** usar o verde como cor de botão ou de ação.
-- **Don't** usar gradiente, textura ou sombra decorativa; sombra só no ponto da cápsula e em camadas flutuantes.
+- **Don't** usar o azul como cor de botão ou de ação.
+- **Don't** usar gradiente, textura ou sombra decorativa; sombra só no assentamento da figurinha e em camadas flutuantes.
 - **Don't** usar chama de sequência, anel de progresso ou lista cinza com círculos de check.
+- **Don't** reordenar a lista ao colar: a figurinha muda de estado no lugar.
+- **Don't** mostrar vaga vazia de dia passado; o número da figurinha nunca volta a zero.
 - **Don't** usar cores fora dos tokens do tema (as cores padrão do Tailwind estão desligadas).
-- **Don't** transformar o lobo em layout: ele é só o cabeçalho de Hoje e do Dashboard.
-- **Don't** introduzir uma segunda família tipográfica.
+- **Don't** introduzir uma terceira família tipográfica ou pesos além de Barlow 500/700 e Condensed 800.
 
 ### Ainda não construído
 
-Faz parte do mundo declarado, mas não existe no código; não trate como padrão disponível: cores de cápsula fora da linha de exemplo (coral, azul e lilás em uso real, folga em lilás), divisores orgânicos entre seções, contêiner da navegação em forma de cápsula, e o chip na ponta direita dos botões empilhados na largura toda.
+Faz parte do mundo declarado, mas não existe no código; não trate como padrão disponível: a tira de figurinhas da semana dentro da faixa (precisa dos dados da F05/F09); a vaga de folga em lilás (os tokens `rest`, `on-rest` e `rest-border` existem, o componente não); a barra de meta de duração dentro da linha; as páginas de semana e mês do Álbum e as páginas de detalhe de cada atividade; e a atribuição de cor por atividade (hoje só o verde aparece, fixo na figurinha de exemplo).

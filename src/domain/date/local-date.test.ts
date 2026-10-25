@@ -11,6 +11,7 @@ import {
   endOfWeek,
   fromEpochDay,
   InvalidLocalDateError,
+  isoWeek,
   isLocalDate,
   localDate,
   localDateAt,
@@ -214,5 +215,32 @@ describe('localDateAt (instante → dia no fuso do usuário)', () => {
 
   it('rejeita instante inválido', () => {
     expect(() => localDateAt(Number.NaN, 'UTC')).toThrow(RangeError);
+  });
+});
+
+describe('isoWeek', () => {
+  it.each([
+    ['2026-10-25', 43],
+    ['2026-10-19', 43],
+    ['2026-01-01', 1],
+    ['2025-12-29', 1],
+    ['2021-01-03', 53],
+    ['2020-12-31', 53],
+    ['2027-01-03', 53],
+    ['2027-01-04', 1],
+  ])('%s é a semana %i', (text, week) => {
+    expect(isoWeek(d(text))).toBe(week);
+  });
+
+  it('é igual para todos os dias de uma semana de segunda a domingo', () => {
+    fc.assert(
+      fc.property(fc.integer({ min: -100_000, max: 100_000 }), (epochDay) => {
+        const monday = startOfWeek(fromEpochDay(epochDay));
+        const week = isoWeek(monday);
+        expect(week).toBeGreaterThanOrEqual(1);
+        expect(week).toBeLessThanOrEqual(53);
+        for (let i = 1; i < 7; i++) expect(isoWeek(addDays(monday, i))).toBe(week);
+      }),
+    );
   });
 });

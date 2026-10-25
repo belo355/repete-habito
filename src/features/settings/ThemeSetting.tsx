@@ -16,7 +16,7 @@ export function ThemeSetting() {
 
   return (
     <div role="radiogroup" aria-labelledby={titleId}>
-      <h2 id={titleId} className="mb-2 text-xl font-extrabold tracking-[-0.01em]">
+      <h2 id={titleId} className="title-section mb-2 text-2xl">
         {t('settings.theme.title')}
       </h2>
       {options.map(({ value, labelKey }) => (
