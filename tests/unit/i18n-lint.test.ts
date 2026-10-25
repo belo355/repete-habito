@@ -9,7 +9,16 @@ const DIR = 'src/features/__i18n_probe__';
 const eslint = new ESLint();
 let count = 0;
 
-beforeAll(() => mkdirSync(DIR, { recursive: true }));
+// O ESLint com tipos (project service + plugins) leva alguns segundos na primeira análise; num
+// runner de CI dividido com a cobertura e os navegadores isso passava dos 5 s padrão. O
+// aquecimento paga esse custo uma vez, com prazo próprio, e cada teste ganha um prazo explícito.
+// Não é limite de qualidade: as asserções continuam as mesmas.
+const LINT_TIMEOUT = 30_000;
+
+beforeAll(async () => {
+  mkdirSync(DIR, { recursive: true });
+  await eslint.lintFiles(['src/app/App.tsx']);
+}, 120_000);
 afterAll(() => rmSync(DIR, { recursive: true, force: true }));
 
 async function literalErrors(code: string, ext: 'ts' | 'tsx' = 'tsx'): Promise<string[]> {
@@ -21,7 +30,7 @@ async function literalErrors(code: string, ext: 'ts' | 'tsx' = 'tsx'): Promise<s
     .map((m) => m.message);
 }
 
-describe('INV11 · nenhum texto fixo no código', () => {
+describe('INV11 · nenhum texto fixo no código', { timeout: LINT_TIMEOUT }, () => {
   it.each([
     ['texto no JSX', 'export const Probe = () => <p>Olá</p>;'],
     ['aria-label fixo', 'export const Probe = () => <button type="button" aria-label="Fechar" />;'],

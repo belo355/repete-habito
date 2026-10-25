@@ -9,12 +9,19 @@ const layers = ['domain', 'data', 'platform', 'features'] as const;
 const eslint = new ESLint();
 let probeCount = 0;
 
-beforeAll(() => {
+// O ESLint com tipos (project service + plugins) leva alguns segundos na primeira análise; num
+// runner de CI dividido com a cobertura e os navegadores isso passava dos 5 s padrão. O
+// aquecimento paga esse custo uma vez, com prazo próprio, e cada teste ganha um prazo explícito.
+// Não é limite de qualidade: as asserções continuam as mesmas.
+const LINT_TIMEOUT = 30_000;
+
+beforeAll(async () => {
   for (const layer of layers) {
     mkdirSync(`src/${layer}/${PROBE}`, { recursive: true });
     writeFileSync(`src/${layer}/${PROBE}/target.ts`, 'export const target = 1;\n');
   }
-});
+  await eslint.lintFiles(['src/app/App.tsx']);
+}, 120_000);
 
 afterAll(() => {
   for (const layer of layers) rmSync(`src/${layer}/${PROBE}`, { recursive: true, force: true });
@@ -35,7 +42,7 @@ async function boundaryErrors(from: string, imports: string[]): Promise<string[]
 
 const target = (layer: string) => `../../${layer}/${PROBE}/target.ts`;
 
-describe('fronteiras de arquitetura', () => {
+describe('fronteiras de arquitetura', { timeout: LINT_TIMEOUT }, () => {
   it.each(['data', 'platform', 'features'])('domain não importa %s', async (layer) => {
     expect(await boundaryErrors('domain', [target(layer)])).toHaveLength(1);
   });
@@ -75,7 +82,7 @@ async function domainRuleErrors(code: string): Promise<string[]> {
     .map((m) => m.message);
 }
 
-describe('relógio e navegador no domínio', () => {
+describe('relógio e navegador no domínio', { timeout: LINT_TIMEOUT }, () => {
   // Cada forma de ler o relógio ou o navegador gera exatamente um erro.
   it.each([
     ['new Date()', 'export const t = new Date();'],
