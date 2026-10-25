@@ -1,5 +1,6 @@
 # Repete Hábito — Agente de QA (testes automatizados e E2E)
 
+> Versão 0.3 · 25/10/2026 (CA01.2 sem parte manual pela DV08; demo fora da Definição de Pronto e das saídas pela DV09)
 > Versão 0.2 · 24/10/2026 (nível de componente em navegador; CA01.6 pela DV05)
 > Referências: [product.md](product.md) (critérios de aceite, seção 4.9) · [tech-spec.md](tech-spec.md) (stack de testes, §4) · [run.md](run.md) (ciclo de execução, matriz de rastreabilidade §7) · [tasks.md](tasks.md)
 
@@ -48,7 +49,7 @@ Este arquivo define o **agente de QA**: quais testes automatizados (unitários, 
 | **C** · Componente em navegador | Vitest modo navegador (projeto `browser`, `@vitest/browser-playwright`, Chromium e WebKit a 320 px) + axe-core | `src/ui/**/*.browser.test.tsx` | Componentes de `ui/` isolados em navegador real: contraste nos 2 temas, alvos ≥ 44 px, teclado, foco visível, papéis e nomes acessíveis. Roda junto com `pnpm vitest run` (projetos `unit` e `browser`). Cobertura pelo provedor istanbul (o v8 não funciona no WebKit). Não substitui o E2E da tela. |
 | **E** · End-to-end | Playwright + @axe-core/playwright | `e2e/**/*.spec.ts` | Fluxos reais no navegador: toques, offline, tema, relógio, fuso, notificações, acessibilidade. |
 | **L** · Lighthouse | Lighthouse CI | `lighthouserc.json` | LCP < 2,5 s (4G simulado), JS inicial < 200 KB gzip. "PWA instalável" saiu do Lighthouse 12 e é provado por E2E (DV05, ver CA01.6). |
-| **M** · Manual | Registro em `run.md` §9 | `reports/qa/evidencias/` | Só os CAs marcados *(manual)*. O agente cobra a evidência, não a inventa. |
+| **M** · Manual | Registro em `run.md` §9 | `reports/qa/evidencias/` | Só os CAs marcados *(manual)* neste catálogo (§4). O agente cobra a evidência, não a inventa. Parte manual dispensada por decisão de produto registrada em `run.md` §6.2 não é cobrada (ex.: CA01.2, DV08). Demo para o responsável de produto não é exigida (DV09). |
 
 Regra: **toda regra de negócio é provada no nível U/P**; o E2E prova que a tela usa essa regra e que o "então" visível ao usuário acontece. Um CA de regra (ex.: CA07.2) nunca é coberto só por E2E.
 
@@ -106,7 +107,7 @@ Cada linha é um teste (ou grupo) **obrigatório**. "Asserções" é o que o tes
 | CA | Nível | Arquivo | Cenário | Asserções |
 |---|---|---|---|---|
 | CA01.1 | E `@offline` | `e2e/f01-offline.spec.ts` | Abrir app, esperar o SW ativar (`navigator.serviceWorker.ready`), `context.setOffline(true)`, recarregar e visitar todas as rotas. | Cada rota responde com o conteúdo esperado (heading da tela); nenhuma página de erro do navegador. |
-| CA01.2 | E + M | `e2e/f01-install.spec.ts` | Chromium: disparar `beforeinstallprompt` sintético. WebKit com UA de iPhone. | Chromium: botão "Instalar app" visível e chama `prompt()`. iOS: instrução "Adicionar à Tela de Início" visível. Manual: instalação real no iOS. |
+| CA01.2 | U + E | `e2e/f01-install.spec.ts` · `src/platform/install/detect.test.ts` | Chromium: disparar `beforeinstallprompt` sintético. WebKit com UA de iPhone. Detecção pura: iPhone, iPad (inclusive em modo desktop), Android/desktop e app já instalado. | Chromium: botão "Instalar app" visível e chama `prompt()`. iOS: instrução "Adicionar à Tela de Início" visível. Detecção de iOS e de modo instalado correta. A instalação real no iPhone deixou de ser exigida (DV08): o CA é provado só pelos testes automáticos. |
 | CA01.3 | E | `e2e/f01-theme.spec.ts` | `emulateMedia({ colorScheme: 'dark' })` sem preferência salva; depois escolher "Claro" em Ajustes e recarregar. | `data-theme="dark"` (ou classe equivalente) na 1ª carga; após escolha e reload, tema claro mantido mesmo com SO escuro. |
 | CA01.4 | E `@axe` | `e2e/f01-contrast.spec.ts` | Percorrer todas as rotas nos temas claro e escuro. | Zero violações `color-contrast` do axe em cada rota × tema. |
 | CA01.5 | E | `e2e/f01-update.spec.ts` | Servir build A, abrir app; trocar para build B (versão diferente) e chamar `registration.update()`. | Aviso "Nova versão disponível" visível; a página **não** recarrega sozinha (marcador em `window` persiste); ao aceitar, recarrega e mostra a versão B. |
@@ -462,7 +463,7 @@ Salvo em `reports/qa/<AAAA-MM-DD>-<escopo>.md` (ex.: `reports/qa/2026-10-22-F13.
 | Axe 0 violações, alvos ≥ 44px, teclado | ✅ / ❌ | |
 | Regras em `domain/` com cobertura ≥ 90% | ✅ / ❌ | |
 | Schema alterado: migração, snapshot e fixture | ✅ / ❌ / n/a | |
-| Demo no preview aprovada pelo produto | ✅ / 🟡 | manual |
+| App executa e segue as diretrizes do produto (sem demo obrigatória, DV09) | ✅ / ❌ | Definição de Pronto automática verde + veredito do QA |
 
 ## 7. Pendências manuais
 

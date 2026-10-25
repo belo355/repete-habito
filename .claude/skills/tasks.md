@@ -18,7 +18,7 @@ Status possíveis: ⬜ Pendente · 🚧 Em andamento · ✅ Concluída · ⏸️
 | Entrega | Feature | Descrição | Prioridade | Depende de | Tasks | Status |
 |---|---|---|---|---|---|---|
 | 0 | F00 | Setup do repositório, qualidade e CI | Must | — | 10 | 🚧 Em andamento |
-| 1 | F01 | Fundação do app (PWA, rotas, tema, i18n, a11y) | Must | F00 | 13 | 🚧 Em andamento |
+| 1 | F01 | Fundação do app (PWA, rotas, tema, i18n, a11y) | Must | F00 | 13 | ✅ Concluída |
 | 1 | F02 | Armazenamento local (Dexie, repositórios, migração) | Must | F01 | 11 | ⬜ Pendente |
 | 1 | F03 | Cadastro de atividades | Must | F02 | 9 | ⬜ Pendente |
 | 1 | F05 | Tela Hoje e marcação | Must | F03 | 9 | ⬜ Pendente |
@@ -84,7 +84,7 @@ Status possíveis: ⬜ Pendente · 🚧 Em andamento · ✅ Concluída · ⏸️
 - [x] **T01.10** Prompt de instalação (Android/desktop) e instrução visual "Adicionar à Tela de Início" (iOS). — M
 - [x] **T01.11** Pendências do QA da F01: regra de i18n sem lacuna fora do JSX (F-03), `<title>`/description do `index.html` no i18n (F-05), preferência de tema validada ao reidratar (F-04), E2E lendo textos de `pt-BR.json` (F-06), `format(void 0)`/`format(...[])` no lint do domínio (F-07) e texto do passo do iOS (F-08). — M
 - [x] **T01.12** Mundo visual "Mapa do parque" (brief em `.impeccable/ux-brief.md`): tokens claro/escuro, tipografia, componentes da T01.5 redesenhados, cápsula de marcar e cabeçalho em lobo, navegação de 4 abas (Hoje · Atividades · Dashboard · Ajustes; Progresso vira detalhe da atividade) e estados vazios das telas. — G
-- [ ] 🚧 **T01.13** CI verde no GitHub: os testes que rodam o ESLint com tipos (`tests/unit/boundaries.test.ts`, `tests/unit/i18n-lint.test.ts`) estouravam o tempo padrão de 5 s no runner; aquecimento no `beforeAll` e prazo explícito. — P
+- [x] **T01.13** CI verde no GitHub: os testes que rodam o ESLint com tipos (`tests/unit/boundaries.test.ts`, `tests/unit/i18n-lint.test.ts`) estouravam o tempo padrão de 5 s no runner; aquecimento no `beforeAll` e prazo explícito. — P
 
 ### F02 · Armazenamento local · Must · Cobre product 4.5 · Dívidas: D1, D2, D3
 

@@ -283,7 +283,7 @@ Status: ⬜ Não verificado · 🟡 Parcial · ✅ Aprovado · ❌ Falhando
 | CA | Tasks | Revalidar quando | Teste | Status |
 |---|---|---|---|---|
 | CA01.1 | T01.1, T01.6 | T11.8 | E | ✅ |
-| CA01.2 | T01.10 | T12.6 | E (parte manual dispensada, DV08) | 🟡 |
+| CA01.2 | T01.10 | T12.6 | E (parte manual dispensada, DV08) | ✅ |
 | CA01.3 | T01.3 | — | E | ✅ |
 | CA01.4 | T01.2, T01.5 | NFR.1 | E (axe) | ✅ |
 | CA01.5 | T01.7 | — | E | ✅ |
@@ -514,6 +514,26 @@ Adicionar uma entrada **por task executada**, da mais recente para a mais antiga
 ```
 
 ### Execuções
+
+### 2026-10-25 · F01 · Fechamento de feature (qa feature F01) — ✅ fechada
+
+**QA (qa.md):** ✅ Aprovada · 6/6 CAs ✅ · 14/14 INV (5 com teste, 9 sem código, 0 falhando) · 0 falhas abertas (9 pendências S3/S4 registradas) · 0 flaky · CI [40159135379](https://github.com/belo355/repete-habito/actions/runs/40159135379) verde · relatório: [reports/qa/2026-10-25-F01.md](../../reports/qa/2026-10-25-F01.md)
+
+**Resultado:** a F01 fecha (run.md §4). Todos os itens da Definição de Pronto ✅ (histórico e schema n/a), com as decisões DV08 (CA01.2 só automático) e DV09 (sem demo obrigatória). CA01.2 vira ✅ na matriz. O QA atualizou qa.md para a 0.3 (DV08 na linha do CA01.2, DV09 no modelo de relatório e no nível M).
+
+**Pendências registradas (não impedem a DoD):** P-01 (S3) brechas da regra de i18n, antes da T03.1 · P-02 (S3) ponto do Switch some no escuro ligado, antes da F10 (vira S2 quando o Switch entrar numa tela) · P-03 LCP 2,25 s · P-04 pílula da aba ativa 1,79:1 · P-05 nome da MarkCapsule muda com `aria-pressed`, antes da T05.2 · P-06 ordem do Tab no desktop · P-07 `i18nHtml` sem escapar · P-08 flaky de `f01-install.spec.ts` não reproduziu em 1.068 execuções (fechar) · P-09 CI com `retries: 1` sem relatório público de retries; actions em Node 20.
+
+### 2026-10-25 · T01.13 · CI verde: aquecimento dos testes que rodam o ESLint
+
+**Plano:** o run do GitHub do commit `ab7123e` falhou porque `tests/unit/boundaries.test.ts` e `tests/unit/i18n-lint.test.ts` estouravam o tempo padrão de 5 s (ESLint com tipos frio no runner). Aquecimento no `beforeAll` (prazo de 120 s) e prazo explícito de 30 s nos describes; asserções inalteradas.
+
+**Verificação técnica (passo 4):** lint ✅ · typecheck ✅ · unit + browser ✅ (316/316) · 3 fusos ✅ · CI do GitHub ✅ em todas as etapas ([40159135379](https://github.com/belo355/repete-habito/actions/runs/40159135379))
+
+**QA (qa.md):** ✅ Aprovada · 0/0 CAs próprios (6/6 da F01 revalidados ✅) · 14/14 INV (5 com teste, 9 sem código, 0 falhando) · 0 falhas · 0 flaky
+
+**Consistência (passo 5):** o prazo não é limite de qualidade (qa.md §1); mutação desligando as regras derrubou 12 testes, então eles seguem pegando regressão. Sugestão opcional: extrair o aquecimento para um helper comum.
+
+**Resultado:** ✅ Consistente
 
 ### 2026-10-25 · Decisões DV08 e DV09 (responsável de produto)
 
