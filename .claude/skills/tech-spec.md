@@ -177,7 +177,7 @@ Decisão: a interface `NotificationScheduler` fica em `platform/` com duas imple
 
 ## 5. Infraestrutura
 
-- **Hospedagem:** sem hospedagem no MVP por enquanto. A demonstração é feita localmente com o build de produção (`pnpm build && pnpm preview`), no lugar do preview por PR (ver seção 8, item 5).
+- **Hospedagem:** sem hospedagem no MVP por enquanto (DV04). Não há demo obrigatória (DV09): o build de produção roda localmente com `pnpm build && pnpm preview`, e o aceite vem da Definição de Pronto automática e do QA.
 - **CI:** GitHub Actions com lint → typecheck → unit → build → e2e → Lighthouse.
 - **Dependências:** Renovate com agrupamento semanal e auto-merge para patches com CI verde (feito pelo próprio Renovate, sem exigir proteção de branch).
 - **Erros em produção:** Sentry (ou equivalente) **sem dados pessoais e sem conteúdo dos registros**, com opt-in.
@@ -221,5 +221,5 @@ Itens que a escolha "somente frontend" cria ou que precisam de atenção desde o
 2. Momento de iniciar o app Capacitor: logo após o MVP ou só se os lembretes na PWA se mostrarem bloqueantes no beta.
 3. Forma de cobrança do premium na versão web (se houver) antes das lojas.
 4. Necessidade de sync entre dispositivos: os testes de sync da seção 7.2 do product.md ficam **fora do MVP** enquanto não houver backend.
-5. ~~Provedor de hospedagem e preview por PR.~~ **Decidido em 24/10/2026:** o deploy no Cloudflare Pages foi retirado (23/10) e a demonstração passa a ser local, com `pnpm build && pnpm preview`, no lugar do preview do PR (DV04 em run.md §6.2). Reavaliar a hospedagem antes do beta fechado (Entrega 3).
+5. ~~Provedor de hospedagem e preview por PR.~~ **Decidido em 24/10/2026:** o deploy no Cloudflare Pages foi retirado (23/10) e a demonstração passa a ser local, com `pnpm build && pnpm preview`, no lugar do preview do PR (DV04 em run.md §6.2). Reavaliar a hospedagem antes do beta fechado (Entrega 3). Em 25/10/2026 a demo deixou de ser exigida (DV09).
 6. **Registrado em 24/10/2026 (T01.5):** testes de componente de UI em navegador real (projeto `browser` do Vitest) e cobertura com istanbul em vez de v8. Complementam o E2E, sem substituir nenhum nível de qa.md §3.1. Falta o QA incluir esse nível em qa.md §3.1/§3.4.

@@ -52,9 +52,9 @@ tail -f reports/qa/progresso.log
 - `.github/workflows/ci.yml`: lint → typecheck → unit (+ 3 fusos) → build → e2e → Lighthouse.
 - `renovate.json`: PRs toda segunda; minor/patch agrupados; patches entram sozinhos. O próprio Renovate faz o merge só depois do CI verde, então não é preciso proteção na `main`. Requer o app Renovate instalado no repositório.
 
-## Demo
+## Rodar o build de produção
 
-Não há hospedagem no MVP por enquanto (decisão DV04). Para demonstrar uma feature, rode o build de produção localmente:
+Não há hospedagem no MVP por enquanto (DV04) nem demo obrigatória (DV09). Para ver o app como ele é publicado:
 
 ```bash
 pnpm build && pnpm preview

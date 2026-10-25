@@ -201,7 +201,7 @@ Quando a última task de uma feature for `[x]`:
    - [ ] Nenhum texto de culpa, punição ou promessa (5.2).
    - [ ] Nenhuma ação apaga histórico.
    - [ ] Schema alterado: migração, snapshot e teste de fixture.
-   - [ ] Demonstrada no preview e aprovada pelo responsável de produto.
+   - [ ] App executa e segue as diretrizes do produto (sem demo obrigatória, DV09).
 4. Atualizar o painel em `tasks.md` para ✅ Concluída.
 5. Registrar o fechamento na seção 9 com o resultado de cada item e o link do relatório do QA.
 
@@ -217,8 +217,8 @@ Quando todas as features de uma entrega estiverem ✅, conferir os critérios de
 
 | Entrega | Checagem de saída | Evidência exigida |
 |---|---|---|
-| **0** | CI completo rodando; demo local do build (DV04); Renovate ativo | Link de um PR com o pipeline verde |
-| **1** | Todos os CAs de F01, F02, F03 e F05 ✅; usuário novo, offline, cria e marca em < 5 s; CA02.2 e CA02.3 verdes | E2E verde + demo gravada ou registrada |
+| **0** | CI completo rodando; Renovate ativo | Link de um PR com o pipeline verde |
+| **1** | Todos os CAs de F01, F02, F03 e F05 ✅; usuário novo, offline, cria e marca em < 5 s; CA02.2 e CA02.3 verdes | E2E verde (sem demo, DV09) |
 | **2** | Cobertura ≥ 90% em `domain/streak` com testes de fuso e de propriedade; CA10.6 registrado; decisão sobre o Capacitor tomada | Relatório de cobertura + nota da decisão (tech-spec §8) |
 | **3** | E2E onboarding → atividade → marcação verde; Dashboard e progresso < 1 s com 2 anos de histórico; analytics sem PII | Relatório de performance + evento recebido no painel. **Libera o beta.** |
 | **4** | CA11.3 verde; revisão com VoiceOver e TalkBack sem bloqueios; LGPD publicada; "Excluir meus dados" funcionando | Checklist da revisão manual + link da política |
@@ -264,6 +264,8 @@ Além disso, em todo fechamento de entrega:
 | DV05 | 24/10/2026 | CA01.6 · T00.8 · T01.6 | Desvio técnico | O Lighthouse 12 (usado pelo `@lhci/cli` 0.15) removeu o audit `installable-manifest`; o orçamento "PWA instalável" do CA01.6 não pode mais ser medido no Lighthouse CI. | Verificar a instalabilidade com o E2E `CA01.6 · app instalável` no `chromium-android` (manifest, service worker controlando a página e checagem de instalabilidade do Chromium); LCP e JS continuam no Lighthouse CI. Ajustar qa.md §4 (linha CA01.6) e tech-spec §4. | Aprovada pelo responsável de produto em 24/10/2026. | ✅ Resolvida |
 | DV06 | 24/10/2026 | T01.8 · tech-spec §2.1 e §3.1 | Desvio técnico | A tech-spec manda usar `date-fns` + `@date-fns/tz` para datas; a T01.8 fez a aritmética de calendário própria (inteiros, algoritmo de Hinnant) e `Intl.DateTimeFormat` para o fuso, sem date-fns. O `LocalDate` também ganhou marca de tipo (continua string em tempo de execução). | Manter a implementação própria: não depende do fuso do processo, não cria `Date` no domínio (INV05), tem cobertura de 100% e não pesa no bundle. Atualizar a tech-spec §2.1 (linha "Datas") e §3.1. | Aprovada pelo responsável de produto em 24/10/2026; tech-spec §2.1 e §3.1 atualizadas. | ✅ Resolvida |
 | DV07 | 24/10/2026 | CA03.1 · product 4.1 · T03.1 · brief de UX (`.impeccable/ux-brief.md`) | Conflito | O brief de UX confirmado define a cor da atividade como **automática** (próxima cor livre da paleta de cápsulas), mas product 4.1 ("nome, ícone/cor") e o CA03.1 ("quando o usuário informa nome, ícone, cor…") preveem que o usuário escolha a cor. | (a) Cor automática como padrão, com opção de trocar no formulário (atende o CA03.1 sem mudar o produto); ou (b) responsável de produto ajusta product 4.1 e CA03.1 para cor automática. | Opção (a), escolhida pelo responsável de produto em 24/10/2026: cor automática como padrão, com opção de trocar no formulário (T03.1). Product 4.1 e CA03.1 inalterados. | ✅ Resolvida |
+| DV08 | 25/10/2026 | CA01.2 · qa.md §4 (linha CA01.2) · run.md §7 | Decisão de produto | A parte *(manual)* do CA01.2 (instalação real no iPhone com evidência em `reports/qa/evidencias/`) deixa de ser exigida. | O CA01.2 é provado só pelos testes automáticos (`e2e/f01-install.spec.ts` e `src/platform/install/detect.test.ts`). | Decisão do responsável de produto em 25/10/2026. | ✅ Resolvida |
+| DV09 | 25/10/2026 | product 4.9.1 (DoD: "demonstrada no preview do PR e aprovada") · 4.9.3 (Entrega 1: "Demo para o responsável de produto") · DV04 | Decisão de produto | A demo (preview do PR ou, pela DV04, demo local) deixa de ser exigida para fechar feature ou entrega. | Feature e entrega são aceitas quando o app executa e segue as diretrizes do produto: Definição de Pronto automática verde (CI, testes, axe, offline, Lighthouse) e veredito do QA. Substitui a parte de demo da DV04. | Decisão do responsável de produto em 25/10/2026. | ✅ Resolvida |
 
 Tipos: **Lacuna** (CA sem task) · **Conflito** (task × produto) · **Ambiguidade** (CA com mais de uma leitura) · **Dependência** (CA depende de feature futura) · **Desvio técnico** (spec não seguida).
 
@@ -281,7 +283,7 @@ Status: ⬜ Não verificado · 🟡 Parcial · ✅ Aprovado · ❌ Falhando
 | CA | Tasks | Revalidar quando | Teste | Status |
 |---|---|---|---|---|
 | CA01.1 | T01.1, T01.6 | T11.8 | E | ✅ |
-| CA01.2 | T01.10 | T12.6 | E + M (iOS) | 🟡 |
+| CA01.2 | T01.10 | T12.6 | E (parte manual dispensada, DV08) | 🟡 |
 | CA01.3 | T01.3 | — | E | ✅ |
 | CA01.4 | T01.2, T01.5 | NFR.1 | E (axe) | ✅ |
 | CA01.5 | T01.7 | — | E | ✅ |
@@ -512,6 +514,13 @@ Adicionar uma entrada **por task executada**, da mais recente para a mais antiga
 ```
 
 ### Execuções
+
+### 2026-10-25 · Decisões DV08 e DV09 (responsável de produto)
+
+- **DV08:** a evidência manual do CA01.2 (instalação real no iPhone) deixa de ser exigida; o CA01.2 é provado pelos testes automáticos. O modelo `reports/qa/evidencias/CA01.2-ios.md` foi removido.
+- **DV09:** a demo deixa de ser exigida na Definição de Pronto e nas saídas de entrega; aceita-se o que executa e segue as diretrizes do produto (DoD automática verde + veredito do QA). O roteiro `reports/qa/evidencias/F01-demo.md` foi removido.
+- O status do CA01.2 na matriz muda só pelo próximo veredito do QA (`qa feature F01`). A linha do CA01.2 em qa.md §4 e o item "Demo no preview" do relatório (qa.md §9) ficam para o QA ajustar, porque qa.md é dele (§1).
+- product.md continua com o texto original (4.9.1 e 4.9.3); valem as decisões registradas.
 
 ### 2026-10-25 · T01.12 · Mundo visual "Mapa do parque"
 
