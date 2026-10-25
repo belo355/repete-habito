@@ -9,6 +9,12 @@ export const THEME_STORAGE_KEY = 'repete-habito:tema';
 
 const DARK_QUERY = '(prefers-color-scheme: dark)';
 
+const PREFERENCES: readonly ThemePreference[] = ['system', 'light', 'dark'];
+
+export function isThemePreference(value: unknown): value is ThemePreference {
+  return PREFERENCES.includes(value as ThemePreference);
+}
+
 export function resolveTheme(preference: ThemePreference, systemIsDark: boolean): Theme {
   if (preference === 'system') return systemIsDark ? 'dark' : 'light';
   return preference;
@@ -29,6 +35,11 @@ export const useThemeStore = create<ThemeState>()(
       name: THEME_STORAGE_KEY,
       storage: createJSONStorage(() => localStorage),
       partialize: ({ preference }) => ({ preference }),
+      // Valor salvo inválido (armazenamento corrompido ou editado) volta para "seguir o sistema".
+      merge: (persisted, current) => {
+        const preference = (persisted as { preference?: unknown } | undefined)?.preference;
+        return { ...current, preference: isThemePreference(preference) ? preference : 'system' };
+      },
     },
   ),
 );

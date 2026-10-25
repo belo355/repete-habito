@@ -512,6 +512,32 @@ Adicionar uma entrada **por task executada**, da mais recente para a mais antiga
 
 ### Execuções
 
+### 2026-10-24 · T01.11 · Pendências do QA da F01
+
+**Plano:** task criada a pedido do responsável (passo 3, item 7) para as pendências do `qa feature F01`: F-03 regra de i18n em modo `all` (objetos, constantes, template literals e `.ts`); F-05 `<title>`/description do `index.html` vindos do `pt-BR.json` (plugin `i18nHtml`); F-04 preferência de tema validada ao reidratar (store e script inline); F-06 E2E lendo textos de `e2e/support/i18n.ts`; F-07 `format(void 0)`/`format(...[])` no lint do domínio; F-08 passo do iOS sem citar só o Safari.
+
+**Verificação técnica (passo 4):** lint ✅ · typecheck ✅ · unit + browser ✅ (259/259) · domain 100% ✅ · 3 fusos ✅ · build ✅ (JS 121,4 KB gzip) · e2e ✅ (264/264) · lighthouse ✅
+
+**QA (qa.md):** 🟡 Aprovada com pendência · 5/8 CAs ✅ (CA01.2 🟡 manual iOS; CA05.5/CA07.6 🟡 por T05.5/T07.8) · 14/14 INV · 3 falhas (S3: 2 · S4: 1) · 1 flaky (CA01.2 chromium-android, 1 em 5 rodadas completas)
+
+**Consistência (passo 5):**
+- A. CAs da task: sem CA próprio; pendências F-03 (escopo original), F-04, F-05, F-06, F-07 e F-08 do relatório da F01 resolvidas
+- B. Regressão: CAs da F01 verdes · INV10 e INV11 verdes
+- C. Princípios 5.2: a descrição do `index.html` deixou de dizer "sem culpa" e entra na varredura do INV10
+- D. Definição de Pronto (itens tocados): textos no i18n ✅
+- E. Documentos: sem divergência
+
+**Resultado:** 🟡 Consistente com pendência
+
+**Testes adicionados pelo QA:** tema do sistema já aplicado antes do React com valor salvo inválido (pegou uma mutação do script inline que os testes do executor não pegavam); `src/i18n/ca-texts.test.ts` fixa os textos que os CAs citam entre aspas ("Instalar app", "Adicionar à Tela de Início", "Nova versão disponível"), já que os E2E agora leem o `pt-BR.json`.
+
+**Pendências do QA:**
+- F-01 (S3) brechas da regra de i18n, tratar antes da T03.1: `(.*)Error` também libera `setError`/`showError` (React Hook Form); `name`/`value`/`type` em object-properties liberam a subárvore inteira; variável com nome todo em maiúsculas libera tudo o que está dentro (inclusive componentes); argumentos de `replace`/`join`/`split` passam.
+- F-02 (S3) flaky no chromium-android em `e2e/f01-install.spec.ts` (2 testes juntos numa rodada mais lenta; não reproduziu em 860 execuções seguintes); provável ambiente.
+- F-03 (S4) `i18nHtml` insere os textos sem escapar `"`/`<`.
+
+**Novas tasks ou divergências:** —
+
 ### 2026-10-24 · F01 · Fechamento de feature (qa feature F01)
 
 **QA (qa.md):** 🟡 Aprovada com pendência · 5/6 CAs ✅ (CA01.2 🟡, manual iOS) · 5/14 INV verdes, 9 sem código, 0 falhando · 9 falhas (1 S3, 8 S4) · 0 flaky · vitest 245/245 nos 3 fusos · e2e 258/258 · domain 100% · LCP 1.952 ms, script 124,4 KB · relatório: [reports/qa/2026-10-24-F01.md](../../reports/qa/2026-10-24-F01.md)

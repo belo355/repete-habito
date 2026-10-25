@@ -1,16 +1,17 @@
 import { expectNoA11yViolations } from './support/a11y.ts';
 import { expectNoHorizontalScroll, expectTouchTargets } from './support/touch.ts';
+import { pt } from './support/i18n.ts';
 import { expect, test } from './support/test.ts';
 
 // Adicionado pelo QA (qa.md §6 e §7): alvos de toque ≥ 44 px e sem rolagem horizontal
 // em todas as rotas criadas por T01.1, nos 3 projetos (webkit-mobile = 320 px).
 const routes = [
-  { path: '/hoje', heading: 'Hoje' },
-  { path: '/atividades', heading: 'Atividades' },
-  { path: '/dashboard', heading: 'Dashboard' },
-  { path: '/progresso', heading: 'Progresso' },
-  { path: '/ajustes', heading: 'Ajustes' },
-  { path: '/onboarding', heading: 'Boas-vindas' },
+  { path: '/hoje', heading: pt.today.title },
+  { path: '/atividades', heading: pt.activities.title },
+  { path: '/dashboard', heading: pt.dashboard.title },
+  { path: '/progresso', heading: pt.progress.title },
+  { path: '/ajustes', heading: pt.settings.title },
+  { path: '/onboarding', heading: pt.onboarding.title },
 ] as const;
 
 for (const { path, heading } of routes) {
@@ -42,12 +43,12 @@ test('T01.1 · NFR · voltar e avançar do navegador seguem o histórico da nave
   page,
 }) => {
   await page.goto('/hoje');
-  const nav = page.getByRole('navigation', { name: 'Navegação principal' });
-  await nav.getByRole('link', { name: 'Dashboard' }).click();
-  await expect(page.getByRole('heading', { level: 1, name: 'Dashboard' })).toBeVisible();
+  const nav = page.getByRole('navigation', { name: pt.nav.label });
+  await nav.getByRole('link', { name: pt.nav.dashboard }).click();
+  await expect(page.getByRole('heading', { level: 1, name: pt.dashboard.title })).toBeVisible();
   await page.goBack();
   await expect(page).toHaveURL(/\/hoje$/);
-  await expect(page.getByRole('heading', { level: 1, name: 'Hoje' })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1, name: pt.today.title })).toBeVisible();
   await page.goForward();
   await expect(page).toHaveURL(/\/dashboard$/);
 });

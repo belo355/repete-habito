@@ -2,12 +2,14 @@ import type { ButtonHTMLAttributes } from 'react';
 
 type Variant = 'primary' | 'secondary' | 'danger' | 'ghost';
 
+/* eslint-disable i18next/no-literal-string -- classes CSS, não é texto para o usuário */
 const variantClasses: Record<Variant, string> = {
   primary: 'bg-primary text-on-primary hover:brightness-110',
   secondary: 'border-2 border-border bg-surface text-text hover:bg-bg',
   danger: 'border-2 border-danger bg-bg text-danger hover:bg-surface',
   ghost: 'bg-transparent text-text hover:bg-surface',
 };
+/* eslint-enable i18next/no-literal-string */
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & { variant?: Variant };
 

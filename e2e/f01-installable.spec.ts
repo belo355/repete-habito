@@ -1,4 +1,5 @@
 import { waitForServiceWorker } from './support/pwa.ts';
+import { pt } from './support/i18n.ts';
 import { expect, test } from './support/test.ts';
 
 // qa.md §4 · CA01.6, parte "instalável como PWA" (DV05): o Lighthouse 12 não tem mais esse audit,
@@ -28,7 +29,7 @@ test('CA01.6 · manifest pt-BR com ícones 192, 512 e maskable @e2e', async ({ p
   expect(href).toBeTruthy();
   const manifest = (await (await request.get(href!)).json()) as Manifest;
 
-  expect(manifest.name).toBe('Repete Hábito');
+  expect(manifest.name).toBe(pt.app.name);
   expect(manifest.short_name).toBeTruthy();
   expect(manifest.lang).toBe('pt-BR');
   expect(manifest.start_url).toBe('/');

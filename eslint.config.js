@@ -48,22 +48,73 @@ export default tseslint.config(
     files: ['src/**/*.tsx'],
     ...jsxA11y.flatConfigs.strict,
   },
-  // INV11 (qa.md §5): nenhum texto visível fixo em componente; textos vêm de src/i18n.
-  // `jsx-only` cobre texto no JSX e atributos como aria-label, title e placeholder.
+  // INV11 (qa.md §5): nenhum texto visível fixo no código; textos vêm de src/i18n.
+  // Modo `all`: qualquer string literal, inclusive em objetos, constantes e template literals,
+  // em .ts e .tsx. As exceções são só contextos que nunca são texto para o usuário.
   {
-    files: ['src/**/*.tsx'],
-    ignores: ['src/**/*.test.tsx'],
+    files: ['src/**/*.{ts,tsx}'],
+    ignores: ['src/**/*.test.{ts,tsx}', 'src/**/*.d.ts', 'src/ui/test/**'],
     plugins: { i18next },
     rules: {
       'i18next/no-literal-string': [
         'error',
         {
-          mode: 'jsx-only',
+          mode: 'all',
+          'should-validate-template': true,
           'jsx-attributes': {
             exclude: [
-              '^(className|style|styleName|type|key|id|width|height|to|href|name|value|role|rel|target|lang|dir|htmlFor|src|method|inputMode|autoComplete|tabIndex|viewBox|d|fill|stroke|xmlns)$',
+              '^(className|style|styleName|type|key|id|width|height|to|href|name|value|role|rel|target|lang|dir|htmlFor|src|method|inputMode|autoComplete|tabIndex|viewBox|d|fill|stroke|xmlns|align|side)$',
               '^aria-(hidden|labelledby|describedby|controls|current|live|expanded|selected|checked|pressed|modal|orientation|haspopup|level|atomic)$',
               '^data-',
+            ],
+          },
+          // Chaves de objeto que guardam rota, chave de i18n ou valor técnico.
+          'object-properties': {
+            exclude: [
+              '^(to|path|value|name|id|type|role|timeZone|year|month|day|lng|fallbackLng)$',
+              '.*Key',
+              '[A-Z_-]+',
+            ],
+          },
+          // Chamadas cujo argumento não é texto de interface (padrão do plugin + APIs do navegador).
+          callees: {
+            exclude: [
+              'i18n(ext)?',
+              't',
+              'require',
+              'addEventListener',
+              'removeEventListener',
+              'postMessage',
+              'getElementById',
+              'dispatch',
+              'commit',
+              'includes',
+              'indexOf',
+              'endsWith',
+              'startsWith',
+              '(.*)Error',
+              'super',
+              'matchMedia',
+              'querySelector',
+              'getPropertyValue',
+              'DateTimeFormat',
+              'padStart',
+              'slice',
+              'test',
+              'exec',
+              'replace',
+              'split',
+              'join',
+            ],
+          },
+          words: {
+            // Como o padrão do plugin (só símbolos/números, só maiúsculas, emoji) + códigos de idioma.
+            exclude: [
+              '[0-9!-/:-@[-`{-~]+',
+              '[A-Z_-]+',
+              /^\p{Emoji}+$/u,
+              // Códigos de idioma (BCP 47), ex.: pt-BR.
+              '[a-z]{2}-[A-Z]{2}',
             ],
           },
         },
@@ -121,6 +172,16 @@ export default tseslint.config(
           selector:
             "CallExpression[callee.property.name=/^(format|formatToParts)$/] > Identifier.arguments[name='undefined']",
           message: 'Passe o instante explicitamente: format(undefined) usa a hora atual.',
+        },
+        {
+          selector:
+            "CallExpression[callee.property.name=/^(format|formatToParts)$/] > UnaryExpression.arguments[operator='void']",
+          message: 'Passe o instante explicitamente: format(void 0) usa a hora atual.',
+        },
+        {
+          selector:
+            'CallExpression[callee.property.name=/^(format|formatToParts)$/] > SpreadElement.arguments',
+          message: 'Passe o instante explicitamente, sem espalhar argumentos.',
         },
       ],
     },

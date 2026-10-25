@@ -1,5 +1,6 @@
 import { expectNoA11yViolations } from './support/a11y.ts';
 import { expectNoHorizontalScroll, expectTouchTargets } from './support/touch.ts';
+import { pt } from './support/i18n.ts';
 import { expect, test } from './support/test.ts';
 
 // qa.md §4 · CA01.2: convite próprio "Instalar app" quando o navegador permite instalar
@@ -39,9 +40,9 @@ test.describe('Chrome Android/desktop', () => {
 
   test('CA01.2 · sem critérios de instalação, não há convite @e2e', async ({ page }) => {
     await page.goto('/ajustes');
-    await expect(page.getByRole('heading', { level: 1, name: 'Ajustes' })).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Instalar app' })).toHaveCount(0);
-    await expect(page.getByText('Adicionar à Tela de Início')).toHaveCount(0);
+    await expect(page.getByRole('heading', { level: 1, name: pt.settings.title })).toBeVisible();
+    await expect(page.getByRole('button', { name: pt.install.button })).toHaveCount(0);
+    await expect(page.getByText(pt.install.ios.title)).toHaveCount(0);
   });
 
   test('CA01.2 · com beforeinstallprompt, "Instalar app" aparece e chama prompt() @e2e', async ({
@@ -49,7 +50,7 @@ test.describe('Chrome Android/desktop', () => {
   }) => {
     await page.goto('/ajustes');
     await fireBeforeInstallPrompt(page);
-    const button = page.getByRole('button', { name: 'Instalar app' });
+    const button = page.getByRole('button', { name: pt.install.button });
     await expect(button).toBeVisible();
 
     await button.click();
@@ -62,10 +63,10 @@ test.describe('Chrome Android/desktop', () => {
     page,
   }) => {
     await page.goto('/ajustes');
-    await expect(page.getByRole('heading', { level: 1, name: 'Ajustes' })).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1, name: pt.settings.title })).toBeVisible();
     // preventDefault: o navegador não mostra a própria mini barra; vale o convite "Instalar app".
     expect(await fireBeforeInstallPrompt(page)).toBe(true);
-    await expect(page.getByRole('button', { name: 'Instalar app' })).toBeVisible();
+    await expect(page.getByRole('button', { name: pt.install.button })).toBeVisible();
   });
 
   test('CA01.2 · recusado no diálogo, o convite some e prompt() não é chamado de novo @e2e', async ({
@@ -73,7 +74,7 @@ test.describe('Chrome Android/desktop', () => {
   }) => {
     await page.goto('/ajustes');
     await fireBeforeInstallPrompt(page, 'dismissed');
-    const button = page.getByRole('button', { name: 'Instalar app' });
+    const button = page.getByRole('button', { name: pt.install.button });
     await button.focus();
     await page.keyboard.press('Enter');
     await expect(button).toHaveCount(0);
@@ -83,9 +84,9 @@ test.describe('Chrome Android/desktop', () => {
   test('CA01.2 · depois de instalado (appinstalled), o convite some @e2e', async ({ page }) => {
     await page.goto('/ajustes');
     await fireBeforeInstallPrompt(page);
-    await expect(page.getByRole('button', { name: 'Instalar app' })).toBeVisible();
+    await expect(page.getByRole('button', { name: pt.install.button })).toBeVisible();
     await page.evaluate(() => window.dispatchEvent(new Event('appinstalled')));
-    await expect(page.getByRole('button', { name: 'Instalar app' })).toHaveCount(0);
+    await expect(page.getByRole('button', { name: pt.install.button })).toHaveCount(0);
   });
 
   test('CA01.2 · evento capturado antes da tela de Ajustes abrir continua valendo @e2e', async ({
@@ -94,10 +95,10 @@ test.describe('Chrome Android/desktop', () => {
     await page.goto('/hoje');
     await fireBeforeInstallPrompt(page);
     await page
-      .getByRole('navigation', { name: 'Navegação principal' })
-      .getByRole('link', { name: 'Ajustes' })
+      .getByRole('navigation', { name: pt.nav.label })
+      .getByRole('link', { name: pt.nav.settings })
       .click();
-    await expect(page.getByRole('button', { name: 'Instalar app' })).toBeVisible();
+    await expect(page.getByRole('button', { name: pt.install.button })).toBeVisible();
   });
 
   for (const colorScheme of ['light', 'dark'] as const) {
@@ -105,7 +106,7 @@ test.describe('Chrome Android/desktop', () => {
       await page.emulateMedia({ colorScheme });
       await page.goto('/ajustes');
       await fireBeforeInstallPrompt(page);
-      await expect(page.getByRole('button', { name: 'Instalar app' })).toBeVisible();
+      await expect(page.getByRole('button', { name: pt.install.button })).toBeVisible();
       await expectNoA11yViolations(page);
       await expectTouchTargets(page);
       await expectNoHorizontalScroll(page);
@@ -120,10 +121,10 @@ test.describe('iOS', () => {
     page,
   }) => {
     await page.goto('/ajustes');
-    const region = page.getByRole('region', { name: 'Adicionar à Tela de Início' });
+    const region = page.getByRole('region', { name: pt.install.ios.title });
     await expect(region).toBeVisible();
-    await expect(region.getByText('Compartilhar')).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Instalar app' })).toHaveCount(0);
+    await expect(region.getByText(pt.install.ios.step1)).toBeVisible();
+    await expect(page.getByRole('button', { name: pt.install.button })).toHaveCount(0);
   });
 
   test('CA01.2 · no iOS com o app já instalado, a instrução não aparece @e2e', async ({ page }) => {
@@ -131,8 +132,8 @@ test.describe('iOS', () => {
       Object.defineProperty(navigator, 'standalone', { value: true });
     });
     await page.goto('/ajustes');
-    await expect(page.getByRole('heading', { level: 1, name: 'Ajustes' })).toBeVisible();
-    await expect(page.getByText('Adicionar à Tela de Início')).toHaveCount(0);
+    await expect(page.getByRole('heading', { level: 1, name: pt.settings.title })).toBeVisible();
+    await expect(page.getByText(pt.install.ios.title)).toHaveCount(0);
   });
 
   for (const colorScheme of ['light', 'dark'] as const) {
@@ -141,7 +142,7 @@ test.describe('iOS', () => {
     }) => {
       await page.emulateMedia({ colorScheme });
       await page.goto('/ajustes');
-      await expect(page.getByRole('region', { name: 'Adicionar à Tela de Início' })).toBeVisible();
+      await expect(page.getByRole('region', { name: pt.install.ios.title })).toBeVisible();
       await expectNoA11yViolations(page);
       await expectTouchTargets(page);
       await expectNoHorizontalScroll(page);

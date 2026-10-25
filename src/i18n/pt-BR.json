@@ -52,7 +52,7 @@
     "button": "Instalar app",
     "ios": {
       "title": "Adicionar à Tela de Início",
-      "step1": "No Safari, toque em Compartilhar.",
+      "step1": "Toque no botão Compartilhar do navegador.",
       "step2": "Escolha \"Adicionar à Tela de Início\"."
     }
   }

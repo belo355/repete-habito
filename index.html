@@ -3,11 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Repete Hábito: acompanhe suas atividades físicas sem culpa."
-    />
-    <title>Repete Hábito</title>
+    <!-- Título e descrição vêm de src/i18n/pt-BR.json (plugin i18nHtml em vite.config.ts). -->
+    <meta name="description" content="%APP_DESCRIPTION%" />
+    <title>%APP_NAME%</title>
     <!-- Cor da barra do sistema: o script abaixo e src/ui/theme/theme.ts a mantêm igual ao fundo do tema. -->
     <meta name="theme-color" content="#ffffff" />
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
@@ -17,7 +15,8 @@
     <script>
       try {
         var saved = JSON.parse(localStorage.getItem('repete-habito:tema') || '{}');
-        var pref = (saved.state && saved.state.preference) || 'system';
+        var pref = saved.state && saved.state.preference;
+        if (pref !== 'light' && pref !== 'dark') pref = 'system';
         var dark =
           pref === 'dark' ||
           (pref === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);

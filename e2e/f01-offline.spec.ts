@@ -1,14 +1,15 @@
 import { waitForServiceWorker } from './support/pwa.ts';
+import { pt } from './support/i18n.ts';
 import { expect, test } from './support/test.ts';
 
 // qa.md §4 · CA01.1: depois do 1º acesso, o app recarrega e navega entre todas as rotas sem conexão.
 const routes = [
-  { path: '/hoje', heading: 'Hoje' },
-  { path: '/atividades', heading: 'Atividades' },
-  { path: '/dashboard', heading: 'Dashboard' },
-  { path: '/progresso', heading: 'Progresso' },
-  { path: '/ajustes', heading: 'Ajustes' },
-  { path: '/onboarding', heading: 'Boas-vindas' },
+  { path: '/hoje', heading: pt.today.title },
+  { path: '/atividades', heading: pt.activities.title },
+  { path: '/dashboard', heading: pt.dashboard.title },
+  { path: '/progresso', heading: pt.progress.title },
+  { path: '/ajustes', heading: pt.settings.title },
+  { path: '/onboarding', heading: pt.onboarding.title },
 ] as const;
 
 test('CA01.1 · offline, o app recarrega e abre todas as rotas @e2e @offline', async ({
@@ -20,7 +21,7 @@ test('CA01.1 · offline, o app recarrega e abre todas as rotas @e2e @offline', a
 
   await context.setOffline(true);
   await page.reload();
-  await expect(page.getByRole('heading', { level: 1, name: 'Hoje' })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1, name: pt.today.title })).toBeVisible();
 
   // Carga direta de cada rota (sem rede): o service worker devolve o app shell.
   for (const { path, heading } of routes) {
@@ -39,7 +40,7 @@ test('CA01.1 · offline, a navegação principal troca de tela @e2e @offline', a
   await context.setOffline(true);
   await page.reload();
 
-  const nav = page.getByRole('navigation', { name: 'Navegação principal' });
+  const nav = page.getByRole('navigation', { name: pt.nav.label });
   for (const { path, heading } of routes.filter((r) => r.path !== '/onboarding')) {
     await nav.getByRole('link', { name: heading }).click();
     await expect(page).toHaveURL(new RegExp(`${path}$`));

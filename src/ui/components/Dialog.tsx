@@ -1,3 +1,4 @@
+import { X } from 'lucide-react';
 import { Dialog as DialogPrimitive } from 'radix-ui';
 import type { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -34,7 +35,7 @@ export function Dialog({ title, description, trigger, children, open, onOpenChan
               aria-label={t('common.close')}
               className="inline-flex min-h-touch min-w-touch cursor-pointer items-center justify-center rounded-md text-xl text-text hover:bg-surface"
             >
-              <span aria-hidden="true">×</span>
+              <X aria-hidden="true" className="size-6" />
             </DialogPrimitive.Close>
           </div>
           {description && (

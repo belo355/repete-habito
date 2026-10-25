@@ -1,5 +1,11 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { applyTheme, resolveTheme, THEME_STORAGE_KEY, useThemeStore } from './theme.ts';
+import {
+  applyTheme,
+  isThemePreference,
+  resolveTheme,
+  THEME_STORAGE_KEY,
+  useThemeStore,
+} from './theme.ts';
 
 function mockSystemDark(dark: boolean) {
   const listeners = new Set<() => void>();
@@ -36,6 +42,26 @@ describe('useThemeStore', () => {
 
   it('CA01.3 · sem preferência salva o padrão é seguir o sistema', () => {
     expect(useThemeStore.getState().preference).toBe('system');
+  });
+
+  it.each([
+    ['{"state":{"preference":"azul"},"version":0}'],
+    ['{"state":{},"version":0}'],
+    ['{"state":{"preference":42},"version":0}'],
+  ])('T01.11 · valor salvo inválido (%s) volta a seguir o sistema', async (saved) => {
+    // setState grava no armazenamento; o valor inválido entra depois, como se viesse de fora.
+    useThemeStore.setState({ preference: 'dark' });
+    localStorage.setItem(THEME_STORAGE_KEY, saved);
+    await useThemeStore.persist.rehydrate();
+    expect(useThemeStore.getState().preference).toBe('system');
+  });
+
+  it('T01.11 · valor salvo válido é mantido ao reidratar', async () => {
+    localStorage.setItem(THEME_STORAGE_KEY, '{"state":{"preference":"light"},"version":0}');
+    await useThemeStore.persist.rehydrate();
+    expect(useThemeStore.getState().preference).toBe('light');
+    expect(isThemePreference('light')).toBe(true);
+    expect(isThemePreference('azul')).toBe(false);
   });
 
   it('CA01.3 · a escolha é gravada no armazenamento local', () => {

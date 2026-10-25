@@ -2,10 +2,21 @@
 import tailwindcss from '@tailwindcss/vite';
 import { playwright } from '@vitest/browser-playwright';
 import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
+import { defineConfig, type Plugin } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import pkg from './package.json' with { type: 'json' };
 import ptBR from './src/i18n/pt-BR.json' with { type: 'json' };
+
+// Textos do index.html (título e descrição) vindos do i18n, sem texto fixo no HTML (INV11, INV10).
+function i18nHtml(): Plugin {
+  return {
+    name: 'repete-habito:i18n-html',
+    transformIndexHtml: (html) =>
+      html
+        .replaceAll('%APP_NAME%', ptBR.app.name)
+        .replaceAll('%APP_DESCRIPTION%', ptBR.app.description),
+  };
+}
 
 export default defineConfig({
   // Versão exibida em Ajustes. APP_VERSION permite gerar builds distintos (teste de atualização, CA01.5).
@@ -13,6 +24,7 @@ export default defineConfig({
     __APP_VERSION__: JSON.stringify(process.env.APP_VERSION ?? pkg.version),
   },
   plugins: [
+    i18nHtml(),
     react(),
     tailwindcss(),
     // PWA (tech-spec §2.2): generateSW com precache do app shell. `prompt`: a nova versão só

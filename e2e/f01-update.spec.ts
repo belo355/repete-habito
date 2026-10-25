@@ -5,6 +5,7 @@ import { join } from 'node:path';
 import { expectNoA11yViolations } from './support/a11y.ts';
 import { waitForServiceWorker } from './support/pwa.ts';
 import { startSwitchableServer } from './support/static-server.ts';
+import { pt } from './support/i18n.ts';
 import { expect, test as base } from './support/test.ts';
 import { expectNoHorizontalScroll, expectTouchTargets } from './support/touch.ts';
 
@@ -51,7 +52,9 @@ async function openVersionA(page: import('@playwright/test').Page) {
   server.switchTo(join(buildsDir, 'versao-a'));
   await page.goto('/ajustes');
   await waitForServiceWorker(page);
-  await expect(page.getByText('Versão versao-a')).toBeVisible();
+  await expect(
+    page.getByText(pt.settings.version.replace('{{version}}', 'versao-a')),
+  ).toBeVisible();
   await page.evaluate(() => {
     (window as unknown as { __semReload: boolean }).__semReload = true;
   });
@@ -72,34 +75,40 @@ test('CA01.5 · versão nova mostra o aviso e o app não recarrega sozinho @e2e'
   await openVersionA(page);
   await publishVersionB(page);
 
-  const notice = page.getByRole('status').filter({ hasText: 'Nova versão disponível' });
+  const notice = page.getByRole('status').filter({ hasText: pt.update.available });
   await expect(notice).toBeVisible({ timeout: 15_000 });
 
   // Espera um pouco: nada recarrega e a versão em uso continua a A.
   await page.waitForTimeout(1500);
   expect(await stillSamePage(page)).toBe(true);
-  await expect(page.getByText('Versão versao-a')).toBeVisible();
+  await expect(
+    page.getByText(pt.settings.version.replace('{{version}}', 'versao-a')),
+  ).toBeVisible();
 });
 
 test('CA01.5 · ao aceitar, o app recarrega e mostra a versão nova @e2e', async ({ page }) => {
   await openVersionA(page);
   await publishVersionB(page);
-  await page.getByRole('button', { name: 'Atualizar agora' }).click({ timeout: 15_000 });
+  await page.getByRole('button', { name: pt.update.accept }).click({ timeout: 15_000 });
 
-  await expect(page.getByText('Versão versao-b')).toBeVisible({ timeout: 15_000 });
+  await expect(page.getByText(pt.settings.version.replace('{{version}}', 'versao-b'))).toBeVisible({
+    timeout: 15_000,
+  });
   expect(await stillSamePage(page)).toBe(false);
 });
 
 test('CA01.5 · "Agora não" fecha o aviso sem recarregar @e2e', async ({ page }) => {
   await openVersionA(page);
   await publishVersionB(page);
-  await page.getByRole('button', { name: 'Agora não' }).click({ timeout: 15_000 });
+  await page.getByRole('button', { name: pt.update.dismiss }).click({ timeout: 15_000 });
 
-  await expect(page.getByText('Nova versão disponível')).toHaveCount(0);
+  await expect(page.getByText(pt.update.available)).toHaveCount(0);
   // Janela de espera: dispensar não pode aplicar a versão nova depois.
   await page.waitForTimeout(1500);
   expect(await stillSamePage(page)).toBe(true);
-  await expect(page.getByText('Versão versao-a')).toBeVisible();
+  await expect(
+    page.getByText(pt.settings.version.replace('{{version}}', 'versao-a')),
+  ).toBeVisible();
 });
 
 test('CA01.5 · quem volta ao app (SW já no controle) vê o aviso e só recarrega ao aceitar @e2e', async ({
@@ -108,21 +117,27 @@ test('CA01.5 · quem volta ao app (SW já no controle) vê o aviso e só recarre
   await openVersionA(page);
   // Caminho real de quem já usa o app: o SW controla a página desde o carregamento.
   await page.reload();
-  await expect(page.getByText('Versão versao-a')).toBeVisible();
+  await expect(
+    page.getByText(pt.settings.version.replace('{{version}}', 'versao-a')),
+  ).toBeVisible();
   await page.evaluate(() => {
     (window as unknown as { __semReload: boolean }).__semReload = true;
   });
   await publishVersionB(page);
 
-  await expect(page.getByRole('status').filter({ hasText: 'Nova versão disponível' })).toBeVisible({
+  await expect(page.getByRole('status').filter({ hasText: pt.update.available })).toBeVisible({
     timeout: 15_000,
   });
   await page.waitForTimeout(1500);
   expect(await stillSamePage(page)).toBe(true);
-  await expect(page.getByText('Versão versao-a')).toBeVisible();
+  await expect(
+    page.getByText(pt.settings.version.replace('{{version}}', 'versao-a')),
+  ).toBeVisible();
 
-  await page.getByRole('button', { name: 'Atualizar agora' }).click();
-  await expect(page.getByText('Versão versao-b')).toBeVisible({ timeout: 15_000 });
+  await page.getByRole('button', { name: pt.update.accept }).click();
+  await expect(page.getByText(pt.settings.version.replace('{{version}}', 'versao-b'))).toBeVisible({
+    timeout: 15_000,
+  });
   expect(await stillSamePage(page)).toBe(false);
 });
 
@@ -131,7 +146,7 @@ test('CA01.5 · aviso na tela real, nos 2 temas: zero violações axe, alvos ≥
 }) => {
   await openVersionA(page);
   await publishVersionB(page);
-  const notice = page.getByRole('status').filter({ hasText: 'Nova versão disponível' });
+  const notice = page.getByRole('status').filter({ hasText: pt.update.available });
   await expect(notice).toBeVisible({ timeout: 15_000 });
 
   for (const colorScheme of ['light', 'dark'] as const) {

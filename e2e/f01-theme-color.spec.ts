@@ -1,3 +1,4 @@
+import { pt } from './support/i18n.ts';
 import { expect, test } from './support/test.ts';
 
 // T01.6 · theme_color dos dois temas: a barra do sistema acompanha o tema efetivo do app.
@@ -27,7 +28,7 @@ for (const colorScheme of ['light', 'dark'] as const) {
 test('T01.6 · theme-color acompanha a escolha manual de tema @e2e', async ({ page }) => {
   await page.emulateMedia({ colorScheme: 'light' });
   await page.goto('/ajustes');
-  await page.getByRole('radio', { name: 'Escuro' }).check();
+  await page.getByRole('radio', { name: pt.settings.theme.dark }).check();
   await expect.poll(() => meta(page)).toBe('#0f1115');
   await page.reload();
   expect(await meta(page)).toBe('#0f1115');

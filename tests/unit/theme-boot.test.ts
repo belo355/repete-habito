@@ -25,3 +25,12 @@ describe('theme-color no index.html', () => {
     expect(html).toContain(`<meta name="theme-color" content="${light!}" />`);
   });
 });
+
+// T01.11 · O index.html não tem texto fixo: título e descrição vêm do pt-BR.json no build.
+describe('textos do index.html', () => {
+  it('T01.11 · título e descrição são marcadores preenchidos pelo i18n', () => {
+    const html = readFileSync('index.html', 'utf8');
+    expect(html).toContain('<title>%APP_NAME%</title>');
+    expect(html).toContain('<meta name="description" content="%APP_DESCRIPTION%" />');
+  });
+});
