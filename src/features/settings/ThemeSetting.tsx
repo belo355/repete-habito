@@ -16,7 +16,7 @@ export function ThemeSetting() {
 
   return (
     <div role="radiogroup" aria-labelledby={titleId}>
-      <h2 id={titleId} className="mb-2 text-lg font-bold">
+      <h2 id={titleId} className="mb-2 text-xl font-extrabold tracking-[-0.01em]">
         {t('settings.theme.title')}
       </h2>
       {options.map(({ value, labelKey }) => (
@@ -32,7 +32,7 @@ export function ThemeSetting() {
           />
           <span
             aria-hidden="true"
-            className="flex size-5 shrink-0 items-center justify-center rounded-full border-2 border-border peer-checked:border-primary peer-focus-visible:outline-3 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-focus peer-checked:[&>span]:block"
+            className="flex size-5 shrink-0 items-center justify-center rounded-full border-2 border-text peer-focus-visible:outline-3 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-focus peer-checked:[&>span]:block"
           >
             <span className="hidden size-2.5 rounded-full bg-primary" />
           </span>

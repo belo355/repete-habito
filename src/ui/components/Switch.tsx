@@ -8,8 +8,8 @@ type SwitchProps = {
   disabled?: boolean;
 };
 
-// Interruptor liga/desliga com papel `switch`. O botão tem 44 px de altura (alvo de toque);
-// a trilha visível é menor e fica centralizada dentro dele. O rótulo também alterna.
+// Interruptor liga/desliga com papel `switch`, desenhado como cápsula de 44 px de altura
+// (alvo de toque). O rótulo também alterna.
 export function Switch({ label, checked, onCheckedChange, disabled }: SwitchProps) {
   const id = useId();
   return (
@@ -22,13 +22,10 @@ export function Switch({ label, checked, onCheckedChange, disabled }: SwitchProp
         checked={checked}
         onCheckedChange={onCheckedChange}
         {...(disabled !== undefined && { disabled })}
-        className="group relative inline-flex h-touch w-16 shrink-0 cursor-pointer items-center rounded-full bg-transparent p-0 disabled:cursor-not-allowed disabled:opacity-60"
+        className="group inline-flex h-11 w-[4.5rem] shrink-0 cursor-pointer items-center rounded-full border-2 border-text bg-surface p-0.5 data-[state=checked]:bg-primary disabled:cursor-not-allowed disabled:opacity-60"
       >
-        <span
-          aria-hidden="true"
-          className="absolute inset-x-1 inset-y-2 rounded-full bg-border transition-colors group-data-[state=checked]:bg-primary"
-        />
-        <SwitchPrimitive.Thumb className="relative ml-2 block size-5 rounded-full bg-bg transition-transform group-data-[state=checked]:translate-x-7 group-data-[state=checked]:bg-on-primary" />
+        {/* O ponto da cápsula: atravessa para a direita quando ligado (mesmo gesto da marcação). */}
+        <SwitchPrimitive.Thumb className="block size-9 rounded-full border-2 border-text bg-chip transition-transform duration-[250ms] ease-[cubic-bezier(0.34,1.25,0.64,1)] data-[state=checked]:translate-x-6 motion-reduce:transition-none" />
       </SwitchPrimitive.Root>
     </div>
   );

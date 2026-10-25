@@ -263,6 +263,7 @@ Além disso, em todo fechamento de entrega:
 | DV04 | 23/10/2026 | T00.10 · product 4.9.1 (DoD) · 4.9.3 (saída da Entrega 0) | Conflito | O deploy no Cloudflare Pages foi retirado do projeto e não há outro provedor. Sem hospedagem não existe preview por PR, exigido pela Definição de Pronto ("demonstrada no ambiente de preview do PR") e pela saída da Entrega 0. | Escolher outro provedor (Netlify ou Vercel) antes de fechar a Entrega 0, ou o responsável de produto aceitar demo local (`pnpm preview`) no lugar do preview do PR. | Demo local (`pnpm build && pnpm preview`) substitui o preview do PR na Definição de Pronto (4.9.1) e na saída da Entrega 0 (4.9.3). Decisão do responsável de produto em 24/10/2026. | ✅ Resolvida |
 | DV05 | 24/10/2026 | CA01.6 · T00.8 · T01.6 | Desvio técnico | O Lighthouse 12 (usado pelo `@lhci/cli` 0.15) removeu o audit `installable-manifest`; o orçamento "PWA instalável" do CA01.6 não pode mais ser medido no Lighthouse CI. | Verificar a instalabilidade com o E2E `CA01.6 · app instalável` no `chromium-android` (manifest, service worker controlando a página e checagem de instalabilidade do Chromium); LCP e JS continuam no Lighthouse CI. Ajustar qa.md §4 (linha CA01.6) e tech-spec §4. | Aprovada pelo responsável de produto em 24/10/2026. | ✅ Resolvida |
 | DV06 | 24/10/2026 | T01.8 · tech-spec §2.1 e §3.1 | Desvio técnico | A tech-spec manda usar `date-fns` + `@date-fns/tz` para datas; a T01.8 fez a aritmética de calendário própria (inteiros, algoritmo de Hinnant) e `Intl.DateTimeFormat` para o fuso, sem date-fns. O `LocalDate` também ganhou marca de tipo (continua string em tempo de execução). | Manter a implementação própria: não depende do fuso do processo, não cria `Date` no domínio (INV05), tem cobertura de 100% e não pesa no bundle. Atualizar a tech-spec §2.1 (linha "Datas") e §3.1. | Aprovada pelo responsável de produto em 24/10/2026; tech-spec §2.1 e §3.1 atualizadas. | ✅ Resolvida |
+| DV07 | 24/10/2026 | CA03.1 · product 4.1 · T03.1 · brief de UX (`.impeccable/ux-brief.md`) | Conflito | O brief de UX confirmado define a cor da atividade como **automática** (próxima cor livre da paleta de cápsulas), mas product 4.1 ("nome, ícone/cor") e o CA03.1 ("quando o usuário informa nome, ícone, cor…") preveem que o usuário escolha a cor. | (a) Cor automática como padrão, com opção de trocar no formulário (atende o CA03.1 sem mudar o produto); ou (b) responsável de produto ajusta product 4.1 e CA03.1 para cor automática. | Opção (a), escolhida pelo responsável de produto em 24/10/2026: cor automática como padrão, com opção de trocar no formulário (T03.1). Product 4.1 e CA03.1 inalterados. | ✅ Resolvida |
 
 Tipos: **Lacuna** (CA sem task) · **Conflito** (task × produto) · **Ambiguidade** (CA com mais de uma leitura) · **Dependência** (CA depende de feature futura) · **Desvio técnico** (spec não seguida).
 
@@ -511,6 +512,37 @@ Adicionar uma entrada **por task executada**, da mais recente para a mais antiga
 ```
 
 ### Execuções
+
+### 2026-10-25 · T01.12 · Mundo visual "Mapa do parque"
+
+**Plano:** aplicar o brief de UX confirmado (`.impeccable/ux-brief.md`, fluxo impeccable `shape` → direção escolhida pelo responsável): tokens claro/escuro (verde só na estrutura, ação em tinta, cápsulas com texto escuro), Archivo variável servida pelo app, componentes redesenhados (Button em cápsula com chip e seta, MarkCapsule, LobeHeader, EmptyState, Switch, Menu, Dialog), navegação de 4 abas (rodapé no celular, topo a partir de 1024 px; `/progresso` removida), estados vazios das telas. DV07 resolvida (opção a). Documentação: `PRODUCT.md`, `DESIGN.md`, `.impeccable/design.json`, contrato de direção em `.impeccable/surfaces/`.
+
+**Verificação técnica (passo 4):** lint ✅ · typecheck ✅ · unit + browser ✅ (316/316) · 3 fusos ✅ · build ✅ (JS 123,9 KB gzip; fonte 35 KB) · e2e ✅ (249/249) · lighthouse ✅ (LCP 2,25 s)
+
+**Revisão final do impeccable:** 1ª rodada `fix` (7 correções: ações do estado vazio, verde fora da estrutura, chip nos botões, rótulo acima do título, navegação no desktop, tracking por tamanho, lobo no onboarding); veredito 1: 6 resolvidas e 1 parcial (botão quebrando a 320 px); veredito 2: `ship`. Revisor e documentador rodaram como agentes novos com os roteiros do impeccable (os agentes próprios não estão instalados).
+
+**QA (qa.md):** 🟡 Aprovada com pendência · 5/8 CAs ✅ (CA01.2 🟡 manual iOS; CA05.5/CA07.6 🟡 por T05.5/T07.8) · 14/14 INV · 6 falhas (S3: 1 · S4: 5) · 0 flaky · e2e 267/267 e 801/801 com `--repeat-each=3`
+
+**Consistência (passo 5):**
+- A. CAs da task: sem CA próprio; CAs da F01 revalidados sem regressão
+- B. Regressão: INV10, INV11 e INV12 verdes (fonte da própria origem, 0 requisições externas)
+- C. Princípios 5.2: textos novos passam no INV10
+- D. Definição de Pronto (itens tocados): axe nos 2 temas ✅ · alvos ≥ 44 px ✅ · 320 px ✅ · i18n ✅ · offline com a fonte no precache ✅
+- E. Documentos: consistente com o brief de UX; a barra no topo no desktop é adaptação do executor pedida pela revisão final; F-03 corrigido no `PRODUCT.md`
+
+**Resultado:** 🟡 Consistente com pendência
+
+**Testes adicionados pelo QA:** `e2e/t01-12-visual.spec.ts` (fonte da origem no precache e usada offline, estados vazios levam ao próximo passo, ações empilhadas abaixo de 640 px, tracking justo só em títulos ≥ 36 px, cápsula de exemplo não grava nada, sem animação com movimento reduzido); roteiro da demo atualizado sem a aba Progresso.
+
+**Pendências do QA:**
+- F-01 (S3) Switch no tema escuro ligado: ponto branco sobre trilha #f2f3ee some (1,12:1); falta o par chip × primary no teste de contraste e no DESIGN.md. Tratar antes do Switch entrar numa tela (lembretes, F10).
+- F-02 (S4) LCP 2,26 s (folga de 239 ms): preload do woff2 latin e importar só o subconjunto latin.
+- F-04 (S4) pílula da aba ativa com 1,79:1 contra o branco (compensada por negrito, cor do texto e `aria-current`).
+- F-05 (S4) MarkCapsule muda o nome junto com `aria-pressed`; decidir o padrão antes da T05.2.
+- F-06 (S4) no desktop a navegação aparece no topo, mas vem depois do conteúdo na ordem do Tab.
+- Nota para a T05.5: a data do lobo é calculada na renderização e não vira sozinha à meia-noite.
+
+**Novas tasks ou divergências:** DV07 resolvida.
 
 ### 2026-10-24 · T01.11 · Pendências do QA da F01
 

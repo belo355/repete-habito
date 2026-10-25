@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400..800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        width: 390px;
+        height: 844px;
+        overflow: hidden;
+        background: #fff;
+        color: #2c2e2a;
+        font-family: Archivo, system-ui, sans-serif;
+        display: flex;
+        flex-direction: column;
+      }
+      .lobo {
+        position: relative;
+        height: 250px;
+        color: #2c2e2a;
+      }
+      .lobo svg {
+        position: absolute;
+        inset: 0;
+      }
+      .lobo .in {
+        position: relative;
+        padding: 26px 22px;
+      }
+      .date {
+        font-size: 14px;
+        font-weight: 600;
+      }
+      h1 {
+        font-size: 54px;
+        line-height: 0.95;
+        font-weight: 800;
+        letter-spacing: -0.06em;
+        margin-top: 6px;
+      }
+      .resumo {
+        margin-top: 14px;
+        font-size: 17px;
+        font-weight: 600;
+        max-width: 240px;
+      }
+      main {
+        flex: 1;
+        padding: 6px 18px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .it {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-height: 66px;
+        border-bottom: 2px solid #f0f0ec;
+      }
+      .n {
+        font-size: 19px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+      .s {
+        font-size: 13px;
+        color: #5d5f59;
+        margin-top: 2px;
+      }
+      .cap {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        height: 44px;
+        padding: 0 6px 0 16px;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .cap i {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #fff;
+      }
+      .y {
+        background: #f5e211;
+      }
+      .c {
+        background: #ff705d;
+        color: #2c2e2a;
+      }
+      .b {
+        background: #2ba0ff;
+      }
+      .l {
+        background: #ebc1ff;
+      }
+      .cap.on {
+        flex-direction: row-reverse;
+        padding: 0 16px 0 6px;
+      }
+      nav {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        height: 64px;
+        font-size: 12px;
+        font-weight: 700;
+        border-top: 2px solid #f0f0ec;
+      }
+      nav a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      nav .cur {
+        color: #2c2e2a;
+        background: #8ed462;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="lobo">
+      <svg viewBox="0 0 390 250" preserveAspectRatio="none">
+        <path
+          d="M0 0H390V170C340 230 280 196 236 222C190 250 120 238 70 214C34 197 12 204 0 210Z"
+          fill="#8ed462"
+        />
+      </svg>
+      <div class="in">
+        <p class="date">sábado, 24 de outubro</p>
+        <h1>Hoje</h1>
+        <p class="resumo">Você treinou 4 de 5 dias planejados nesta semana.</p>
+      </div>
+    </div>
+    <main>
+      <div class="it">
+        <div>
+          <p class="n">Caminhada</p>
+          <p class="s">32 min · meta 20</p>
+        </div>
+        <span class="cap y on"><i></i>Feito</span>
+      </div>
+      <div class="it">
+        <div>
+          <p class="n">Flexões</p>
+          <p class="s">faltam 2 nesta semana</p>
+        </div>
+        <span class="cap c"><i></i>Marcar</span>
+      </div>
+      <div class="it">
+        <div>
+          <p class="n">Alongamento</p>
+          <p class="s">feito hoje</p>
+        </div>
+        <span class="cap b on"><i></i>Feito</span>
+      </div>
+      <div class="it">
+        <div>
+          <p class="n">Mobilidade</p>
+          <p class="s">folga hoje · 12 dias seguidos</p>
+        </div>
+        <span class="cap l"><i></i>Folga</span>
+      </div>
+    </main>
+    <nav>
+      <a class="cur">Hoje</a><a>Atividades</a><a>Dashboard</a><a>Progresso</a><a>Ajustes</a>
+    </nav>
+  </body>
+</html>

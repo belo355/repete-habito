@@ -16,7 +16,7 @@ export function InstallSetting() {
   if (deferredPrompt) {
     return (
       <section aria-labelledby={titleId} className="mt-8">
-        <h2 id={titleId} className="mb-2 text-lg font-bold">
+        <h2 id={titleId} className="mb-2 text-xl font-extrabold tracking-[-0.01em]">
           {t('install.title')}
         </h2>
         <p className="mb-3 text-text-muted">{t('install.description')}</p>
@@ -28,17 +28,17 @@ export function InstallSetting() {
   if (isIOS) {
     return (
       <section aria-labelledby={titleId} className="mt-8">
-        <h2 id={titleId} className="mb-2 text-lg font-bold">
+        <h2 id={titleId} className="mb-2 text-xl font-extrabold tracking-[-0.01em]">
           {t('install.ios.title')}
         </h2>
         <p className="mb-3 text-text-muted">{t('install.description')}</p>
         <ol className="m-0 flex list-none flex-col gap-3 p-0">
           <li className="flex items-center gap-3">
-            <Share aria-hidden="true" className="size-6 shrink-0 text-primary" />
+            <Share aria-hidden="true" className="size-6 shrink-0 text-text" />
             <span>{t('install.ios.step1')}</span>
           </li>
           <li className="flex items-center gap-3">
-            <SquarePlus aria-hidden="true" className="size-6 shrink-0 text-primary" />
+            <SquarePlus aria-hidden="true" className="size-6 shrink-0 text-text" />
             <span>{t('install.ios.step2')}</span>
           </li>
         </ol>

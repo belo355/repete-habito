@@ -60,7 +60,7 @@ export default defineConfig({
       // Os ícones do manifest e o próprio manifest já entram pelo globPatterns (sem duplicar o precache).
       includeManifestIcons: false,
       workbox: {
-        globPatterns: ['**/*.{js,css,html,svg,png,ico}'],
+        globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2}'],
         // Qualquer rota da SPA abre offline com o app shell.
         navigateFallback: '/index.html',
         cleanupOutdatedCaches: true,

@@ -7,7 +7,6 @@ const screens = [
   { path: '/hoje', heading: pt.today.title, nav: pt.nav.today },
   { path: '/atividades', heading: pt.activities.title, nav: pt.nav.activities },
   { path: '/dashboard', heading: pt.dashboard.title, nav: pt.nav.dashboard },
-  { path: '/progresso', heading: pt.progress.title, nav: pt.nav.progress },
   { path: '/ajustes', heading: pt.settings.title, nav: pt.nav.settings },
 ] as const;
 
@@ -79,4 +78,14 @@ test('T01.11 · título e descrição do documento vêm do i18n @e2e', async ({ 
     'content',
     pt.app.description,
   );
+});
+
+test('T01.12 · navegação principal tem 4 abas e Progresso não é mais aba @e2e', async ({
+  page,
+}) => {
+  await page.goto('/hoje');
+  const nav = page.getByRole('navigation', { name: pt.nav.label });
+  await expect(nav.getByRole('link')).toHaveCount(4);
+  await page.goto('/progresso');
+  await expect(page).toHaveURL(/\/hoje$/);
 });

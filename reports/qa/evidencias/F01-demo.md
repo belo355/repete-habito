@@ -6,7 +6,7 @@
 ## Como fazer
 
 1. `pnpm build && pnpm preview` e abrir http://localhost:4173.
-2. Percorrer: Hoje, Atividades, Dashboard, Progresso, Ajustes e /onboarding pela navegação.
+2. Percorrer pela navegação as 4 abas (Hoje, Atividades, Dashboard, Ajustes) e /onboarding pelos estados vazios (T01.12: Progresso deixou de ser aba).
 3. Em Ajustes: trocar o tema (Igual ao sistema, Claro, Escuro) e recarregar; ver a versão do app.
 4. Instalar o app pelo Chrome (ícone de instalar na barra de endereço ou "Instalar app" em Ajustes).
 5. Offline: DevTools → Network → Offline, recarregar e navegar entre as telas.

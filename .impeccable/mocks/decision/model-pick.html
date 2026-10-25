@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        width: 390px;
+        height: 844px;
+        overflow: hidden;
+        background: #f4f4f0;
+        color: #111;
+        font-family: Archivo, system-ui, sans-serif;
+        display: flex;
+        flex-direction: column;
+      }
+      .folha {
+        background: #fff;
+        margin: 14px 14px 0;
+        padding: 18px 20px 16px;
+        border-top: 10px solid #111;
+        text-align: center;
+      }
+      .mes {
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+      .num {
+        font-size: 168px;
+        line-height: 0.9;
+        font-weight: 900;
+        font-stretch: 75%;
+        letter-spacing: -0.04em;
+        margin: 6px 0 2px;
+        font-variant-numeric: tabular-nums;
+      }
+      .dia {
+        font-size: 18px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+      }
+      .semana {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        margin: 12px 14px 0;
+        background: #fff;
+        text-align: center;
+        padding: 10px 0;
+      }
+      .semana div {
+        font-size: 11px;
+        font-weight: 700;
+        color: #555;
+      }
+      .semana b {
+        display: block;
+        font-size: 20px;
+        font-weight: 800;
+        color: #111;
+        margin-top: 2px;
+        position: relative;
+      }
+      .semana .dom b,
+      .semana .dom {
+        color: #c8102e;
+      }
+      .semana .ok b:after {
+        content: '';
+        position: absolute;
+        left: 14%;
+        right: 14%;
+        top: 52%;
+        height: 3px;
+        background: #1d3f8f;
+        transform: rotate(-12deg);
+        border-radius: 2px;
+      }
+      .semana .hoje b {
+        outline: 2.5px solid #111;
+        outline-offset: 2px;
+        border-radius: 4px;
+      }
+      ul {
+        list-style: none;
+        margin: 12px 14px 0;
+        background: #fff;
+        flex: 1;
+      }
+      li {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 16px 18px;
+        border-bottom: 1px solid #e3e3dc;
+        min-height: 64px;
+      }
+      .box {
+        width: 30px;
+        height: 30px;
+        border: 2.5px solid #111;
+        border-radius: 4px;
+        position: relative;
+        flex: none;
+      }
+      .done .box:after {
+        content: '';
+        position: absolute;
+        left: -6px;
+        right: -6px;
+        top: 11px;
+        height: 4px;
+        background: #1d3f8f;
+        transform: rotate(-24deg);
+        border-radius: 3px;
+      }
+      .n {
+        font-size: 18px;
+        font-weight: 700;
+      }
+      .s {
+        font-size: 13px;
+        color: #555;
+        margin-top: 2px;
+      }
+      .done .n {
+        text-decoration: line-through;
+        text-decoration-color: #1d3f8f;
+        text-decoration-thickness: 3px;
+      }
+      .tag {
+        margin-left: auto;
+        font-size: 12px;
+        font-weight: 700;
+        color: #c8102e;
+      }
+      nav {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        height: 64px;
+        background: #111;
+        color: #bbb;
+        font-size: 12px;
+        font-weight: 600;
+        margin-top: 12px;
+      }
+      nav a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      nav .cur {
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="folha">
+      <p class="mes">Outubro 2026</p>
+      <p class="num">24</p>
+      <p class="dia">Sábado</p>
+    </div>
+    <div class="semana">
+      <div class="ok">seg<b>19</b></div>
+      <div class="ok">ter<b>20</b></div>
+      <div>qua<b>21</b></div>
+      <div class="ok">qui<b>22</b></div>
+      <div class="ok">sex<b>23</b></div>
+      <div class="hoje">sáb<b>24</b></div>
+      <div class="dom">dom<b>25</b></div>
+    </div>
+    <ul>
+      <li class="done">
+        <i class="box"></i>
+        <div>
+          <p class="n">Caminhada</p>
+          <p class="s">32 min · meta 20</p>
+        </div>
+      </li>
+      <li>
+        <i class="box"></i>
+        <div>
+          <p class="n">Flexões</p>
+          <p class="s">3x por semana · faltam 2</p>
+        </div>
+      </li>
+      <li class="done">
+        <i class="box"></i>
+        <div>
+          <p class="n">Alongamento</p>
+          <p class="s">feito hoje</p>
+        </div>
+      </li>
+      <li>
+        <i class="box"></i>
+        <div>
+          <p class="n">Mobilidade</p>
+          <p class="s">folga hoje</p>
+        </div>
+        <span class="tag">12 dias seguidos</span>
+      </li>
+    </ul>
+    <nav>
+      <a class="cur">Hoje</a><a>Atividades</a><a>Dashboard</a><a>Progresso</a><a>Ajustes</a>
+    </nav>
+  </body>
+</html>

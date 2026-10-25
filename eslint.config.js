@@ -71,7 +71,7 @@ export default tseslint.config(
           // Chaves de objeto que guardam rota, chave de i18n ou valor técnico.
           'object-properties': {
             exclude: [
-              '^(to|path|value|name|id|type|role|timeZone|year|month|day|lng|fallbackLng)$',
+              '^(to|path|value|name|id|type|role|timeZone|year|month|day|weekday|lng|fallbackLng)$',
               '.*Key',
               '[A-Z_-]+',
             ],

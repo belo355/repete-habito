@@ -1,5 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import '@fontsource-variable/archivo/wght.css';
 import '../i18n/i18n.ts';
 import '../ui/theme.css';
 import { listenForInstallPrompt } from '../platform/install/install.ts';

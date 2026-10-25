@@ -21,7 +21,7 @@ for (const colorScheme of ['light', 'dark'] as const) {
     await page.emulateMedia({ colorScheme });
     await page.goto('/hoje');
     expect(await meta(page)).toBe(await bg(page));
-    expect(await meta(page)).toBe(colorScheme === 'dark' ? '#0f1115' : '#ffffff');
+    expect(await meta(page)).toBe(colorScheme === 'dark' ? '#1a1c19' : '#ffffff');
   });
 }
 
@@ -29,7 +29,7 @@ test('T01.6 · theme-color acompanha a escolha manual de tema @e2e', async ({ pa
   await page.emulateMedia({ colorScheme: 'light' });
   await page.goto('/ajustes');
   await page.getByRole('radio', { name: pt.settings.theme.dark }).check();
-  await expect.poll(() => meta(page)).toBe('#0f1115');
+  await expect.poll(() => meta(page)).toBe('#1a1c19');
   await page.reload();
-  expect(await meta(page)).toBe('#0f1115');
+  expect(await meta(page)).toBe('#1a1c19');
 });

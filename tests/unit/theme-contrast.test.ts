@@ -35,13 +35,20 @@ const pairs: Array<[string, string, number]> = [
   ['color-text', 'color-surface', 4.5],
   ['color-text-muted', 'color-bg', 4.5],
   ['color-text-muted', 'color-surface', 4.5],
-  ['color-primary', 'color-bg', 4.5],
-  ['color-primary', 'color-surface', 4.5],
+  ['color-on-shell', 'color-shell', 4.5],
   ['color-on-primary', 'color-primary', 4.5],
+  ['color-on-capsule', 'color-capsule-yellow', 4.5],
+  ['color-on-capsule', 'color-capsule-coral', 4.5],
+  ['color-on-capsule', 'color-capsule-blue', 4.5],
+  ['color-on-capsule', 'color-capsule-lilac', 4.5],
   ['color-danger', 'color-bg', 4.5],
   ['color-border', 'color-bg', 3],
+  ['color-border', 'color-surface', 3],
   ['color-focus', 'color-bg', 3],
   ['color-focus', 'color-surface', 3],
+  // O anel de foco fica 2 px fora do elemento (outline-offset): é desenhado sobre o fundo
+  // da página ou sobre o lobo, nunca sobre o próprio botão.
+  ['color-focus', 'color-shell', 3],
 ];
 
 const light = block('@theme static');

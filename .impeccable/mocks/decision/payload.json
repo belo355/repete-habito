@@ -1,0 +1,168 @@
+{
+  "title": "Mundo visual do Repete Hábito",
+  "question": "O sorteio indicou a Fita. Fique com ela, escolha uma alternativa ou peça outra rodada.",
+  "options": [
+    {
+      "id": "assigned",
+      "kind": "assigned",
+      "label": "A fita que não arrebenta",
+      "kicker": "THE ROLL",
+      "lineage": "fitinhas coloridas amarradas no pulso, comuns no Brasil",
+      "thesis": "Cada atividade é uma fita colorida; marcar o dia é dar um nó, e faltar deixa folga na fita, nunca um corte.",
+      "palette": ["#0b8a3c", "#f2b705", "#d7263d", "#1f4fd1", "#e2367f", "#ffffff", "#14161c"],
+      "materials": [
+        "fita de tecido saturada",
+        "nós como marcação",
+        "fundo branco limpo (escuro à noite)"
+      ],
+      "viewport": "Tela Hoje: data no topo, cada atividade é uma faixa de cor na largura toda; tocar dá o nó no fim da fita, e os 7 nós da semana ficam à direita; barra de navegação padrão no rodapé.",
+      "risk": "Cores sozinhas não bastam: amarelo e laranja pedem texto escuro, e todo estado precisa de forma e texto além da cor. A origem devocional da fitinha pede só a forma neutra (fita e nó).",
+      "raised": [
+        {
+          "from": "challenger-splitflap",
+          "raise": "Marcar, desfazer e folga mudam o estado da fita no lugar; a lista nunca reordena ao tocar."
+        },
+        {
+          "from": "challenger-metro",
+          "raise": "A fita é a linha: campos de cor chapados, sem cartões, bordas ou sombras."
+        },
+        {
+          "from": "challenger-staratlas",
+          "raise": "O tamanho do nó carrega a hierarquia: nó maior quando a meta de minutos ou repetições foi batida."
+        },
+        {
+          "from": "challenger-boardingpass",
+          "raise": "Números de sequência e semana em algarismos tabulares, em segmentos fixos e rotulados."
+        }
+      ],
+      "html": ".impeccable/mocks/decision/assigned.html",
+      "htmlFrame": "390x844"
+    },
+    {
+      "id": "model-pick",
+      "kind": "pick",
+      "label": "Folhinha de parede",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "calendários de folhinha de padaria e de banco",
+      "thesis": "Hoje é a folha do dia: número enorme, domingo em vermelho, e marcar é riscar a caneta.",
+      "palette": ["#ffffff", "#111111", "#c8102e", "#1d3f8f", "#f4f4f0"],
+      "materials": ["papel branco de folhinha", "numerais pesados", "risco de caneta azul"],
+      "viewport": "Tela Hoje: o dia em numeral gigante no topo, domingo e feriado em vermelho, lista de atividades abaixo com caixa de riscar; semana como fileira de dias.",
+      "risk": "É a metáfora mais comum em apps de hábito (calendário), então a distinção depende de execução muito precisa.",
+      "html": ".impeccable/mocks/decision/model-pick.html",
+      "htmlFrame": "390x844"
+    },
+    {
+      "id": "challenger-zoo",
+      "kind": "challenger",
+      "catalogId": "aww2-zoo-gardens-guide-map",
+      "label": "Mapa do parque",
+      "verdict": "competitive",
+      "lineage": "mapas-guia de zoológico e jardim botânico",
+      "thesis": "Cada atividade é um território de cor chapada; os controles são cápsulas alegres que levam um ponto de um lado ao outro quando ativos.",
+      "palette": ["#8ed462", "#f5e211", "#ff705d", "#2ba0ff", "#ebc1ff", "#2c2e2a", "#ffffff"],
+      "materials": ["cor chapada sem textura", "uma grotesca só", "cápsulas com ponto"],
+      "viewport": "Tela Hoje: um lobo verde no topo com a data e o resumo da semana; lista padrão abaixo, cada atividade com uma cápsula de marcar.",
+      "case": "Funde bem com o tom leve e ao ar livre e ganha em identificação; perde em clareza porque o lobo disputa com a lista padrão de um app.",
+      "risk": "O fundo creme do original é o clichê de renderização; aqui o fundo é branco e o lobo fica só no cabeçalho.",
+      "html": ".impeccable/mocks/decision/challenger-zoo.html",
+      "htmlFrame": "390x844",
+      "hero": "https://impeccable.style/worlds/cards/aww2-zoo-gardens-guide-map-hero.webp"
+    },
+    {
+      "id": "challenger-splitflap",
+      "kind": "challenger",
+      "catalogId": "signals-instruments-split-flap-concourse",
+      "label": "Painel de embarque",
+      "verdict": "declined",
+      "lineage": "painéis split-flap de estação",
+      "thesis": "Atividades como linhas de um painel de partidas.",
+      "palette": ["#111111", "#ffffff", "#f5a623", "#b3261e"],
+      "materials": ["placas pretas", "letras brancas", "lâmpadas âmbar"],
+      "viewport": "Linhas fixas por atividade, estados mudam a linha no lugar.",
+      "case": "Funde mal: o público não se reconhece num painel de estação, e o painel é um instrumento.",
+      "kept": "Estados mudam a linha no lugar, sem quebrar a grade.",
+      "risk": "Fantasia de ferramenta numa tela de uso diário.",
+      "hero": "https://impeccable.style/worlds/cards/signals-instruments-split-flap-concourse-hero.webp"
+    },
+    {
+      "id": "challenger-metro",
+      "kind": "challenger",
+      "catalogId": "digital-design-canon-metro-typographic-tiles",
+      "label": "Blocos Metro",
+      "verdict": "declined",
+      "lineage": "interface Metro de blocos e tipografia gigante",
+      "thesis": "Atividades como blocos de cor com tipografia enorme.",
+      "palette": ["#000000", "#00aba9", "#e3008c", "#a4c400", "#ffffff"],
+      "materials": ["blocos chapados", "minúsculas gigantes"],
+      "viewport": "Panorama de blocos; cada bloco é uma porta.",
+      "case": "Funde mal: é a linguagem de outra interface, e o panorama esconde a lista do dia.",
+      "kept": "Cor chapada como conteúdo, sem cromo.",
+      "risk": "Nostalgia de outra plataforma.",
+      "hero": "https://impeccable.style/worlds/cards/digital-design-canon-metro-typographic-tiles-hero.webp"
+    },
+    {
+      "id": "challenger-staratlas",
+      "kind": "challenger",
+      "catalogId": "notation-diagram-systems-star-atlas",
+      "label": "Atlas celeste",
+      "verdict": "declined",
+      "lineage": "atlas de estrelas",
+      "thesis": "Dias como estrelas cujo tamanho é a magnitude.",
+      "palette": ["#0d1b3e", "#f4f1e8", "#ff4d3d"],
+      "materials": ["céu azul-marinho", "pontos por magnitude"],
+      "viewport": "Mapa de pontos por dia.",
+      "case": "Funde mal: contemplativo demais para marcar em 5 segundos.",
+      "kept": "O tamanho do ponto carrega a hierarquia.",
+      "risk": "Lento de ler numa tela de tarefa.",
+      "hero": "https://impeccable.style/worlds/cards/notation-diagram-systems-star-atlas-hero.webp"
+    },
+    {
+      "id": "challenger-saville",
+      "kind": "challenger",
+      "catalogId": "brand-identity-canon-saville-catalog-sleeve",
+      "label": "Capa de catálogo",
+      "verdict": "declined",
+      "lineage": "capas de disco com código de cor",
+      "thesis": "Tudo vira número de catálogo e faixa de cor codificada.",
+      "palette": ["#111111", "#ffffff", "#e63946", "#2a9d8f"],
+      "materials": ["preto fosco", "linhas finas brancas"],
+      "viewport": "Índice numerado; o item ativo decodifica em cor.",
+      "case": "Funde mal: codificar nomes de atividades atrapalha quem quer marcar rápido.",
+      "kept": "Um único item decodificado em cor plena.",
+      "risk": "Hermético para quem está começando.",
+      "hero": "https://impeccable.style/worlds/cards/brand-identity-canon-saville-catalog-sleeve-hero.webp"
+    },
+    {
+      "id": "challenger-boardingpass",
+      "kind": "challenger",
+      "catalogId": "vernacular-ephemera-boarding-pass-and-gate-board",
+      "label": "Cartão de embarque",
+      "verdict": "declined",
+      "lineage": "cartão de embarque e painel de portão",
+      "thesis": "Cada atividade como um cartão segmentado com número de sequência.",
+      "palette": ["#ffffff", "#111111", "#ff5a1f"],
+      "materials": ["segmentos rotulados", "bloco monoespaçado"],
+      "viewport": "Cartões segmentados ordenados por horário.",
+      "case": "Funde mal: viagem e portão não falam de rotina de exercício.",
+      "kept": "Algarismos tabulares em segmentos rotulados.",
+      "risk": "Metáfora emprestada sem relação com o público.",
+      "hero": "https://impeccable.style/worlds/cards/vernacular-ephemera-boarding-pass-and-gate-board-hero.webp"
+    }
+  ],
+  "reroll": { "registers": ["safer", "bolder"] },
+  "buildPath": { "value": "code" },
+  "canon": true,
+  "canonCard": {
+    "kind": "canon",
+    "label": "O padrão da categoria",
+    "thesis": "Lista limpa de hábitos com círculos de check, contador de sequência e anéis de progresso, executada com capricho.",
+    "palette": ["#ffffff", "#111827", "#16a34a", "#f3f4f6"],
+    "materials": ["lista de sistema", "círculos de check", "anel de progresso"],
+    "viewport": "Tela Hoje: título grande, anel com o progresso do dia, lista com círculo à direita de cada atividade, barra de abas no rodapé.",
+    "risk": "Igual aos concorrentes por definição.",
+    "html": ".impeccable/mocks/decision/canon.html",
+    "htmlFrame": "390x844"
+  },
+  "steer": true
+}

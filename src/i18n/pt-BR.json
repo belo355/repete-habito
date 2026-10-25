@@ -12,23 +12,42 @@
     "today": "Hoje",
     "activities": "Atividades",
     "dashboard": "Dashboard",
-    "progress": "Progresso",
     "settings": "Ajustes"
   },
+  "mark": {
+    "action": "Marcar",
+    "done": "Feito",
+    "rest": "Folga"
+  },
   "today": {
-    "title": "Hoje"
+    "title": "Hoje",
+    "summaryEmpty": "Seu dia começa quando você escolher suas atividades.",
+    "emptyTitle": "Nenhuma atividade por aqui ainda",
+    "emptyBody": "Escolha de 1 a 3 atividades leves para começar. Dá para mudar depois.",
+    "exampleTitle": "Veja como marcar",
+    "exampleName": "Caminhada",
+    "exampleMeta": "Exemplo, não fica salvo",
+    "create": "Criar primeira atividade",
+    "guided": "Usar o passo a passo"
   },
   "activities": {
-    "title": "Atividades"
+    "title": "Atividades",
+    "emptyTitle": "Você ainda não tem atividades",
+    "emptyBody": "Comece com poucas, como uma caminhada ou um alongamento. O que conta é aparecer.",
+    "start": "Escolher atividades"
   },
   "dashboard": {
-    "title": "Dashboard"
-  },
-  "progress": {
-    "title": "Progresso"
+    "title": "Dashboard",
+    "summaryEmpty": "Sua semana e seu mês aparecem aqui.",
+    "emptyTitle": "Nada marcado neste período",
+    "emptyBody": "Quando você marcar atividades, as vezes e os dias ativos aparecem aqui.",
+    "goToday": "Ir para Hoje"
   },
   "onboarding": {
-    "title": "Boas-vindas"
+    "title": "Boas-vindas",
+    "tagline": "Aparecer todo dia vale mais do que treinar perfeito.",
+    "body": "Aqui você vai escolher seu objetivo, de 1 a 3 atividades e o horário do lembrete.",
+    "goToday": "Ir para Hoje"
   },
   "settings": {
     "title": "Ajustes",

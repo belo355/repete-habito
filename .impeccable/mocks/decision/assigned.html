@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        width: 390px;
+        height: 844px;
+        overflow: hidden;
+        background: #fff;
+        color: #14161c;
+        font-family: Archivo, system-ui, sans-serif;
+        display: flex;
+        flex-direction: column;
+      }
+      header {
+        padding: 20px 20px 12px;
+      }
+      .date {
+        font-size: 14px;
+        color: #5b5f6b;
+        font-weight: 500;
+      }
+      h1 {
+        font-size: 34px;
+        font-weight: 800;
+        font-stretch: 90%;
+        letter-spacing: -0.01em;
+        margin-top: 2px;
+      }
+      .segs {
+        display: flex;
+        gap: 0;
+        margin: 14px 20px 18px;
+        border: 1.5px solid #14161c;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .seg {
+        flex: 1;
+        padding: 8px 10px;
+        border-right: 1.5px solid #14161c;
+      }
+      .seg:last-child {
+        border-right: 0;
+      }
+      .seg b {
+        display: block;
+        font-size: 22px;
+        font-weight: 800;
+        font-variant-numeric: tabular-nums;
+      }
+      .seg span {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: #5b5f6b;
+        font-weight: 600;
+      }
+      main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .fita {
+        position: relative;
+        height: 78px;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        color: #fff;
+      }
+      .fita .t {
+        font-size: 21px;
+        font-weight: 800;
+        font-stretch: 80%;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+      }
+      .fita .m {
+        font-size: 13px;
+        font-weight: 500;
+        opacity: 0.92;
+        margin-top: 2px;
+      }
+      .fita .txt {
+        flex: 1;
+      }
+      .knot {
+        width: 34px;
+        height: 46px;
+        border-radius: 12px;
+        background: rgba(0, 0, 0, 0.28);
+        position: relative;
+        box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.35);
+      }
+      .knot:before,
+      .knot:after {
+        content: '';
+        position: absolute;
+        bottom: -14px;
+        width: 10px;
+        height: 18px;
+        background: inherit;
+        border-radius: 3px;
+      }
+      .knot:before {
+        left: 4px;
+        transform: rotate(18deg);
+      }
+      .knot:after {
+        right: 4px;
+        transform: rotate(-18deg);
+      }
+      .knot.big {
+        width: 42px;
+      }
+      .hint {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        border: 2px dashed rgba(255, 255, 255, 0.75);
+        border-radius: 999px;
+        padding: 7px 12px;
+      }
+      .week {
+        display: flex;
+        gap: 6px;
+        padding: 6px 20px 0;
+      }
+      .d {
+        width: 16px;
+        height: 16px;
+        border-radius: 5px;
+        border: 2px solid currentColor;
+        opacity: 0.9;
+      }
+      .d.on {
+        background: currentColor;
+      }
+      .d.off {
+        border-style: dotted;
+        opacity: 0.4;
+      }
+      .verde {
+        background: #0b8a3c;
+      }
+      .amarelo {
+        background: #f2b705;
+        color: #1d1a10;
+      }
+      .vermelho {
+        background: #d7263d;
+      }
+      .azul {
+        background: #1f4fd1;
+      }
+      .amarelo .hint {
+        border-color: rgba(29, 26, 16, 0.6);
+      }
+      .cw {
+        color: #0b8a3c;
+      }
+      .ca {
+        color: #b88a00;
+      }
+      .cr {
+        color: #d7263d;
+      }
+      .cb {
+        color: #1f4fd1;
+      }
+      .row {
+        display: flex;
+        flex-direction: column;
+      }
+      .lbl {
+        font-size: 11px;
+        color: #5b5f6b;
+        padding: 4px 20px 0;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+      }
+      nav {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        border-top: 1.5px solid #e4e5ea;
+        height: 64px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #5b5f6b;
+      }
+      nav a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: inherit;
+      }
+      nav a.cur {
+        color: #14161c;
+        box-shadow: inset 0 3px 0 #14161c;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <p class="date">sábado, 24 de outubro</p>
+      <h1>Hoje</h1>
+    </header>
+    <div class="segs">
+      <div class="seg"><span>Semana</span><b>4/5</b></div>
+      <div class="seg"><span>Sequência</span><b>12</b></div>
+      <div class="seg"><span>Hoje</span><b>2/3</b></div>
+    </div>
+    <main>
+      <div class="row">
+        <div class="fita verde">
+          <div class="txt">
+            <p class="t">Caminhada</p>
+            <p class="m">Feito · 32 de 20 min</p>
+          </div>
+          <div class="knot big"></div>
+        </div>
+        <div class="week cw">
+          <i class="d on"></i><i class="d on"></i><i class="d on"></i><i class="d off"></i
+          ><i class="d on"></i><i class="d on"></i><i class="d on"></i>
+        </div>
+      </div>
+      <div class="row">
+        <div class="fita amarelo">
+          <div class="txt">
+            <p class="t">Flexões</p>
+            <p class="m">3x por semana · faltam 2</p>
+          </div>
+          <span class="hint">Dar o nó</span>
+        </div>
+        <div class="week ca">
+          <i class="d on"></i><i class="d off"></i><i class="d off"></i><i class="d off"></i
+          ><i class="d off"></i><i class="d"></i><i class="d off"></i>
+        </div>
+      </div>
+      <div class="row">
+        <div class="fita azul">
+          <div class="txt">
+            <p class="t">Alongamento</p>
+            <p class="m">Feito hoje</p>
+          </div>
+          <div class="knot"></div>
+        </div>
+        <div class="week cb">
+          <i class="d on"></i><i class="d off"></i><i class="d on"></i><i class="d off"></i
+          ><i class="d on"></i><i class="d on"></i><i class="d off"></i>
+        </div>
+      </div>
+      <p class="lbl">Folga em Mobilidade: a fita segue inteira.</p>
+    </main>
+    <nav>
+      <a class="cur">Hoje</a><a>Atividades</a><a>Dashboard</a><a>Progresso</a><a>Ajustes</a>
+    </nav>
+  </body>
+</html>

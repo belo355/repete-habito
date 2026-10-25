@@ -18,13 +18,13 @@ export function UpdatePrompt({ open, onAccept, onDismiss }: UpdatePromptProps) {
       role="status"
       className={
         open
-          ? 'fixed inset-x-4 bottom-16 z-10 mx-auto max-w-md rounded-lg border border-border bg-surface p-4 text-text shadow-lg'
+          ? 'fixed inset-x-4 bottom-20 z-10 mx-auto max-w-md rounded-lg border-2 border-text bg-bg p-5 text-text shadow-[0_16px_40px_-12px_rgb(0_0_0/0.4)]'
           : 'sr-only'
       }
     >
       {open && (
         <>
-          <p className="m-0 font-bold">{t('update.available')}</p>
+          <p className="m-0 text-lg font-extrabold tracking-[-0.01em]">{t('update.available')}</p>
           <p className="mt-1 mb-3 text-text-muted">{t('update.description')}</p>
           <div className="flex flex-wrap gap-2">
             <Button onClick={onAccept}>{t('update.accept')}</Button>

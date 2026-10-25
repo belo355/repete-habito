@@ -9,7 +9,6 @@ const routes = [
   { path: '/hoje', heading: pt.today.title },
   { path: '/atividades', heading: pt.activities.title },
   { path: '/dashboard', heading: pt.dashboard.title },
-  { path: '/progresso', heading: pt.progress.title },
   { path: '/ajustes', heading: pt.settings.title },
   { path: '/onboarding', heading: pt.onboarding.title },
 ] as const;

@@ -1,0 +1,656 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-25T03:13:45.024Z",
+  "title": "Design System: Repete Hábito",
+  "extensions": {
+    "colorMeta": {
+      "bg": {
+        "role": "neutral",
+        "displayName": "Papel Branco",
+        "canonical": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "oklch(15% 0.000 89.9)",
+          "oklch(27% 0.000 89.9)",
+          "oklch(39% 0.000 89.9)",
+          "oklch(51% 0.000 89.9)",
+          "oklch(63% 0.000 89.9)",
+          "oklch(75% 0.000 89.9)",
+          "oklch(85% 0.000 89.9)",
+          "oklch(95% 0.000 89.9)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Papel Sálvia",
+        "canonical": "oklch(96.4% 0.008 121.6)",
+        "tonalRamp": [
+          "oklch(15% 0.004 121.6)",
+          "oklch(27% 0.005 121.6)",
+          "oklch(39% 0.007 121.6)",
+          "oklch(51% 0.008 121.6)",
+          "oklch(63% 0.007 121.6)",
+          "oklch(75% 0.006 121.6)",
+          "oklch(85% 0.005 121.6)",
+          "oklch(95% 0.004 121.6)"
+        ]
+      },
+      "text": {
+        "role": "neutral",
+        "displayName": "Tinta",
+        "canonical": "oklch(29.8% 0.008 128.7)",
+        "tonalRamp": [
+          "oklch(15% 0.004 128.7)",
+          "oklch(27% 0.005 128.7)",
+          "oklch(39% 0.006 128.7)",
+          "oklch(51% 0.007 128.7)",
+          "oklch(63% 0.007 128.7)",
+          "oklch(75% 0.006 128.7)",
+          "oklch(85% 0.005 128.7)",
+          "oklch(95% 0.004 128.7)"
+        ]
+      },
+      "text-muted": {
+        "role": "neutral",
+        "displayName": "Tinta Apagada",
+        "canonical": "oklch(48.2% 0.010 121.8)",
+        "tonalRamp": [
+          "oklch(15% 0.005 121.8)",
+          "oklch(27% 0.006 121.8)",
+          "oklch(39% 0.008 121.8)",
+          "oklch(51% 0.009 121.8)",
+          "oklch(63% 0.009 121.8)",
+          "oklch(75% 0.007 121.8)",
+          "oklch(85% 0.006 121.8)",
+          "oklch(95% 0.005 121.8)"
+        ]
+      },
+      "shell": {
+        "role": "primary",
+        "displayName": "Verde Parque",
+        "canonical": "oklch(79.9% 0.164 134.8)",
+        "tonalRamp": [
+          "oklch(15% 0.082 134.8)",
+          "oklch(27% 0.106 134.8)",
+          "oklch(39% 0.131 134.8)",
+          "oklch(51% 0.155 134.8)",
+          "oklch(63% 0.147 134.8)",
+          "oklch(75% 0.123 134.8)",
+          "oklch(85% 0.102 134.8)",
+          "oklch(95% 0.082 134.8)"
+        ]
+      },
+      "primary": {
+        "role": "primary",
+        "displayName": "Tinta Grafite",
+        "canonical": "oklch(29.8% 0.008 128.7)",
+        "tonalRamp": [
+          "oklch(15% 0.004 128.7)",
+          "oklch(27% 0.005 128.7)",
+          "oklch(39% 0.006 128.7)",
+          "oklch(51% 0.007 128.7)",
+          "oklch(63% 0.007 128.7)",
+          "oklch(75% 0.006 128.7)",
+          "oklch(85% 0.005 128.7)",
+          "oklch(95% 0.004 128.7)"
+        ]
+      },
+      "danger": {
+        "role": "error",
+        "displayName": "Alerta",
+        "canonical": "oklch(50.1% 0.178 28.7)",
+        "tonalRamp": [
+          "oklch(15% 0.089 28.7)",
+          "oklch(27% 0.116 28.7)",
+          "oklch(39% 0.143 28.7)",
+          "oklch(51% 0.169 28.7)",
+          "oklch(63% 0.160 28.7)",
+          "oklch(75% 0.134 28.7)",
+          "oklch(85% 0.111 28.7)",
+          "oklch(95% 0.089 28.7)"
+        ]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Cinza Trilha",
+        "canonical": "oklch(57.3% 0.016 124.7)",
+        "tonalRamp": [
+          "oklch(15% 0.008 124.7)",
+          "oklch(27% 0.010 124.7)",
+          "oklch(39% 0.013 124.7)",
+          "oklch(51% 0.015 124.7)",
+          "oklch(63% 0.014 124.7)",
+          "oklch(75% 0.012 124.7)",
+          "oklch(85% 0.010 124.7)",
+          "oklch(95% 0.008 124.7)"
+        ]
+      },
+      "capsule-yellow": {
+        "role": "secondary",
+        "displayName": "Amarelo Placa",
+        "canonical": "oklch(90.0% 0.187 103.2)",
+        "tonalRamp": [
+          "oklch(15% 0.094 103.2)",
+          "oklch(27% 0.122 103.2)",
+          "oklch(39% 0.150 103.2)",
+          "oklch(51% 0.178 103.2)",
+          "oklch(63% 0.169 103.2)",
+          "oklch(75% 0.141 103.2)",
+          "oklch(85% 0.117 103.2)",
+          "oklch(95% 0.094 103.2)"
+        ]
+      },
+      "capsule-coral": {
+        "role": "secondary",
+        "displayName": "Coral Quiosque",
+        "canonical": "oklch(71.6% 0.178 29.8)",
+        "tonalRamp": [
+          "oklch(15% 0.089 29.8)",
+          "oklch(27% 0.116 29.8)",
+          "oklch(39% 0.143 29.8)",
+          "oklch(51% 0.169 29.8)",
+          "oklch(63% 0.160 29.8)",
+          "oklch(75% 0.134 29.8)",
+          "oklch(85% 0.111 29.8)",
+          "oklch(95% 0.089 29.8)"
+        ]
+      },
+      "capsule-blue": {
+        "role": "secondary",
+        "displayName": "Azul Lago",
+        "canonical": "oklch(68.9% 0.171 248.6)",
+        "tonalRamp": [
+          "oklch(15% 0.086 248.6)",
+          "oklch(27% 0.111 248.6)",
+          "oklch(39% 0.137 248.6)",
+          "oklch(51% 0.163 248.6)",
+          "oklch(63% 0.154 248.6)",
+          "oklch(75% 0.129 248.6)",
+          "oklch(85% 0.107 248.6)",
+          "oklch(95% 0.086 248.6)"
+        ]
+      },
+      "capsule-lilac": {
+        "role": "secondary",
+        "displayName": "Lilás Jardim",
+        "canonical": "oklch(86.7% 0.095 314.7)",
+        "tonalRamp": [
+          "oklch(15% 0.048 314.7)",
+          "oklch(27% 0.062 314.7)",
+          "oklch(39% 0.076 314.7)",
+          "oklch(51% 0.090 314.7)",
+          "oklch(63% 0.086 314.7)",
+          "oklch(75% 0.071 314.7)",
+          "oklch(85% 0.059 314.7)",
+          "oklch(95% 0.048 314.7)"
+        ]
+      },
+      "dark-bg": {
+        "role": "neutral",
+        "displayName": "Grafite Noite",
+        "canonical": "oklch(22.3% 0.006 135.0)",
+        "tonalRamp": [
+          "oklch(15% 0.003 135.0)",
+          "oklch(27% 0.004 135.0)",
+          "oklch(39% 0.005 135.0)",
+          "oklch(51% 0.006 135.0)",
+          "oklch(63% 0.006 135.0)",
+          "oklch(75% 0.005 135.0)",
+          "oklch(85% 0.004 135.0)",
+          "oklch(95% 0.003 135.0)"
+        ]
+      },
+      "dark-surface": {
+        "role": "neutral",
+        "displayName": "Superfície Noite",
+        "canonical": "oklch(26.8% 0.010 132.6)",
+        "tonalRamp": [
+          "oklch(15% 0.005 132.6)",
+          "oklch(27% 0.007 132.6)",
+          "oklch(39% 0.008 132.6)",
+          "oklch(51% 0.010 132.6)",
+          "oklch(63% 0.009 132.6)",
+          "oklch(75% 0.008 132.6)",
+          "oklch(85% 0.006 132.6)",
+          "oklch(95% 0.005 132.6)"
+        ]
+      },
+      "dark-text": {
+        "role": "neutral",
+        "displayName": "Tinta Clara (texto)",
+        "canonical": "oklch(96.2% 0.007 115.7)",
+        "tonalRamp": [
+          "oklch(15% 0.003 115.7)",
+          "oklch(27% 0.004 115.7)",
+          "oklch(39% 0.005 115.7)",
+          "oklch(51% 0.006 115.7)",
+          "oklch(63% 0.006 115.7)",
+          "oklch(75% 0.005 115.7)",
+          "oklch(85% 0.004 115.7)",
+          "oklch(95% 0.003 115.7)"
+        ]
+      },
+      "dark-text-muted": {
+        "role": "neutral",
+        "displayName": "Tinta Clara Apagada",
+        "canonical": "oklch(77.7% 0.014 120.3)",
+        "tonalRamp": [
+          "oklch(15% 0.007 120.3)",
+          "oklch(27% 0.009 120.3)",
+          "oklch(39% 0.011 120.3)",
+          "oklch(51% 0.014 120.3)",
+          "oklch(63% 0.013 120.3)",
+          "oklch(75% 0.011 120.3)",
+          "oklch(85% 0.009 120.3)",
+          "oklch(95% 0.007 120.3)"
+        ]
+      },
+      "dark-shell": {
+        "role": "primary",
+        "displayName": "Verde Musgo",
+        "canonical": "oklch(47.9% 0.110 137.1)",
+        "tonalRamp": [
+          "oklch(15% 0.055 137.1)",
+          "oklch(27% 0.072 137.1)",
+          "oklch(39% 0.088 137.1)",
+          "oklch(51% 0.105 137.1)",
+          "oklch(63% 0.099 137.1)",
+          "oklch(75% 0.083 137.1)",
+          "oklch(85% 0.069 137.1)",
+          "oklch(95% 0.055 137.1)"
+        ]
+      },
+      "dark-danger": {
+        "role": "error",
+        "displayName": "Alerta Noite",
+        "canonical": "oklch(75.9% 0.144 26.1)",
+        "tonalRamp": [
+          "oklch(15% 0.072 26.1)",
+          "oklch(27% 0.093 26.1)",
+          "oklch(39% 0.115 26.1)",
+          "oklch(51% 0.136 26.1)",
+          "oklch(63% 0.129 26.1)",
+          "oklch(75% 0.108 26.1)",
+          "oklch(85% 0.090 26.1)",
+          "oklch(95% 0.072 26.1)"
+        ]
+      },
+      "dark-border": {
+        "role": "neutral",
+        "displayName": "Cinza Trilha Noite",
+        "canonical": "oklch(64.3% 0.017 123.2)",
+        "tonalRamp": [
+          "oklch(15% 0.008 123.2)",
+          "oklch(27% 0.011 123.2)",
+          "oklch(39% 0.013 123.2)",
+          "oklch(51% 0.016 123.2)",
+          "oklch(63% 0.015 123.2)",
+          "oklch(75% 0.013 123.2)",
+          "oklch(85% 0.010 123.2)",
+          "oklch(95% 0.008 123.2)"
+        ]
+      },
+      "on-shell": {
+        "role": "neutral",
+        "displayName": "Tinta sobre verde",
+        "canonical": "oklch(29.8% 0.008 128.7)",
+        "tonalRamp": [
+          "oklch(15% 0.004 128.7)",
+          "oklch(27% 0.005 128.7)",
+          "oklch(39% 0.006 128.7)",
+          "oklch(51% 0.007 128.7)",
+          "oklch(63% 0.007 128.7)",
+          "oklch(75% 0.006 128.7)",
+          "oklch(85% 0.005 128.7)",
+          "oklch(95% 0.004 128.7)"
+        ]
+      },
+      "on-primary": {
+        "role": "primary",
+        "displayName": "Branco sobre tinta",
+        "canonical": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "oklch(15% 0.000 89.9)",
+          "oklch(27% 0.000 89.9)",
+          "oklch(39% 0.000 89.9)",
+          "oklch(51% 0.000 89.9)",
+          "oklch(63% 0.000 89.9)",
+          "oklch(75% 0.000 89.9)",
+          "oklch(85% 0.000 89.9)",
+          "oklch(95% 0.000 89.9)"
+        ]
+      },
+      "focus": {
+        "role": "neutral",
+        "displayName": "Foco",
+        "canonical": "oklch(29.8% 0.008 128.7)",
+        "tonalRamp": [
+          "oklch(15% 0.004 128.7)",
+          "oklch(27% 0.005 128.7)",
+          "oklch(39% 0.006 128.7)",
+          "oklch(51% 0.007 128.7)",
+          "oklch(63% 0.007 128.7)",
+          "oklch(75% 0.006 128.7)",
+          "oklch(85% 0.005 128.7)",
+          "oklch(95% 0.004 128.7)"
+        ]
+      },
+      "on-capsule": {
+        "role": "neutral",
+        "displayName": "Tinta sobre cápsula",
+        "canonical": "oklch(29.8% 0.008 128.7)",
+        "tonalRamp": [
+          "oklch(15% 0.004 128.7)",
+          "oklch(27% 0.005 128.7)",
+          "oklch(39% 0.006 128.7)",
+          "oklch(51% 0.007 128.7)",
+          "oklch(63% 0.007 128.7)",
+          "oklch(75% 0.006 128.7)",
+          "oklch(85% 0.005 128.7)",
+          "oklch(95% 0.004 128.7)"
+        ]
+      },
+      "chip": {
+        "role": "neutral",
+        "displayName": "Ponto branco",
+        "canonical": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "oklch(15% 0.000 89.9)",
+          "oklch(27% 0.000 89.9)",
+          "oklch(39% 0.000 89.9)",
+          "oklch(51% 0.000 89.9)",
+          "oklch(63% 0.000 89.9)",
+          "oklch(75% 0.000 89.9)",
+          "oklch(85% 0.000 89.9)",
+          "oklch(95% 0.000 89.9)"
+        ]
+      },
+      "dark-on-shell": {
+        "role": "neutral",
+        "displayName": "Texto sobre verde (escuro)",
+        "canonical": "oklch(96.2% 0.007 115.7)",
+        "tonalRamp": [
+          "oklch(15% 0.003 115.7)",
+          "oklch(27% 0.004 115.7)",
+          "oklch(39% 0.005 115.7)",
+          "oklch(51% 0.006 115.7)",
+          "oklch(63% 0.006 115.7)",
+          "oklch(75% 0.005 115.7)",
+          "oklch(85% 0.004 115.7)",
+          "oklch(95% 0.003 115.7)"
+        ]
+      },
+      "dark-primary": {
+        "role": "primary",
+        "displayName": "Tinta Clara",
+        "canonical": "oklch(96.2% 0.007 115.7)",
+        "tonalRamp": [
+          "oklch(15% 0.003 115.7)",
+          "oklch(27% 0.004 115.7)",
+          "oklch(39% 0.005 115.7)",
+          "oklch(51% 0.006 115.7)",
+          "oklch(63% 0.006 115.7)",
+          "oklch(75% 0.005 115.7)",
+          "oklch(85% 0.004 115.7)",
+          "oklch(95% 0.003 115.7)"
+        ]
+      },
+      "dark-on-primary": {
+        "role": "primary",
+        "displayName": "Grafite sobre tinta clara",
+        "canonical": "oklch(29.8% 0.008 128.7)",
+        "tonalRamp": [
+          "oklch(15% 0.004 128.7)",
+          "oklch(27% 0.005 128.7)",
+          "oklch(39% 0.006 128.7)",
+          "oklch(51% 0.007 128.7)",
+          "oklch(63% 0.007 128.7)",
+          "oklch(75% 0.006 128.7)",
+          "oklch(85% 0.005 128.7)",
+          "oklch(95% 0.004 128.7)"
+        ]
+      },
+      "dark-focus": {
+        "role": "neutral",
+        "displayName": "Foco (escuro)",
+        "canonical": "oklch(96.2% 0.007 115.7)",
+        "tonalRamp": [
+          "oklch(15% 0.003 115.7)",
+          "oklch(27% 0.004 115.7)",
+          "oklch(39% 0.005 115.7)",
+          "oklch(51% 0.006 115.7)",
+          "oklch(63% 0.006 115.7)",
+          "oklch(75% 0.005 115.7)",
+          "oklch(85% 0.004 115.7)",
+          "oklch(95% 0.003 115.7)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Título do lobo (Hoje, Dashboard)."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Título das telas sem lobo."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Título do estado vazio."
+      },
+      "title-sm": {
+        "displayName": "Title pequeno",
+        "purpose": "Títulos de seção, diálogo e aviso."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Frase-resumo do lobo (até 22rem)."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Texto corrente (até 60ch nas descrições)."
+      },
+      "meta": {
+        "displayName": "Meta",
+        "purpose": "Linha de apoio, data e versão."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Texto de botões e da cápsula."
+      },
+      "label-nav": {
+        "displayName": "Label da navegação",
+        "purpose": "Rótulos das abas (0.875rem a partir de 1024 px)."
+      }
+    },
+    "shadows": [
+      {
+        "name": "ponto",
+        "value": "0 1px 2px rgb(0 0 0 / 0.25)",
+        "purpose": "Só no ponto branco da cápsula de marcar."
+      },
+      {
+        "name": "menu",
+        "value": "0 10px 24px -10px rgb(0 0 0 / 0.35)",
+        "purpose": "Menu de ações suspenso."
+      },
+      {
+        "name": "camada",
+        "value": "0 16px 40px -12px rgb(0 0 0 / 0.4)",
+        "purpose": "Diálogo modal e aviso de nova versão."
+      }
+    ],
+    "motion": [
+      {
+        "name": "capsule-cross",
+        "value": "250ms cubic-bezier(0.34, 1.25, 0.64, 1)",
+        "purpose": "Ponto da cápsula e do interruptor atravessando (leve overshoot); instantâneo com movimento reduzido."
+      },
+      {
+        "name": "capsule-padding",
+        "value": "200ms",
+        "purpose": "Troca de lado do texto da cápsula de marcar."
+      },
+      {
+        "name": "press",
+        "value": "150ms translateY(1px)",
+        "purpose": "Botão descendo 1 px ao apertar."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px",
+        "note": "Ações do estado vazio lado a lado."
+      },
+      {
+        "name": "lg",
+        "value": "1024px",
+        "note": "Navegação sobe para barra no topo."
+      }
+    ],
+    "focus": {
+      "value": "outline: 3px solid var(--color-focus); outline-offset: 2px",
+      "purpose": "Anel de foco global, 3:1 garantido sobre bg, surface e shell."
+    },
+    "themes": {
+      "default": "light",
+      "dark": "html[data-theme=\"dark\"] ou prefers-color-scheme: dark sem escolha salva (html[data-theme=\"light\"] força o claro); tokens dark-* no frontmatter."
+    }
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Ação principal: cápsula em tinta; como link, termina no chip com seta.",
+      "html": "<a href=\"#\" class=\"ds-btn ds-btn-primary ds-btn--chip\"><span>Criar primeira atividade</span><span class=\"ds-chip ds-chip-primary\"><svg aria-hidden=\"true\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg></span></a>",
+      "css": ":host{--color-bg:#ffffff;--color-surface:#f2f4ee;--color-text:#2c2e2a;--color-text-muted:#5d5f59;--color-shell:#8ed462;--color-on-shell:#2c2e2a;--color-primary:#2c2e2a;--color-on-primary:#ffffff;--color-danger:#b3261e;--color-focus:#2c2e2a;--color-capsule-yellow:#f5e211;--color-on-capsule:#2c2e2a;--color-chip:#ffffff;}.ds-btn{font-family:var(--font-sans,'Archivo Variable',ui-sans-serif,system-ui,sans-serif);display:inline-flex;min-height:2.75rem;min-width:2.75rem;align-items:center;justify-content:center;gap:.5rem;border-radius:9999px;padding:0 1.25rem;font-weight:700;font-size:1rem;white-space:nowrap;cursor:pointer;border:0;text-decoration:none;transition:transform 150ms;}.ds-btn:active{transform:translateY(1px);}.ds-btn:focus-visible{outline:3px solid var(--color-focus);outline-offset:2px;}.ds-btn:disabled{opacity:.6;cursor:not-allowed;}@media (prefers-reduced-motion:reduce){.ds-btn{transition:none;}}.ds-btn--chip{padding-right:.375rem;}.ds-chip{display:inline-flex;width:2rem;height:2rem;flex-shrink:0;align-items:center;justify-content:center;border-radius:9999px;}.ds-btn-primary{background:var(--color-primary);color:var(--color-on-primary);}.ds-btn-primary:hover{filter:brightness(.95);}.ds-chip-primary{background:var(--color-on-primary);color:var(--color-primary);}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Ação alternativa: contorno de 2 px em tinta, hover em surface.",
+      "html": "<a href=\"#\" class=\"ds-btn ds-btn-secondary ds-btn--chip\"><span>Usar o passo a passo</span><span class=\"ds-chip ds-chip-secondary\"><svg aria-hidden=\"true\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg></span></a>",
+      "css": ":host{--color-bg:#ffffff;--color-surface:#f2f4ee;--color-text:#2c2e2a;--color-text-muted:#5d5f59;--color-shell:#8ed462;--color-on-shell:#2c2e2a;--color-primary:#2c2e2a;--color-on-primary:#ffffff;--color-danger:#b3261e;--color-focus:#2c2e2a;--color-capsule-yellow:#f5e211;--color-on-capsule:#2c2e2a;--color-chip:#ffffff;}.ds-btn{font-family:var(--font-sans,'Archivo Variable',ui-sans-serif,system-ui,sans-serif);display:inline-flex;min-height:2.75rem;min-width:2.75rem;align-items:center;justify-content:center;gap:.5rem;border-radius:9999px;padding:0 1.25rem;font-weight:700;font-size:1rem;white-space:nowrap;cursor:pointer;border:0;text-decoration:none;transition:transform 150ms;}.ds-btn:active{transform:translateY(1px);}.ds-btn:focus-visible{outline:3px solid var(--color-focus);outline-offset:2px;}.ds-btn:disabled{opacity:.6;cursor:not-allowed;}@media (prefers-reduced-motion:reduce){.ds-btn{transition:none;}}.ds-btn--chip{padding-right:.375rem;}.ds-chip{display:inline-flex;width:2rem;height:2rem;flex-shrink:0;align-items:center;justify-content:center;border-radius:9999px;}.ds-btn-secondary{background:transparent;color:var(--color-text);border:2px solid var(--color-text);}.ds-btn-secondary:hover{background:var(--color-surface);}.ds-chip-secondary{background:var(--color-text);color:var(--color-bg);}"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Ação discreta (ex.: Agora não no aviso de versão).",
+      "html": "<button type=\"button\" class=\"ds-btn ds-btn-ghost\">Agora não</button>",
+      "css": ":host{--color-bg:#ffffff;--color-surface:#f2f4ee;--color-text:#2c2e2a;--color-text-muted:#5d5f59;--color-shell:#8ed462;--color-on-shell:#2c2e2a;--color-primary:#2c2e2a;--color-on-primary:#ffffff;--color-danger:#b3261e;--color-focus:#2c2e2a;--color-capsule-yellow:#f5e211;--color-on-capsule:#2c2e2a;--color-chip:#ffffff;}.ds-btn{font-family:var(--font-sans,'Archivo Variable',ui-sans-serif,system-ui,sans-serif);display:inline-flex;min-height:2.75rem;min-width:2.75rem;align-items:center;justify-content:center;gap:.5rem;border-radius:9999px;padding:0 1.25rem;font-weight:700;font-size:1rem;white-space:nowrap;cursor:pointer;border:0;text-decoration:none;transition:transform 150ms;}.ds-btn:active{transform:translateY(1px);}.ds-btn:focus-visible{outline:3px solid var(--color-focus);outline-offset:2px;}.ds-btn:disabled{opacity:.6;cursor:not-allowed;}@media (prefers-reduced-motion:reduce){.ds-btn{transition:none;}}.ds-btn--chip{padding-right:.375rem;}.ds-chip{display:inline-flex;width:2rem;height:2rem;flex-shrink:0;align-items:center;justify-content:center;border-radius:9999px;}.ds-btn-ghost{background:transparent;color:var(--color-text);}.ds-btn-ghost:hover{background:var(--color-surface);}"
+    },
+    {
+      "name": "Danger Button",
+      "kind": "button",
+      "refersTo": "button-danger",
+      "description": "Ação destrutiva: contorno e texto em danger.",
+      "html": "<button type=\"button\" class=\"ds-btn ds-btn-danger\">Excluir dados</button>",
+      "css": ":host{--color-bg:#ffffff;--color-surface:#f2f4ee;--color-text:#2c2e2a;--color-text-muted:#5d5f59;--color-shell:#8ed462;--color-on-shell:#2c2e2a;--color-primary:#2c2e2a;--color-on-primary:#ffffff;--color-danger:#b3261e;--color-focus:#2c2e2a;--color-capsule-yellow:#f5e211;--color-on-capsule:#2c2e2a;--color-chip:#ffffff;}.ds-btn{font-family:var(--font-sans,'Archivo Variable',ui-sans-serif,system-ui,sans-serif);display:inline-flex;min-height:2.75rem;min-width:2.75rem;align-items:center;justify-content:center;gap:.5rem;border-radius:9999px;padding:0 1.25rem;font-weight:700;font-size:1rem;white-space:nowrap;cursor:pointer;border:0;text-decoration:none;transition:transform 150ms;}.ds-btn:active{transform:translateY(1px);}.ds-btn:focus-visible{outline:3px solid var(--color-focus);outline-offset:2px;}.ds-btn:disabled{opacity:.6;cursor:not-allowed;}@media (prefers-reduced-motion:reduce){.ds-btn{transition:none;}}.ds-btn--chip{padding-right:.375rem;}.ds-chip{display:inline-flex;width:2rem;height:2rem;flex-shrink:0;align-items:center;justify-content:center;border-radius:9999px;}.ds-btn-danger{background:transparent;color:var(--color-danger);border:2px solid var(--color-danger);}.ds-btn-danger:hover{background:var(--color-surface);}"
+    },
+    {
+      "name": "Mark Capsule",
+      "kind": "custom",
+      "refersTo": "mark-capsule",
+      "description": "Gesto próprio: ao marcar, o ponto branco atravessa e o texto vira Feito.",
+      "html": "<button type=\"button\" class=\"ds-capsule\" aria-pressed=\"false\" onclick=\"const p=this.getAttribute('aria-pressed')==='true';this.setAttribute('aria-pressed',String(!p));this.querySelector('.ds-capsule-label').textContent=p?'Marcar':'Feito';\"><span class=\"ds-capsule-label\">Marcar</span><span class=\"ds-capsule-dot\" aria-hidden=\"true\"></span></button>",
+      "css": ":host{--color-bg:#ffffff;--color-surface:#f2f4ee;--color-text:#2c2e2a;--color-text-muted:#5d5f59;--color-shell:#8ed462;--color-on-shell:#2c2e2a;--color-primary:#2c2e2a;--color-on-primary:#ffffff;--color-danger:#b3261e;--color-focus:#2c2e2a;--color-capsule-yellow:#f5e211;--color-on-capsule:#2c2e2a;--color-chip:#ffffff;}.ds-capsule{font-family:var(--font-sans,'Archivo Variable',ui-sans-serif,system-ui,sans-serif);position:relative;display:inline-flex;align-items:center;justify-content:flex-start;height:2.75rem;width:8rem;border:0;border-radius:9999px;background:var(--color-capsule-yellow);color:var(--color-on-capsule);font-weight:700;font-size:1rem;padding:0 3rem 0 1.25rem;cursor:pointer;transition:padding 200ms;}.ds-capsule[aria-pressed=\"true\"]{justify-content:flex-end;padding:0 1.25rem 0 3rem;}.ds-capsule:focus-visible{outline:3px solid var(--color-focus);outline-offset:2px;}.ds-capsule-dot{position:absolute;top:.375rem;left:.375rem;width:2rem;height:2rem;border-radius:9999px;background:var(--color-chip);box-shadow:0 1px 2px rgb(0 0 0/.25);transform:translateX(5.25rem);transition:transform 250ms cubic-bezier(.34,1.25,.64,1);}.ds-capsule[aria-pressed=\"true\"] .ds-capsule-dot{transform:translateX(0);}@media (prefers-reduced-motion:reduce){.ds-capsule,.ds-capsule-dot{transition:none;}}"
+    },
+    {
+      "name": "Switch",
+      "kind": "input",
+      "refersTo": "switch",
+      "description": "Interruptor em cápsula de 44 px; o ponto atravessa como na marcação.",
+      "html": "<button type=\"button\" role=\"switch\" aria-checked=\"false\" class=\"ds-switch\" onclick=\"this.setAttribute('aria-checked',String(this.getAttribute('aria-checked')!=='true'))\"><span class=\"ds-switch-thumb\"></span></button>",
+      "css": ":host{--color-bg:#ffffff;--color-surface:#f2f4ee;--color-text:#2c2e2a;--color-text-muted:#5d5f59;--color-shell:#8ed462;--color-on-shell:#2c2e2a;--color-primary:#2c2e2a;--color-on-primary:#ffffff;--color-danger:#b3261e;--color-focus:#2c2e2a;--color-capsule-yellow:#f5e211;--color-on-capsule:#2c2e2a;--color-chip:#ffffff;}.ds-switch{display:inline-flex;align-items:center;height:2.75rem;width:4.5rem;padding:.125rem;border:2px solid var(--color-text);border-radius:9999px;background:var(--color-surface);cursor:pointer;}.ds-switch[aria-checked=\"true\"]{background:var(--color-primary);}.ds-switch:focus-visible{outline:3px solid var(--color-focus);outline-offset:2px;}.ds-switch-thumb{display:block;width:2.25rem;height:2.25rem;border-radius:9999px;border:2px solid var(--color-text);background:var(--color-chip);transition:transform 250ms cubic-bezier(.34,1.25,.64,1);}.ds-switch[aria-checked=\"true\"] .ds-switch-thumb{transform:translateX(1.5rem);}@media (prefers-reduced-motion:reduce){.ds-switch-thumb{transition:none;}}"
+    },
+    {
+      "name": "Tab Navigation",
+      "kind": "nav",
+      "refersTo": "nav-tab",
+      "description": "4 abas; ativa em cápsula verde (rodapé no celular, topo a partir de 1024 px).",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\" class=\"ds-tab\" aria-current=\"page\"><svg aria-hidden=\"true\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8\"/><path d=\"M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z\"/></svg>Hoje</a><a href=\"#\" class=\"ds-tab\"><svg aria-hidden=\"true\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/></svg>Ajustes</a></nav>",
+      "css": ":host{--color-bg:#ffffff;--color-surface:#f2f4ee;--color-text:#2c2e2a;--color-text-muted:#5d5f59;--color-shell:#8ed462;--color-on-shell:#2c2e2a;--color-primary:#2c2e2a;--color-on-primary:#ffffff;--color-danger:#b3261e;--color-focus:#2c2e2a;--color-capsule-yellow:#f5e211;--color-on-capsule:#2c2e2a;--color-chip:#ffffff;}.ds-nav{font-family:var(--font-sans,'Archivo Variable',ui-sans-serif,system-ui,sans-serif);display:grid;grid-template-columns:repeat(2,minmax(5rem,1fr));gap:.25rem;padding:.375rem;background:var(--color-bg);border-top:2px solid var(--color-surface);}.ds-tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.125rem;min-height:3.5rem;border-radius:9999px;font-size:.75rem;font-weight:600;color:var(--color-text-muted);text-decoration:none;}.ds-tab:hover{color:var(--color-text);}.ds-tab[aria-current=\"page\"]{background:var(--color-shell);color:var(--color-on-shell);font-weight:700;}.ds-tab:focus-visible{outline:3px solid var(--color-focus);outline-offset:2px;}"
+    },
+    {
+      "name": "Lobe Header",
+      "kind": "custom",
+      "refersTo": "lobe-header",
+      "description": "Cabeçalho de estrutura em verde com borda inferior orgânica (só Hoje e Dashboard).",
+      "html": "<header class=\"ds-lobe\"><svg aria-hidden=\"true\" class=\"ds-lobe-bg\" viewBox=\"0 0 390 250\" preserveAspectRatio=\"none\"><path d=\"M0 0H390V176C352 226 292 204 244 224C194 246 124 238 74 216C38 200 14 206 0 212Z\"/></svg><div class=\"ds-lobe-inner\"><h1 class=\"ds-lobe-title\">Hoje</h1><p class=\"ds-lobe-date\">Domingo, 25 de outubro</p><p class=\"ds-lobe-lead\">Seu dia começa quando você escolher suas atividades.</p></div></header>",
+      "css": ":host{--color-bg:#ffffff;--color-surface:#f2f4ee;--color-text:#2c2e2a;--color-text-muted:#5d5f59;--color-shell:#8ed462;--color-on-shell:#2c2e2a;--color-primary:#2c2e2a;--color-on-primary:#ffffff;--color-danger:#b3261e;--color-focus:#2c2e2a;--color-capsule-yellow:#f5e211;--color-on-capsule:#2c2e2a;--color-chip:#ffffff;}.ds-lobe{font-family:var(--font-sans,'Archivo Variable',ui-sans-serif,system-ui,sans-serif);position:relative;isolation:isolate;color:var(--color-on-shell);}.ds-lobe-bg{position:absolute;inset:0;z-index:-1;width:100%;height:100%;fill:var(--color-shell);}.ds-lobe-inner{max-width:42rem;margin:0 auto;padding:1.5rem 1.25rem 5rem;}.ds-lobe-title{margin:0;font-size:3rem;font-weight:800;line-height:.95;letter-spacing:-.04em;}.ds-lobe-date{margin:.5rem 0 0;font-size:.875rem;font-weight:600;}.ds-lobe-lead{margin:.75rem 0 0;max-width:22rem;font-size:1.125rem;font-weight:600;}"
+    },
+    {
+      "name": "Menu",
+      "kind": "custom",
+      "refersTo": "menu",
+      "description": "Menu de ações suspenso: contorno de 2 px, cantos de 1.25rem, sombra de camada.",
+      "html": "<div class=\"ds-menu\" role=\"menu\"><div class=\"ds-menu-item\" role=\"menuitem\" tabindex=\"0\">Editar</div><div class=\"ds-menu-item\" role=\"menuitem\" tabindex=\"0\">Pausar</div><div class=\"ds-menu-item\" role=\"menuitem\" tabindex=\"0\">Arquivar</div></div>",
+      "css": ":host{--color-bg:#ffffff;--color-surface:#f2f4ee;--color-text:#2c2e2a;--color-text-muted:#5d5f59;--color-shell:#8ed462;--color-on-shell:#2c2e2a;--color-primary:#2c2e2a;--color-on-primary:#ffffff;--color-danger:#b3261e;--color-focus:#2c2e2a;--color-capsule-yellow:#f5e211;--color-on-capsule:#2c2e2a;--color-chip:#ffffff;}.ds-menu{font-family:var(--font-sans,'Archivo Variable',ui-sans-serif,system-ui,sans-serif);min-width:12rem;border:2px solid var(--color-text);border-radius:1.25rem;background:var(--color-bg);color:var(--color-text);padding:.375rem;box-shadow:0 10px 24px -10px rgb(0 0 0/.35);}.ds-menu-item{display:flex;align-items:center;min-height:2.75rem;padding:0 .75rem;border-radius:.75rem;font-weight:600;cursor:pointer;outline:none;}.ds-menu-item:hover,.ds-menu-item:focus-visible{background:var(--color-surface);outline:3px solid var(--color-focus);outline-offset:-3px;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Mapa do parque",
+    "overview": "O app empresta a linguagem de um mapa-guia de parque e a traduz para uma interface de uso diário (modo Operate): cor chapada, um verde que marca só a estrutura, cápsulas coloridas que identificam cada atividade e uma única grotesca com títulos grandes e justos. Quem usa encontra tudo antes de reparar no visual; navegação, formulários e menus seguem o padrão web, e o mundo aparece na tipografia, na paleta, na densidade e num gesto próprio, a cápsula de marcar.\n\nA densidade é de lista de app: uma coluna de até 42rem, linhas de 72 px, alvos de toque de 44 px, ação principal ao alcance do polegar. O cabeçalho de Hoje e do Dashboard é um \"lobo\" verde de borda inferior orgânica; abaixo dele, o conteúdo é uma lista comum sobre fundo branco (ou grafite no tema escuro). Não há gradiente, textura nem sombra decorativa. O tom é calmo e sem cobrança: nada de chama de sequência, anel de progresso ou lista cinza de círculos de check.\n\nO tema claro é o padrão. O escuro é uma tradução do mesmo mundo, não uma inversão: fundo grafite, lobo em verde escurecido, ação principal em tinta clara e as cápsulas com a mesma saturação e o mesmo texto escuro.",
+    "keyCharacteristics": [
+      "Cor chapada; o verde só em estrutura (lobo, aba ativa, seleção de texto).",
+      "Cápsulas totalmente arredondadas para todo controle de ação.",
+      "Uma grotesca variável (Archivo), títulos com entrelinha 0,95 e tracking −0,04em.",
+      "O estado nunca depende só da cor: texto, posição do ponto e `aria-pressed`.",
+      "Contraste AA garantido por teste em todos os pares de token, nos dois temas."
+    ],
+    "rules": [
+      {
+        "name": "The Green Is Structure Rule",
+        "body": "O verde nunca é botão nem ação. Ele pinta regiões de estrutura (lobo, aba ativa, seleção); a ação principal é tinta.",
+        "section": "colors"
+      },
+      {
+        "name": "The Dark Text On Capsules Rule",
+        "body": "Toda cápsula colorida leva texto grafite e ponto branco, também no tema escuro. A cor só identifica a atividade; o estado está no texto e na posição do ponto.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tested Pair Rule",
+        "body": "Um par texto × fundo só entra no sistema se estiver em `tests/unit/theme-contrast.test.ts` com 4,5:1 (texto) ou 3:1 (borda e foco) nos dois temas. Cores do tema ficam em `#rrggbb` para o teste conseguir ler.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tight Title Rule",
+        "body": "Títulos Display e Headline usam sempre o utilitário de título do mundo (800, entrelinha 0,95, tracking −0,04em). Títulos menores usam 800 com só −0,01em; o tracking extremo é reservado ao topo da tela.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Family Rule",
+        "body": "Uma família só, em escala fixa de rem. Hierarquia por peso e tamanho, nunca por uma segunda fonte.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Map Rule",
+        "body": "Superfícies em repouso não têm sombra, gradiente nem textura. Sombra só para o que flutua acima da página ou para o ponto da cápsula.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** usar o verde (`shell`) só em estrutura: lobo, aba ativa, seleção de texto.",
+      "**Do** fazer toda ação em cápsula de raio total com pelo menos 44 px de altura e texto em 700.",
+      "**Do** mostrar o estado da cápsula no texto e na posição do ponto, além de `aria-pressed`; a cor só identifica a atividade.",
+      "**Do** manter texto grafite e ponto branco em todas as cápsulas coloridas, também no tema escuro.",
+      "**Do** usar o utilitário de título (800, 0,95, −0,04em) para Display e Headline, e −0,01em nos títulos menores.",
+      "**Do** separar linhas e regiões com filetes de 2 px em `surface`, não com caixas.",
+      "**Do** adicionar todo novo par texto × fundo ao teste de contraste, nos dois temas.",
+      "**Do** dar a toda transição uma saída com movimento reduzido."
+    ],
+    "donts": [
+      "**Don't** usar o verde como cor de botão ou de ação.",
+      "**Don't** usar gradiente, textura ou sombra decorativa; sombra só no ponto da cápsula e em camadas flutuantes.",
+      "**Don't** usar chama de sequência, anel de progresso ou lista cinza com círculos de check.",
+      "**Don't** usar cores fora dos tokens do tema (as cores padrão do Tailwind estão desligadas).",
+      "**Don't** transformar o lobo em layout: ele é só o cabeçalho de Hoje e do Dashboard.",
+      "**Don't** introduzir uma segunda família tipográfica."
+    ]
+  }
+}

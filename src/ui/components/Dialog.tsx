@@ -22,18 +22,18 @@ export function Dialog({ title, description, trigger, children, open, onOpenChan
     >
       <DialogPrimitive.Trigger asChild>{trigger}</DialogPrimitive.Trigger>
       <DialogPrimitive.Portal>
-        <DialogPrimitive.Overlay className="fixed inset-0 bg-text/60" />
+        <DialogPrimitive.Overlay className="fixed inset-0 bg-text/50" />
         <DialogPrimitive.Content
           {...(!description && { 'aria-describedby': undefined })}
-          className="fixed top-1/2 left-1/2 w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-lg border border-border bg-bg p-4 text-text shadow-lg"
+          className="fixed top-1/2 left-1/2 w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-lg border-2 border-text bg-bg p-5 text-text shadow-[0_16px_40px_-12px_rgb(0_0_0/0.4)]"
         >
           <div className="mb-2 flex items-start justify-between gap-2">
-            <DialogPrimitive.Title className="m-0 pt-2 text-lg font-bold">
+            <DialogPrimitive.Title className="m-0 pt-2 text-xl font-extrabold tracking-[-0.01em]">
               {title}
             </DialogPrimitive.Title>
             <DialogPrimitive.Close
               aria-label={t('common.close')}
-              className="inline-flex min-h-touch min-w-touch cursor-pointer items-center justify-center rounded-md text-xl text-text hover:bg-surface"
+              className="inline-flex min-h-touch min-w-touch cursor-pointer items-center justify-center rounded-full text-text hover:bg-surface"
             >
               <X aria-hidden="true" className="size-6" />
             </DialogPrimitive.Close>
